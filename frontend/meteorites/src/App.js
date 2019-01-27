@@ -5,6 +5,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    this.ws = new WebSocket('ws://localhost:9000/ws')
     this.state = {
       serverMarkers: [],
       markerStyle: {
@@ -28,14 +29,13 @@ class App extends Component {
 
     var meteorites = [];
 
-    const ws = new WebSocket('ws://localhost:9000/ws')
-    ws.onmessage = function (event) {
+    this.ws.onmessage = function (event) {
       //console.log(JSON.parse(event.data));
 
       meteorites = JSON.parse(event.data);
 
     };
-    ws.onopen = () => ws.send(JSON.stringify({
+    this.ws.onopen = () => this.ws.send(JSON.stringify({
 
 
       "dataset": "meteorites.meteorites_ds",
@@ -67,7 +67,7 @@ class App extends Component {
       },
       "select": {
         "order": ["count"],
-        "limit": 300,
+        "limit": 1000,
         "offset": 0
       }
 
@@ -95,6 +95,12 @@ class App extends Component {
 
   }
 
+  click() {
+    
+    
+
+  }
+
 
   onMarkerSelect() {
     console.log('a');
@@ -108,6 +114,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <button onClick={() => this.click()}>Click Me</button>
         <div style={{ height: '100vh', width: '100%' }}>
           <VectorMap map={'world_mill'}
             backgroundColor="#383f47"

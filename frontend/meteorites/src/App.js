@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { VectorMap } from "react-jvectormap"
 import { Button } from 'react-bootstrap';
+import './App.css';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.ws = new WebSocket('ws://localhost:9000/ws')
+    this.ws = new WebSocket('ws://localhost:9000/ws');
     this.state = {
       serverMarkers: [],
       queryResult: [],
@@ -28,72 +29,31 @@ class App extends Component {
   }
 
   componentDidMount() {
+    var tmpMarkers = [];
 
-    var meteorites = [];
-
-    this.ws.onmessage = function (event) {
-      //console.log(JSON.parse(event.data));
-
-      meteorites = JSON.parse(event.data);
-
-    };
-    this.ws.onopen = () => this.ws.send(JSON.stringify({
-
-
-      "dataset": "meteorites.meteorites_ds",
-      "filter": [{
-        "field": "fall",
-        "relation": "matches",
-        "values": ["Fell"]
-      }],
-      "group": {
-        "by": [{
-          "field": "name"
-        },
-        {
-          "field": "geolocation"
-        },
-        {
-          "field": "year"
-        },
-        {
-          "field": "mass"
-        }],
-        "aggregate": [{
-          "field": "*",
-          "apply": {
-            "name": "count"
-          },
-          "as": "count"
-        }]
-      },
-      "select": {
-        "order": ["count"],
-        "limit": 1000,
-        "offset": 0
-      }
-
-    }));
-    setTimeout(() => {
-      console.log(meteorites)
-      var tmpMarkers = [];
-      if (!meteorites[0]) {
-        window.location.reload();
-      }
-      meteorites[0].forEach(meteorite => {
-        var metYear = meteorite.year ? meteorite.year.split('-')[0] : 'unknown';
-        var metMass = meteorite.mass ? `${meteorite.mass.split('-')[0]} g` : 'unknown';
-        tmpMarkers.push({
-          "name": `Name: ${meteorite.name}, Year: ${metYear}., Mass: ${metMass}`,
-          "latLng": meteorite.geolocation ? [meteorite.geolocation.coordinates[1], meteorite.geolocation.coordinates[0]] : undefined,
+    fetch(`http://localhost:19002/query/service`, {
+      method: 'POST',
+      body: `select name, geolocation, year, mass from meteorites.meteorites_ds;`,
+    }).then((res) => res.json())
+      .then((response) => {
+        this.setState({
+          queryResult: response.results
         });
-      });
-      this.setState({
-        serverMarkers: tmpMarkers
-      });
-    },
-      1500);
+        console.log(this.state.queryResult)
 
+        response.results.forEach(meteorite => {
+          var metYear = meteorite.year ? meteorite.year.split('-')[0] : 'unknown';
+          var metMass = meteorite.mass ? `${meteorite.mass.split('-')[0]} g` : 'unknown';
+          tmpMarkers.push({
+            "name": `Name: ${meteorite.name}, Year: ${metYear}., Mass: ${metMass}`,
+            "latLng": meteorite.geolocation ? [meteorite.geolocation.coordinates[1], meteorite.geolocation.coordinates[0]] : undefined,
+          });
+        });
+        this.setState({
+          serverMarkers: tmpMarkers
+        });
+
+      });
 
   }
 
@@ -138,12 +98,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <input placeholder='Search by name' ref={(input) => {
-          this.text = input;
-        }} />
-        <Button onClick={() => this.click(this.text.value)}>Search</Button>
-        <Button onClick={() => this.click("")}>Show all</Button>
-
+        <div className="background">
+          <div className="input">
+            <input placeholder='Enter name segment' ref={(input) => {
+              this.text = input;
+            }} />
+            <div className='btn'><Button onClick={() => this.click(this.text.value)}>Search</Button></div>
+            <Button onClick={() => this.click("")}>Show all</Button>
+          </div>
+        </div>
         <div style={{ height: '100vh', width: '100%' }}>
           <VectorMap map={'world_mill'}
             backgroundColor="#383f47"

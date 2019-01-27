@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { VectorMap } from "react-jvectormap"
-import axios from 'axios';
 
 class App extends Component {
 
@@ -24,18 +23,52 @@ class App extends Component {
       , { "fall": "Fell", "latLng": [44.88333, 8.75], "id": "463", "mass": "908", "name": "Alessandria", "nametype": "Valid", "recclass": "H5", "reclat": "44.883330", "reclong": "8.750000", "year": "1860-01-01T00:00:00.000" }]
   }
 
-  componentDidMount() {
-    fetch('http://localhost:9000/berry', {
-      method: 'POST',
-      headers: {
-        'Content-Type':'application/json'
+  componentWillMount() {
+    const ws = new WebSocket('ws://localhost:9000/ws')
+    ws.onmessage = function (event) { console.log(JSON.parse(event.data)); };
+    ws.onopen = () => ws.send(JSON.stringify({
+
+
+      "dataset": "meteorites.meteorites_ds",
+      "filter": [{
+        "field": "fall",
+        "relation": "matches",
+        "values": ["Fell"]
+      }],
+
+      "group": {
+        "by": [{
+          "field": "name"
+        },
+        {
+          "field": "geolocation"
+        }],
+        "aggregate": [{
+          "field": "*",
+          "apply": {
+            "name": "count"
+          },
+          "as": "count"
+        }]
       },
-      data: JSON.stringify({
-        "dataset": "meteorites.meteorites_ds",
-        "select": "geolocation"
-      })
-    }
-    );
+      "select": {
+        "order": ["-count"],
+        "limit": 100,
+        "offset": 0
+      }
+
+
+
+    }));
+  }
+
+  onMarkerSelect() {
+    alert('a')
+  }
+
+  handleData(data) {
+    let result = JSON.parse(data);
+    console.log(result.movement);
   }
 
   render() {
@@ -53,6 +86,7 @@ class App extends Component {
             regionStyle={this.state.regionStyle}
             markerStyle={this.state.markerStyle}
             markers={this.markers}
+            onMarkerSelected={this.onMarkerSelect}
           />
         </div>
       </div >

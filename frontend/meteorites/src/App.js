@@ -114,7 +114,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.click()}>Click Me</button>
+        {/* <button onClick={() => this.click()}>Click Me</button> */}
         <div style={{ height: '100vh', width: '100%' }}>
           <VectorMap map={'world_mill'}
             backgroundColor="#383f47"

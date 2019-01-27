@@ -8,6 +8,7 @@ create dataverse meteorites if not exists;
 use meteorites;
 
 create type meteo if not exists as open {
+        created_at: date,
         fall: string?,
         geolocation: geometry?,
         id: string,

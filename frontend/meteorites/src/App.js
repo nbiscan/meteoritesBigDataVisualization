@@ -6,6 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      serverMarkers: [],
       markerStyle: {
         initial: {
           fill: '#F8E23B',
@@ -19,13 +20,21 @@ class App extends Component {
         },
       },
     };
-    this.markers = [{ "fall": "Fell", "latLng": [36.23333, 37.13333], "id": "462", "mass": "3200", "name": "Aleppo", "nametype": "Valid", "recclass": "L6", "reclat": "36.233330", "reclong": "37.133330", "year": "1873-01-01T00:00:00.000" }
-      , { "fall": "Fell", "latLng": [44.88333, 8.75], "id": "463", "mass": "908", "name": "Alessandria", "nametype": "Valid", "recclass": "H5", "reclat": "44.883330", "reclong": "8.750000", "year": "1860-01-01T00:00:00.000" }]
+    this.testMarkers = [{ "fall": "Fell", "latLng": [36.23333, 37.13333], "id": "462", "mass": "3200", "name": "Aleppo", "nametype": "Valid", "recclass": "L6", "reclat": "36.233330", "reclong": "37.133330", "year": "1873-01-01T00:00:00.000" }
+      , { "fall": "Fell", "latLng": [44.88333, 8.75], "id": "463", "mass": "908", "name": "Alessandria", "nametype": "Valid", "recclass": "H5", "reclat": "44.883330", "reclong": "8.750000", "year": "1860-01-01T00:00:00.000" }];
   }
 
-  componentWillMount() {
+  componentDidMount() {
+
+    var meteorites = [];
+
     const ws = new WebSocket('ws://localhost:9000/ws')
-    ws.onmessage = function (event) { console.log(JSON.parse(event.data)); };
+    ws.onmessage = function (event) {
+      //console.log(JSON.parse(event.data));
+
+      meteorites = JSON.parse(event.data);
+
+    };
     ws.onopen = () => ws.send(JSON.stringify({
 
 
@@ -35,7 +44,6 @@ class App extends Component {
         "relation": "matches",
         "values": ["Fell"]
       }],
-
       "group": {
         "by": [{
           "field": "name"
@@ -60,7 +68,26 @@ class App extends Component {
 
 
     }));
+    setTimeout(() => {
+      console.log(meteorites)
+      var tmpMarkers = [];
+      meteorites[0].forEach(meteorite => {
+        tmpMarkers.push({
+          "name": meteorite.name,
+          "latLng": [meteorite.geolocation.coordinates[1], meteorite.geolocation.coordinates[0]]
+        });
+      });
+      this.setState({
+        serverMarkers: tmpMarkers
+      });
+    },
+      2000);
+
+
+
+
   }
+
 
   onMarkerSelect() {
     alert('a')
@@ -85,7 +112,7 @@ class App extends Component {
             containerClassName="map"
             regionStyle={this.state.regionStyle}
             markerStyle={this.state.markerStyle}
-            markers={this.markers}
+            markers={this.state.serverMarkers}
             onMarkerSelected={this.onMarkerSelect}
           />
         </div>

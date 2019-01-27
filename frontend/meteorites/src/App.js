@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { VectorMap } from "react-jvectormap"
+import { Button } from 'react-bootstrap';
 
 class App extends Component {
 
@@ -8,6 +9,7 @@ class App extends Component {
     this.ws = new WebSocket('ws://localhost:9000/ws')
     this.state = {
       serverMarkers: [],
+      queryResult: [],
       markerStyle: {
         initial: {
           fill: '#F8E23B',
@@ -95,10 +97,32 @@ class App extends Component {
 
   }
 
-  click() {
-    
-    
+  click(text) {
+    var tmpMarkers = [];
 
+    fetch(`http://localhost:19002/query/service`, {
+      method: 'POST',
+      body: `select name, geolocation, year, mass from meteorites.meteorites_ds where name like "%${text}%";`,
+    }).then((res) => res.json())
+      .then((response) => {
+        this.setState({
+          queryResult: response.results
+        });
+        console.log(this.state.queryResult)
+
+        response.results.forEach(meteorite => {
+          var metYear = meteorite.year ? meteorite.year.split('-')[0] : 'unknown';
+          var metMass = meteorite.mass ? `${meteorite.mass.split('-')[0]} g` : 'unknown';
+          tmpMarkers.push({
+            "name": `Name: ${meteorite.name}, Year: ${metYear}., Mass: ${metMass}`,
+            "latLng": meteorite.geolocation ? [meteorite.geolocation.coordinates[1], meteorite.geolocation.coordinates[0]] : undefined,
+          });
+        });
+        this.setState({
+          serverMarkers: tmpMarkers
+        });
+
+      });
   }
 
 
@@ -114,7 +138,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/* <button onClick={() => this.click()}>Click Me</button> */}
+        <input placeholder='Search by name' ref={(input) => {
+          this.text = input;
+        }} />
+        <Button onClick={() => this.click(this.text.value)}>Search</Button>
+        <Button onClick={() => this.click("")}>Show all</Button>
+
         <div style={{ height: '100vh', width: '100%' }}>
           <VectorMap map={'world_mill'}
             backgroundColor="#383f47"

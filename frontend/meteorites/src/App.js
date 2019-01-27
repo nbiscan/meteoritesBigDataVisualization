@@ -80,9 +80,9 @@ class App extends Component {
       }
       meteorites[0].forEach(meteorite => {
         var metYear = meteorite.year ? meteorite.year.split('-')[0] : 'unknown';
-        var metMass = meteorite.year ? meteorite.year.split('-')[0] : 'unknown';
+        var metMass = meteorite.mass ? `${meteorite.mass.split('-')[0]} g` : 'unknown';
         tmpMarkers.push({
-          "name": `Name: ${meteorite.name}, Year: ${metYear}., Mass: ${metMass} g`,
+          "name": `Name: ${meteorite.name}, Year: ${metYear}., Mass: ${metMass}`,
           "latLng": meteorite.geolocation ? [meteorite.geolocation.coordinates[1], meteorite.geolocation.coordinates[0]] : undefined,
         });
       });

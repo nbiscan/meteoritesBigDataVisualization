@@ -50,6 +50,12 @@ class App extends Component {
         },
         {
           "field": "geolocation"
+        },
+        {
+          "field": "year"
+        },
+        {
+          "field": "mass"
         }],
         "aggregate": [{
           "field": "*",
@@ -73,8 +79,10 @@ class App extends Component {
         window.location.reload();
       }
       meteorites[0].forEach(meteorite => {
+        var metYear = meteorite.year ? meteorite.year.split('-')[0] : 'unknown';
+        var metMass = meteorite.year ? meteorite.year.split('-')[0] : 'unknown';
         tmpMarkers.push({
-          "name": `${meteorite.name}`,
+          "name": `Name: ${meteorite.name}, Year: ${metYear}., Mass: ${metMass} g`,
           "latLng": meteorite.geolocation ? [meteorite.geolocation.coordinates[1], meteorite.geolocation.coordinates[0]] : undefined,
         });
       });

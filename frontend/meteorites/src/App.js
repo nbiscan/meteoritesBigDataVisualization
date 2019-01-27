@@ -60,37 +60,36 @@ class App extends Component {
         }]
       },
       "select": {
-        "order": ["-count"],
-        "limit": 100,
+        "order": ["count"],
+        "limit": 300,
         "offset": 0
       }
-
-
 
     }));
     setTimeout(() => {
       console.log(meteorites)
       var tmpMarkers = [];
+      if (!meteorites[0]) {
+        window.location.reload();
+      }
       meteorites[0].forEach(meteorite => {
         tmpMarkers.push({
-          "name": meteorite.name,
-          "latLng": [meteorite.geolocation.coordinates[1], meteorite.geolocation.coordinates[0]]
+          "name": `${meteorite.name}`,
+          "latLng": meteorite.geolocation ? [meteorite.geolocation.coordinates[1], meteorite.geolocation.coordinates[0]] : undefined,
         });
       });
       this.setState({
         serverMarkers: tmpMarkers
       });
     },
-      2000);
-
-
+      1500);
 
 
   }
 
 
   onMarkerSelect() {
-    alert('a')
+    console.log('a');
   }
 
   handleData(data) {

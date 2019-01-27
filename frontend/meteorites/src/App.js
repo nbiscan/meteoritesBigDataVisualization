@@ -107,7 +107,7 @@ class App extends Component {
             <Button onClick={() => this.click("")}>Show all</Button>
           </div>
         </div>
-        <div style={{ height: '100vh', width: '100%' }}>
+        <div style={{ height: '95vh', width: '100%' }}>
           <VectorMap map={'world_mill'}
             backgroundColor="#383f47"
             ref="map"

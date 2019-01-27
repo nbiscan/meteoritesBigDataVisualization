@@ -1,4 +1,4 @@
-# meteoritesBigDataVisualisation
+# meteoritesBigDataVisualization
 
 1. Configure AsterixDB and Cloudberry on your machine [here](http://cloudberry.ics.uci.edu/quick-start).
 

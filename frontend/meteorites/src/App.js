@@ -83,8 +83,12 @@ class App extends Component {
         });
 
       });
-  }
 
+      if (text == ""){
+        document.getElementsByClassName('form')[0].value = '';
+      }
+
+  }
 
   onMarkerSelect() {
     console.log('a');
@@ -100,7 +104,7 @@ class App extends Component {
       <div>
         <div className="background">
           <div className="input">
-            <input placeholder='Enter name segment' ref={(input) => {
+            <input className="form" placeholder='Enter full name or segment' ref={(input) => {
               this.text = input;
             }} />
             <div className='btn'><Button onClick={() => this.click(this.text.value)}>Search</Button></div>

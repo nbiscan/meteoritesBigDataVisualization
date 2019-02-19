@@ -19,7 +19,10 @@
 2. Compile and start Cloudberry using:
 
 `~/cloudberry> cd cloudberry`
+
 `~/cloudberry> sbt compile`
+
 `~/cloudberry> sbt "project neo" "run"`
+
 
 3. Run the app by positioning inside `meteoritesBigDataVisualization/frontend/meteorites/` and running the `npm start` in that directory.

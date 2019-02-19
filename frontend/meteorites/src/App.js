@@ -84,7 +84,7 @@ class App extends Component {
 
       });
 
-    if (text == "") {
+    if (text === "") {
       document.getElementsByClassName('form')[0].value = '';
     }
 
@@ -106,7 +106,7 @@ class App extends Component {
           <div className="input">
             <input
               className="form"
-              placeholder='Enter full name or segment (include capital letters)'
+              placeholder='Enter full name or segment (please include capitalization)'
               ref={(input) => {
                 this.text = input;
               }}

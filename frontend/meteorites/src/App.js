@@ -84,9 +84,9 @@ class App extends Component {
 
       });
 
-      if (text == ""){
-        document.getElementsByClassName('form')[0].value = '';
-      }
+    if (text == "") {
+      document.getElementsByClassName('form')[0].value = '';
+    }
 
   }
 
@@ -104,10 +104,24 @@ class App extends Component {
       <div>
         <div className="background">
           <div className="input">
-            <input className="form" placeholder='Enter full name or segment' ref={(input) => {
-              this.text = input;
-            }} />
-            <div className='btn'><Button onClick={() => this.click(this.text.value)}>Search</Button></div>
+            <input
+              className="form"
+              placeholder='Enter full name or segment (include capital letters)'
+              ref={(input) => {
+                this.text = input;
+              }}
+              onKeyPress={event => {
+                if (event.key === "Enter") {
+                  this.click(this.text.value);
+                }
+              }} />
+            <div className='btn'>
+              <Button
+                onClick={() => this.click(this.text.value)}
+              >
+                Search
+                </Button>
+            </div>
             <Button onClick={() => this.click("")}>Show all</Button>
           </div>
         </div>

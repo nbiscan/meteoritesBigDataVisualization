@@ -1,19 +1,19 @@
 .background {
-    background-color: #383f47;
+  background-color: lightgray;
 }
 
 .input {
-    margin-left: 100px;
+  margin-left: 100px;
 }
 
 .form {
-    width: 600px;
-    height: 30px;
-    margin:10px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border: 1px solid darkgrey;
-    border-radius: 5px;
-    color: black;
-    font-size: 15px;
-    font-weight: normal;
+  width: 600px;
+  height: 30px;
+  margin: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+  color: black;
+  font-size: 15px;
+  font-weight: normal;
 }

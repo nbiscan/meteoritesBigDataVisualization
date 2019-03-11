@@ -10,10 +10,13 @@ import "./App.css";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
-  shadowUrl: iconShadow
+  shadowUrl: iconShadow,
+  iconSize: [26, 40],
+  iconAnchor: [13, 40],
+  popupAnchor: [0, -40]
 });
-
 L.Marker.prototype.options.icon = DefaultIcon;
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +34,6 @@ export default class App extends Component {
     var tmpMarkers = [];
 
     window.navigator.geolocation.getCurrentPosition(position => {
-      console.log([position.coords.latitude, position.coords.longitude]);
       this.setState({
         currentLocation: [position.coords.latitude, position.coords.longitude]
       });
@@ -115,7 +117,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.serverMarkers);
     return (
       <div>
         <div className="background">

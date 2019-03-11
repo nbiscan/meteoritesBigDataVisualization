@@ -22,24 +22,20 @@ export default class App extends Component {
       zoom: 4,
       serverMarkers: testMarkers,
       queryResult: [],
-      markerStyle: {
-        initial: {
-          fill: "#F8E23B",
-          stroke: "#383f47"
-        },
-        hover: {
-          "fill-opacity": 0.8,
-          cursor: "pointer",
-          fill: "red",
-          stroke: "#383f47"
-        }
-      },
-      testMarkers
+      testMarkers,
+      currentLocation: [0, 0]
     };
   }
 
   componentDidMount() {
     var tmpMarkers = [];
+
+    window.navigator.geolocation.getCurrentPosition(position => {
+      console.log([position.coords.latitude, position.coords.longitude]);
+      this.setState({
+        currentLocation: [position.coords.latitude, position.coords.longitude]
+      });
+    });
 
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
@@ -149,6 +145,11 @@ export default class App extends Component {
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+          <Marker position={this.state.currentLocation}>
+            <Popup>
+              <p>Your current location</p>
+            </Popup>
+          </Marker>
           {this.state.serverMarkers.map(
             (marker, i) =>
               marker.latLng && (

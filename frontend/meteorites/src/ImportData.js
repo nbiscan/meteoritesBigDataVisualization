@@ -36,7 +36,7 @@ class ImportData extends Component {
   };
 
   handleChangeGeoJSON = event => {
-    this.setState({ geojson: event.target.value });
+    this.setState({ geojson: event.target.value, disabled: false });
   };
 
   handleSelectedFile = event => {

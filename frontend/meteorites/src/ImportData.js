@@ -4,7 +4,40 @@ import history from "./history.js";
 import "./ImportData.css";
 
 class ImportData extends Component {
-  state = { selectedFile: null, loading: false };
+  state = {
+    selectedFile: null,
+    disabled: false,
+    dataverse: "",
+    type: "",
+    datatype: "",
+    dataset: "",
+    data: "",
+    geojson: ""
+  };
+
+  handleChangeDataverse = event => {
+    this.setState({ dataverse: event.target.value, disabled: false });
+  };
+
+  handleChangeType = event => {
+    this.setState({ type: event.target.value, disabled: false });
+  };
+
+  handleChangeDatatype = event => {
+    this.setState({ datatype: event.target.value, disabled: false });
+  };
+
+  handleChangeDataset = event => {
+    this.setState({ dataset: event.target.value, disabled: false });
+  };
+
+  handleChangeData = event => {
+    this.setState({ data: event.target.value, disabled: false });
+  };
+
+  handleChangeGeoJSON = event => {
+    this.setState({ geojson: event.target.value });
+  };
 
   handleSelectedFile = event => {
     this.setState({
@@ -12,24 +45,27 @@ class ImportData extends Component {
     });
   };
 
-  handleSubmitData = (dataverse, type, json, dataset, data) => {
-    this.setState({
-      loading: true
-    });
+  handleSubmitData = (dataverse, type, datatype, dataset, geojson) => {
+    if (
+      this.state.dataverse === "" ||
+      this.state.type === "" ||
+      this.state.datatype === "" ||
+      this.state.dataset === "" ||
+      this.state.geojson === ""
+    ) {
+      this.setState({ disabled: true });
+      return;
+    }
 
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
       body: `create dataverse ${dataverse} if not exists;
       use ${dataverse};
-      create type ${type} if not exists as open ${json};
+      create type ${type} if not exists as open ${datatype};
       create dataset ${dataset}(${type}) if not exists primary key id;
-      insert into ${dataverse}.${dataset}(${data});
+      insert into ${dataverse}.${dataset}(${geojson});
     `
     }).then(resp => {
-      this.setState({
-        loading: false
-      });
-
       if (resp.status === 200) {
         alert("Data successfully imported.");
         history.push("/");
@@ -56,9 +92,8 @@ class ImportData extends Component {
             placeholder="Please enter name"
             type="text"
             required
-            ref={input => {
-              this.dataverse = input;
-            }}
+            value={this.state.dataverse}
+            onChange={this.handleChangeDataverse}
           />
           <hr />
 
@@ -68,9 +103,8 @@ class ImportData extends Component {
             placeholder="Please enter name"
             type="text"
             required
-            ref={input => {
-              this.type = input;
-            }}
+            value={this.state.type}
+            onChange={this.handleChangeType}
           />
           <hr />
 
@@ -78,12 +112,11 @@ class ImportData extends Component {
           <textarea
             className="form-control rounded-0"
             name="datatype"
-            placeholder="Please enter GeoJSON data"
+            placeholder="Please enter data"
             type="text"
             required
-            ref={input => {
-              this.datatype = input;
-            }}
+            value={this.state.datatype}
+            onChange={this.handleChangeDatatype}
           />
           <hr />
 
@@ -94,17 +127,16 @@ class ImportData extends Component {
             placeholder="Please enter name"
             type="text"
             required
-            ref={input => {
-              this.dataset = input;
-            }}
+            value={this.state.dataset}
+            onChange={this.handleChangeDataset}
           />
 
           <hr />
 
-          <h5 className="h">Choose .geojson file containing data set: </h5>
+          {/* <h5 className="h">Choose .geojson file containing data set: </h5>
           <input type="file" name="" id="" onChange={this.handleSelectedFile} />
 
-          <hr />
+          <hr /> */}
 
           <h5 className="h">Or paste GeoJSON data here:</h5>
           <textarea
@@ -113,27 +145,29 @@ class ImportData extends Component {
             placeholder="Please enter GeoJSON data"
             type="text"
             required
-            ref={input => {
-              this.geojson = input;
-            }}
+            value={this.state.geojson}
+            onChange={this.handleChangeGeoJSON}
           />
 
           <Button
             className="button"
+            disabled={this.state.disabled}
             type="submit"
             onClick={() =>
               this.handleSubmitData(
-                this.dataverse.value,
-                this.type.value,
-                this.datatype.value,
-                this.dataset.value,
-                this.geojson.value
+                this.state.dataverse,
+                this.state.type,
+                this.state.datatype,
+                this.state.dataset,
+                this.state.geojson
               )
             }
           >
             Submit form
           </Button>
-          {this.state.loading && <h1>Loading</h1>}
+          {this.state.disabled && (
+            <p className="warning">Enter all data to submit form.</p>
+          )}
         </div>
       </div>
     );

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-import { Link } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
@@ -22,7 +21,6 @@ L.Marker.prototype.options.icon = DefaultIcon;
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    // this.ws = new WebSocket("ws://localhost:9000/ws");
     this.state = {
       zoom: 4,
       serverMarkers: testMarkers,
@@ -149,16 +147,16 @@ export default class Home extends Component {
             </Button>
           </div>
         </div>
-        <Map center={this.state.serverMarkers[0].latLng} zoom={this.state.zoom}>
+        <Map center={this.state.testMarkers[0].latLng} zoom={this.state.zoom}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={this.state.currentLocation}>
+          {/* <Marker position={this.state.currentLocation}>
             <Popup>
               <p>Your current location</p>
             </Popup>
-          </Marker>
+          </Marker> */}
           {this.state.serverMarkers.map(
             (marker, i) =>
               marker.latLng && (

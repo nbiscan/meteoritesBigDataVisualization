@@ -29,6 +29,13 @@ class ImportData extends Component {
       this.setState({
         loading: false
       });
+
+      if (resp.status === 200) {
+        alert("Data successfully imported.");
+        history.push("/");
+      } else {
+        alert("Error importing file.");
+      }
     });
   };
 

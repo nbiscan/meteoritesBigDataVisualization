@@ -46,6 +46,7 @@ class ImportData extends Component {
   };
 
   handleFileChange(file) {
+    if (!file) return;
     const fileReader = new FileReader();
     fileReader.onloadend = event => {
       this.setState({ fileContent: event.target.result });

@@ -135,14 +135,20 @@ export default class Home extends Component {
               }}
             />
             <div className="btn">
-              <Button onClick={() => this.click(this.text.value)}>
+              <Button
+                bsStyle="secondary"
+                onClick={() => this.click(this.text.value)}
+              >
                 Search
               </Button>
             </div>
-            <Button onClick={() => this.click("")}>Show all</Button>
+            <Button bsStyle="secondary" onClick={() => this.click("")}>
+              Show all
+            </Button>
             {this.state.currentLocation && this.state.showLocation && (
               <div className="btn">
                 <Button
+                  bsStyle="secondary"
                   onClick={() =>
                     this.setState({
                       showLocation: false
@@ -156,6 +162,7 @@ export default class Home extends Component {
             {this.state.currentLocation && !this.state.showLocation && (
               <div className="btn">
                 <Button
+                  bsStyle="secondary"
                   onClick={() =>
                     this.setState({
                       showLocation: true
@@ -169,6 +176,7 @@ export default class Home extends Component {
             <Button
               onClick={() => history.push("/import")}
               className="import-data"
+              bsStyle="dark"
             >
               Import data
             </Button>

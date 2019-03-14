@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Label } from "react-bootstrap";
 import history from "./history.js";
 import "./ImportData.css";
 
@@ -90,7 +90,11 @@ class ImportData extends Component {
   render() {
     return (
       <div className="all">
-        <Button className="button" onClick={() => history.push("/")}>
+        <Button
+          className="button"
+          bsStyle="dark"
+          onClick={() => history.push("/")}
+        >
           Map
         </Button>
         <div style={{ margin: "50px" }}>
@@ -148,8 +152,9 @@ class ImportData extends Component {
           <h5 className="h">Choose .geojson file containing data set: </h5>
           <input
             type="file"
-            name=""
-            id=""
+            name="file"
+            id="file"
+            className="input-group mb-3"
             onChange={e => this.handleFileChange(e.target.files[0])}
           />
 
@@ -170,6 +175,7 @@ class ImportData extends Component {
             className="button"
             disabled={this.state.disabled}
             type="submit"
+            bsStyle="dark"
             onClick={() =>
               this.handleSubmitData(
                 this.state.dataverse,
@@ -183,7 +189,7 @@ class ImportData extends Component {
             Submit form
           </Button>
           {this.state.disabled && (
-            <p className="warning">Enter all data to submit form.</p>
+            <Label className="warning">Enter all data to submit form.</Label>
           )}
         </div>
       </div>

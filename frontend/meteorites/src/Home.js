@@ -26,7 +26,8 @@ export default class Home extends Component {
       serverMarkers: testMarkers,
       queryResult: [],
       testMarkers,
-      currentLocation: [0, 0]
+      currentLocation: null,
+      showLocation: true
     };
   }
 
@@ -139,6 +140,32 @@ export default class Home extends Component {
               </Button>
             </div>
             <Button onClick={() => this.click("")}>Show all</Button>
+            {this.state.currentLocation && this.state.showLocation && (
+              <div className="btn">
+                <Button
+                  onClick={() =>
+                    this.setState({
+                      showLocation: false
+                    })
+                  }
+                >
+                  Hide current location
+                </Button>
+              </div>
+            )}
+            {this.state.currentLocation && !this.state.showLocation && (
+              <div className="btn">
+                <Button
+                  onClick={() =>
+                    this.setState({
+                      showLocation: true
+                    })
+                  }
+                >
+                  Show current location
+                </Button>
+              </div>
+            )}
             <Button
               onClick={() => history.push("/import")}
               className="import-data"
@@ -152,11 +179,13 @@ export default class Home extends Component {
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {/* <Marker position={this.state.currentLocation}>
-            <Popup>
-              <p>Your current location</p>
-            </Popup>
-          </Marker> */}
+          {this.state.currentLocation && this.state.showLocation && (
+            <Marker position={this.state.currentLocation}>
+              <Popup>
+                <p>Your current location</p>
+              </Popup>
+            </Marker>
+          )}
           {this.state.serverMarkers.map(
             (marker, i) =>
               marker.latLng && (

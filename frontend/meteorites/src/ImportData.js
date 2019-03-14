@@ -4,16 +4,22 @@ import history from "./history.js";
 import "./ImportData.css";
 
 class ImportData extends Component {
-  state = {
-    selectedFile: null,
-    disabled: false,
-    dataverse: "",
-    type: "",
-    datatype: "",
-    dataset: "",
-    data: "",
-    geojson: ""
-  };
+  constructor(props) {
+    super(props);
+
+    this.handleFileChange = this.handleFileChange.bind(this);
+
+    this.state = {
+      fileContent: null,
+      disabled: false,
+      dataverse: "",
+      type: "",
+      datatype: "",
+      dataset: "",
+      data: "",
+      geojson: ""
+    };
+  }
 
   handleChangeDataverse = event => {
     this.setState({ dataverse: event.target.value, disabled: false });
@@ -39,11 +45,13 @@ class ImportData extends Component {
     this.setState({ geojson: event.target.value, disabled: false });
   };
 
-  handleSelectedFile = event => {
-    this.setState({
-      selectedFile: event.target.files[0]
-    });
-  };
+  handleFileChange(file) {
+    const fileReader = new FileReader();
+    fileReader.onloadend = event => {
+      this.setState({ fileContent: event.target.result });
+    };
+    fileReader.readAsText(file);
+  }
 
   handleSubmitData = (dataverse, type, datatype, dataset, geojson) => {
     if (
@@ -51,10 +59,14 @@ class ImportData extends Component {
       this.state.type === "" ||
       this.state.datatype === "" ||
       this.state.dataset === "" ||
-      this.state.geojson === ""
+      (this.state.geojson === "" && this.state.fileContent === null)
     ) {
       this.setState({ disabled: true });
       return;
+    }
+
+    if (this.state.geojson === "") {
+      geojson = this.state.fileContent;
     }
 
     fetch(`http://localhost:19002/query/service`, {
@@ -133,10 +145,15 @@ class ImportData extends Component {
 
           <hr />
 
-          {/* <h5 className="h">Choose .geojson file containing data set: </h5>
-          <input type="file" name="" id="" onChange={this.handleSelectedFile} />
+          <h5 className="h">Choose .geojson file containing data set: </h5>
+          <input
+            type="file"
+            name=""
+            id=""
+            onChange={e => this.handleFileChange(e.target.files[0])}
+          />
 
-          <hr /> */}
+          <hr />
 
           <h5 className="h">Or paste GeoJSON data here:</h5>
           <textarea

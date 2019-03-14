@@ -3,7 +3,7 @@ set -o nounset   # Treat unset variables as an error
 # ddl to register the meteorites dataset
 host=${1:-'http://localhost:19002/query/service'}
 nc=${2:-"asterix_nc1"}
-cat <<EOF | curl -XPOST --data-binary @- $host 
+cat <<EOF | curl -XPOST --data-binary @- $host
 create dataverse meteorites if not exists;
 use meteorites;
 
@@ -25,12 +25,12 @@ create dataset meteorites_ds(meteo) if not exists primary key id;
 create index meteoIndex on meteorites_ds(geolocation);
 
 insert into meteorites.meteorites_ds(
-   [
+  [
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 6.08333,
         50.775
@@ -48,8 +48,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2020-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.23333,
         56.18333
@@ -67,8 +67,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -113,
         54.21667
@@ -86,8 +86,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -99.9,
         16.88333
@@ -105,8 +105,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -64.95,
         -33.16667
@@ -124,8 +124,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 71.8,
         32.1
@@ -143,8 +143,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 95.16667,
         44.83333
@@ -162,8 +162,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.61667,
         44.21667
@@ -181,8 +181,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -65.23333,
         -31.6
@@ -200,8 +200,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -64.55,
         -30.86667
@@ -219,8 +219,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -9.57028,
         16.39806
@@ -238,8 +238,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.38333,
         19.08333
@@ -257,8 +257,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 2.33333,
         50.66667
@@ -275,8 +275,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.05,
         29.51667
@@ -294,8 +294,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 77.95,
         29.71667
@@ -313,8 +313,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.43333,
         8.91667
@@ -332,8 +332,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 42.81667,
         39.91667
@@ -351,8 +351,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 39.51667,
         24.41667
@@ -370,8 +370,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 28.96,
         13.66033
@@ -389,8 +389,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 4.08333,
         44.11667
@@ -408,8 +408,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.01667,
         44.65
@@ -427,8 +427,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 22.66667,
         2
@@ -446,8 +446,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 6.01533,
         45.82133
@@ -465,8 +465,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -1.78333,
         51.78333
@@ -484,8 +484,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 37.13333,
         36.23333
@@ -503,8 +503,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.75,
         44.88333
@@ -522,8 +522,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 31.81667,
         50.95
@@ -541,8 +541,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.15,
         45.26667
@@ -562,8 +562,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "50",
         ":@computed_region_nnqa_25f4": "429",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -85.88333,
         42.53333
@@ -581,8 +581,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -105.31667,
         26.96667
@@ -600,8 +600,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 32.41275,
         20.74575
@@ -619,8 +619,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 44.21556,
         35.27333
@@ -638,8 +638,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.25,
         27.66667
@@ -657,8 +657,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 85.56667,
         26.58333
@@ -678,8 +678,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "49",
         ":@computed_region_nnqa_25f4": "1723",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -70.75,
         44.61667
@@ -697,8 +697,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 37.5,
         48.7
@@ -716,8 +716,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.86667,
         20.88333
@@ -735,8 +735,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Found",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0,
         0
@@ -753,8 +753,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.55,
         47.46667
@@ -771,8 +771,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -44.31667,
         -22.96667
@@ -790,8 +790,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 39.71667,
         9.53333
@@ -809,8 +809,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 105.18333,
         25.15
@@ -828,8 +828,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 140.78556,
         40.81056
@@ -847,8 +847,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -2.71667,
         53.58333
@@ -866,8 +866,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 5.38333,
         43.86667
@@ -885,8 +885,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -66,
         -33
@@ -906,8 +906,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "18",
         ":@computed_region_nnqa_25f4": "2697",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -94.3,
         38.5
@@ -925,8 +925,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -60.66667,
         -31.41667
@@ -944,8 +944,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.03333,
         42.45
@@ -965,8 +965,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "23",
         ":@computed_region_nnqa_25f4": "774",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -97.01,
         31.805
@@ -984,8 +984,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.3,
         52.05
@@ -1003,8 +1003,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.55,
         43.03333
@@ -1022,8 +1022,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 80.625,
         25.25417
@@ -1041,8 +1041,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -103.66667,
         20.06667
@@ -1062,8 +1062,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "29",
         ":@computed_region_nnqa_25f4": "3134",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -87,
         34.75
@@ -1083,8 +1083,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "20",
         ":@computed_region_nnqa_25f4": "602",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -96.15,
         34.31667
@@ -1102,8 +1102,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 5.16667,
         44.38333
@@ -1121,8 +1121,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 3.66667,
         36.16667
@@ -1140,8 +1140,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 3.23333,
         44.33333
@@ -1159,8 +1159,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.58333,
         43.08333
@@ -1178,8 +1178,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -49.95083,
         -21.46028
@@ -1197,8 +1197,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13.5,
         46
@@ -1216,8 +1216,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -103.5,
         25
@@ -1235,8 +1235,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 32.83333,
         2.71667
@@ -1256,8 +1256,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "11",
         ":@computed_region_nnqa_25f4": "1989",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -108,
         36.8
@@ -1275,8 +1275,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 38,
         48.6
@@ -1294,8 +1294,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.5,
         28.48333
@@ -1315,8 +1315,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "37",
         ":@computed_region_nnqa_25f4": "2373",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -82.48333,
         35.96667
@@ -1336,8 +1336,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "32",
         ":@computed_region_nnqa_25f4": "495",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -88.66667,
         34.5
@@ -1355,8 +1355,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.38333,
         5.38333
@@ -1374,8 +1374,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 101.18333,
         16.66667
@@ -1393,8 +1393,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 107.6,
         -6.91667
@@ -1412,8 +1412,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.33333,
         27.7
@@ -1431,8 +1431,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.2,
         30.4
@@ -1450,8 +1450,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 106,
         -6.33333
@@ -1469,8 +1469,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.05,
         43.95
@@ -1488,8 +1488,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 2.16667,
         41.36667
@@ -1506,8 +1506,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -2.5,
         42.38333
@@ -1525,8 +1525,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 84.08333,
         52.73333
@@ -1544,8 +1544,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.1,
         52
@@ -1563,8 +1563,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.8,
         31.61667
@@ -1582,8 +1582,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -1.33972,
         52.56528
@@ -1601,8 +1601,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -5.9,
         15.78333
@@ -1620,8 +1620,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 20.93583,
         52.03333
@@ -1641,8 +1641,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "21",
         ":@computed_region_nnqa_25f4": "662",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -98.31667,
         45.41667
@@ -1662,8 +1662,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "36",
         ":@computed_region_nnqa_25f4": "1921",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -83.75,
         38.25
@@ -1683,8 +1683,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "10",
         ":@computed_region_nnqa_25f4": "2397",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -117.18913,
         40.66813
@@ -1702,8 +1702,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.18333,
         11.08333
@@ -1723,8 +1723,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "18",
         ":@computed_region_nnqa_25f4": "2216",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -93.5,
         36.75
@@ -1744,8 +1744,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "17",
         ":@computed_region_nnqa_25f4": "1285",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -101.2,
         39.8
@@ -1763,8 +1763,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -117.33333,
         51.16667
@@ -1782,8 +1782,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -4.1,
         53.01667
@@ -1803,8 +1803,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "23",
         ":@computed_region_nnqa_25f4": "1978",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -96.46667,
         33.6
@@ -1822,8 +1822,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -64.86667,
         -32.33333
@@ -1840,8 +1840,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.91667,
         25.36667
@@ -1859,8 +1859,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -8.15,
         32.25
@@ -1878,8 +1878,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.8,
         32.86667
@@ -1899,8 +1899,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "34",
         ":@computed_region_nnqa_25f4": "1869",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -89.15,
         39.08333
@@ -1918,8 +1918,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 28.41667,
         -26.16667
@@ -1937,8 +1937,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -7,
         30
@@ -1956,8 +1956,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -67.55,
         45.95
@@ -1975,8 +1975,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -58.32833,
         -31.91
@@ -1994,8 +1994,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -3.65,
         11.65
@@ -2013,8 +2013,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -3.8,
         41.68333
@@ -2034,8 +2034,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "9",
         ":@computed_region_nnqa_25f4": "1072",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -105.02325,
         40.30583
@@ -2055,8 +2055,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "47",
         ":@computed_region_nnqa_25f4": "2030",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -73.83333,
         42.53333
@@ -2074,8 +2074,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.23333,
         43.21667
@@ -2093,8 +2093,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.5,
         33.88333
@@ -2112,8 +2112,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 74.83333,
         20.88333
@@ -2131,8 +2131,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 73.11528,
         26.50833
@@ -2150,8 +2150,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 71.46667,
         20.83333
@@ -2169,8 +2169,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 90.65,
         22.68333
@@ -2188,8 +2188,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 86.9,
         22.08333
@@ -2207,8 +2207,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 23.2,
         53.1
@@ -2226,8 +2226,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27.16667,
         50.13333
@@ -2245,8 +2245,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.08333,
         12.45
@@ -2264,8 +2264,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 115.67639,
         -33.15639
@@ -2283,8 +2283,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 5.3,
         13.76667
@@ -2304,8 +2304,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "33",
         ":@computed_region_nnqa_25f4": "657",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -80.28333,
         34.16667
@@ -2323,8 +2323,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.6,
         25.38333
@@ -2342,8 +2342,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30.16667,
         49.78333
@@ -2361,8 +2361,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 25.8,
         60.4
@@ -2382,8 +2382,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "48",
         ":@computed_region_nnqa_25f4": "2495",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -78.08333,
         40.91667
@@ -2403,8 +2403,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "20",
         ":@computed_region_nnqa_25f4": "2164",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -97.33333,
         36.83333
@@ -2424,8 +2424,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "23",
         ":@computed_region_nnqa_25f4": "3063",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -98.83333,
         31.83333
@@ -2443,8 +2443,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.63333,
         49.36667
@@ -2464,8 +2464,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "34",
         ":@computed_region_nnqa_25f4": "1795",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -89.00417,
         40.48
@@ -2483,8 +2483,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 115.83333,
         33.83333
@@ -2502,8 +2502,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -102,
         23
@@ -2521,8 +2521,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.7,
         12.5
@@ -2540,8 +2540,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 131.63333,
         44.55
@@ -2559,8 +2559,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.05,
         44.86667
@@ -2578,8 +2578,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.03333,
         21.95
@@ -2597,8 +2597,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 52.48333,
         54.23333
@@ -2616,8 +2616,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 24.28333,
         48.15
@@ -2635,8 +2635,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.86667,
         55.46667
@@ -2654,8 +2654,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 33.88333,
         51.33333
@@ -2673,8 +2673,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -11.3715,
         17.71067
@@ -2692,8 +2692,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -11.34133,
         17.17493
@@ -2711,8 +2711,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -6.33333,
         54.56667
@@ -2732,8 +2732,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "48",
         ":@computed_region_nnqa_25f4": "2455",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -80.08333,
         40.5
@@ -2751,8 +2751,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.3,
         50.6
@@ -2770,8 +2770,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.18361,
         50.66694
@@ -2789,8 +2789,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.1,
         53.4
@@ -2808,8 +2808,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 59.31667,
         52.13333
@@ -2827,8 +2827,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -112.88333,
         53.9
@@ -2846,8 +2846,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 64.60035,
         39.77978
@@ -2875,8 +2875,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 129.19,
         -31.35
@@ -2894,8 +2894,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.58333,
         10.01667
@@ -2913,8 +2913,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 48,
         5
@@ -2934,8 +2934,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "36",
         ":@computed_region_nnqa_25f4": "256",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -82.23722,
         37.62194
@@ -2953,8 +2953,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 29.23333,
         40.2
@@ -2972,8 +2972,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 25.78333,
         46.45
@@ -2991,8 +2991,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.83333,
         26.78333
@@ -3010,8 +3010,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 84.08333,
         27.08333
@@ -3029,8 +3029,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -109.84817,
         52.996
@@ -3048,8 +3048,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -1.16667,
         37.98333
@@ -3069,8 +3069,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "15",
         ":@computed_region_nnqa_25f4": "1029",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -93.5,
         35.5
@@ -3088,8 +3088,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 20.33333,
         43.83889
@@ -3107,8 +3107,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -76.51,
         3.405
@@ -3126,8 +3126,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 122.33333,
         11.75
@@ -3145,8 +3145,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -40.16667,
         -7.03333
@@ -3164,8 +3164,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 26.6,
         39.8
@@ -3183,8 +3183,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.66667,
         41.25
@@ -3202,8 +3202,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -5.15,
         43.38333
@@ -3223,8 +3223,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "9",
         ":@computed_region_nnqa_25f4": "1448",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -105.24139,
         38.47028
@@ -3244,8 +3244,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "18",
         ":@computed_region_nnqa_25f4": "2695",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -89.58333,
         37.26667
@@ -3263,8 +3263,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -64.55,
         -30.88333
@@ -3282,8 +3282,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -69.04389,
         -16.66444
@@ -3301,8 +3301,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27,
         38.5
@@ -3322,8 +3322,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "37",
         ":@computed_region_nnqa_25f4": "648",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -78.06667,
         36.08333
@@ -3341,8 +3341,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.5,
         43.35
@@ -3361,8 +3361,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "49",
         ":@computed_region_nnqa_25f4": "414",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -68.75,
         44.38333
@@ -3380,8 +3380,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.2,
         39.8
@@ -3401,8 +3401,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "37",
         ":@computed_region_nnqa_25f4": "637",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -79.25,
         36.5
@@ -3420,8 +3420,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -105.23333,
         26.46667
@@ -3441,8 +3441,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "21",
         ":@computed_region_nnqa_25f4": "2684",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -96.91667,
         43.2
@@ -3460,8 +3460,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.3,
         45.08333
@@ -3479,8 +3479,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 109.31667,
         28.53333
@@ -3498,8 +3498,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 81.66667,
         25.36667
@@ -3517,8 +3517,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 83.48333,
         25.85
@@ -3536,8 +3536,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -58.05,
         -30.78333
@@ -3555,8 +3555,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.01667,
         20.26667
@@ -3574,8 +3574,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 79.05,
         27.28333
@@ -3593,8 +3593,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 111.75,
         29.08333
@@ -3612,8 +3612,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.05,
         46.68333
@@ -3633,8 +3633,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "39",
         ":@computed_region_nnqa_25f4": "2007",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -87.33333,
         36.16667
@@ -3652,8 +3652,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.56667,
         47.93333
@@ -3671,8 +3671,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75.5,
         29.48333
@@ -3690,8 +3690,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 5.36667,
         47.71667
@@ -3709,8 +3709,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 2.91667,
         47.93333
@@ -3728,8 +3728,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -7.46667,
         41.93333
@@ -3747,8 +3747,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 32.5,
         -3.66667
@@ -3766,8 +3766,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 61.11667,
         54.81667
@@ -3785,8 +3785,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -5.01472,
         23.69639
@@ -3804,8 +3804,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30.1,
         53.7
@@ -3825,8 +3825,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "33",
         ":@computed_region_nnqa_25f4": "2582",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -81.88333,
         35.03333
@@ -3844,8 +3844,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 6.81667,
         46.55
@@ -3863,8 +3863,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 34,
         50.83333
@@ -3882,8 +3882,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.5,
         14.5
@@ -3901,8 +3901,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 101.63333,
         17.9
@@ -3922,8 +3922,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "48",
         ":@computed_region_nnqa_25f4": "2459",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -79.73333,
         40.93333
@@ -3941,8 +3941,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 33.395,
         -10.05944
@@ -3960,8 +3960,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13.96667,
         -17.35
@@ -3978,8 +3978,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.97667,
         47.47083
@@ -3997,8 +3997,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 108.1,
         -6.95
@@ -4018,8 +4018,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "31",
         ":@computed_region_nnqa_25f4": "67",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -81.87278,
         32.1025
@@ -4049,8 +4049,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "41",
         ":@computed_region_nnqa_25f4": "877",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -90.28333,
         44.9
@@ -4068,8 +4068,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 19.38333,
         -33.13333
@@ -4089,8 +4089,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "50",
         ":@computed_region_nnqa_25f4": "356",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -84.50778,
         43.76111
@@ -4108,8 +4108,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.61667,
         42.53333
@@ -4127,8 +4127,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -47.55,
         -19.85
@@ -4146,8 +4146,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -100.86667,
         21.16667
@@ -4165,8 +4165,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.26667,
         10.2
@@ -4186,8 +4186,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "20",
         ":@computed_region_nnqa_25f4": "2201",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -97.58333,
         35.95
@@ -4205,8 +4205,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27.3,
         -27.7
@@ -4226,8 +4226,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "37",
         ":@computed_region_nnqa_25f4": "2332",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -78.13333,
         35.63333
@@ -4245,8 +4245,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -6.21667,
         54.61667
@@ -4266,8 +4266,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "36",
         ":@computed_region_nnqa_25f4": "1426",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -84.35,
         36.83333
@@ -4287,8 +4287,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "36",
         ":@computed_region_nnqa_25f4": "244",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -84.25,
         38.4
@@ -4306,8 +4306,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.83333,
         35.61667
@@ -4325,8 +4325,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 83.96667,
         26.91667
@@ -4344,8 +4344,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 24.56667,
         -28.2
@@ -4365,8 +4365,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "29",
         ":@computed_region_nnqa_25f4": "103",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -87.06667,
         34.4
@@ -4384,8 +4384,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.65,
         49.86667
@@ -4403,8 +4403,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 59.685,
         41.98444
@@ -4422,8 +4422,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -79.95756,
         -1.87089
@@ -4441,8 +4441,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -80,
         43
@@ -4461,8 +4461,8 @@ insert into meteorites.meteorites_ds(
         "created_at": "2019-01-27T09:30:28.334+0100",
         ":@computed_region_nnqa_25f4": "2491",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -74,
         40.25
@@ -4480,8 +4480,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 77.25,
         28.56667
@@ -4499,8 +4499,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 84.76667,
         51.46667
@@ -4520,8 +4520,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "9",
         ":@computed_region_nnqa_25f4": "1444",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -104.93056,
         39.7825
@@ -4539,8 +4539,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 93.86667,
         26.68333
@@ -4558,8 +4558,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 73.61667,
         25.73333
@@ -4577,8 +4577,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 81,
         19
@@ -4596,8 +4596,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.525,
         24.225
@@ -4615,8 +4615,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 71.42722,
         22.37778
@@ -4634,8 +4634,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75.6,
         14.88333
@@ -4653,8 +4653,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.46667,
         32.23333
@@ -4672,8 +4672,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27.32997,
         37.35172
@@ -4691,8 +4691,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 18.56667,
         -33.75
@@ -4710,8 +4710,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -60.46667,
         -31.88333
@@ -4729,8 +4729,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 111.5,
         -7.5
@@ -4748,8 +4748,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 15.05,
         12.73333
@@ -4767,8 +4767,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.55,
         36.95
@@ -4786,8 +4786,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 90.33333,
         23.5
@@ -4805,8 +4805,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 25.3,
         50.75
@@ -4824,8 +4824,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 29,
         40
@@ -4843,8 +4843,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 119.03333,
         45.5
@@ -4862,8 +4862,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.45,
         21.86667
@@ -4881,8 +4881,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 120.78333,
         32.91667
@@ -4900,8 +4900,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 112.3,
         51.2
@@ -4919,8 +4919,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 3.16667,
         13.05
@@ -4938,8 +4938,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -6.3,
         32.33333
@@ -4957,8 +4957,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 33.91667,
         -13.66667
@@ -4978,8 +4978,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "39",
         ":@computed_region_nnqa_25f4": "2115",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -86.5,
         36.4
@@ -4997,8 +4997,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -82.26,
         42.52
@@ -5016,8 +5016,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 18.44167,
         42.45833
@@ -5035,8 +5035,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 152.83333,
         -31.66667
@@ -5054,8 +5054,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -8.03333,
         52.55
@@ -5073,8 +5073,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 128.25,
         43.33333
@@ -5091,8 +5091,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.63333,
         30.3
@@ -5110,8 +5110,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 39.5,
         -4
@@ -5129,8 +5129,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 127.26667,
         33.43333
@@ -5148,8 +5148,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 31.31667,
         -27.2
@@ -5167,8 +5167,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82,
         26.25
@@ -5186,8 +5186,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 151,
         -3
@@ -5207,8 +5207,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "19",
         ":@computed_region_nnqa_25f4": "462",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -96.47167,
         40.78167
@@ -5226,8 +5226,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 15.83333,
         -17.3
@@ -5245,8 +5245,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.21667,
         48.9
@@ -5264,8 +5264,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13,
         56.03333
@@ -5283,8 +5283,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.78333,
         28.26667
@@ -5302,8 +5302,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 3.25,
         34.41667
@@ -5321,8 +5321,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -97.37,
         25.37
@@ -5340,8 +5340,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -103.05167,
         19.96722
@@ -5361,8 +5361,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "9",
         ":@computed_region_nnqa_25f4": "88",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -104.58817,
         39.24667
@@ -5380,8 +5380,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.73333,
         50.18333
@@ -5399,8 +5399,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 37.66667,
         47.83333
@@ -5418,8 +5418,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 4,
         51.75
@@ -5437,8 +5437,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 151.61667,
         -29.46667
@@ -5456,8 +5456,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 109.5,
         30.3
@@ -5475,8 +5475,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 7.35,
         47.86667
@@ -5494,8 +5494,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 6.46667,
         48.18333
@@ -5513,8 +5513,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 81.89167,
         19.03333
@@ -5532,8 +5532,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 44.5,
         40.3
@@ -5551,8 +5551,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 44.16667,
         1.16667
@@ -5570,8 +5570,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.25,
         52.21667
@@ -5589,8 +5589,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -1.1,
         46.25
@@ -5608,8 +5608,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30.83333,
         2.88333
@@ -5629,8 +5629,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "16",
         ":@computed_region_nnqa_25f4": "277",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -94.83333,
         43.41667
@@ -5650,8 +5650,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "17",
         ":@computed_region_nnqa_25f4": "1300",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -97.03333,
         39.75
@@ -5671,8 +5671,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "37",
         ":@computed_region_nnqa_25f4": "2439",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -77.53333,
         35.55
@@ -5690,8 +5690,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 2.81667,
         44.38333
@@ -5711,8 +5711,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "15",
         ":@computed_region_nnqa_25f4": "70",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -94.16667,
         36.05
@@ -5730,8 +5730,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.45,
         36.88333
@@ -5751,8 +5751,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "29",
         ":@computed_region_nnqa_25f4": "1631",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -87.16667,
         32.53333
@@ -5770,8 +5770,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 116.75,
         34.6
@@ -5791,8 +5791,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "37",
         ":@computed_region_nnqa_25f4": "2331",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -81.41667,
         36.1
@@ -5810,8 +5810,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13.75333,
         43.18111
@@ -5831,8 +5831,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "1",
         ":@computed_region_nnqa_25f4": "385",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -96.85,
         47.81667
@@ -5852,8 +5852,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "23",
         ":@computed_region_nnqa_25f4": "807",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -97.76667,
         30.83333
@@ -5873,8 +5873,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "16",
         ":@computed_region_nnqa_25f4": "1785",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -93.66667,
         43.25
@@ -5892,8 +5892,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 146.85833,
         -33.35
@@ -5913,8 +5913,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "40",
         ":@computed_region_nnqa_25f4": "2839",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -78.08333,
         36.78333
@@ -5932,8 +5932,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 7.31667,
         50.95
@@ -5953,8 +5953,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "31",
         ":@computed_region_nnqa_25f4": "1470",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -83.96667,
         33.01667
@@ -5972,8 +5972,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 7,
         28.25
@@ -5992,8 +5992,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "29",
         ":@computed_region_nnqa_25f4": "99",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -87.83333,
         34.48333
@@ -6011,8 +6011,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 113.56694,
         31.47556
@@ -6030,8 +6030,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 130.2,
         33.18333
@@ -6049,8 +6049,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.33333,
         55.33333
@@ -6067,8 +6067,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 80.81667,
         25.95
@@ -6086,8 +6086,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 115.9,
         32.9
@@ -6105,8 +6105,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.4,
         44.3
@@ -6124,8 +6124,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.43333,
         7.05
@@ -6143,8 +6143,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.43333,
         7.05
@@ -6162,8 +6162,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30.78333,
         51.68333
@@ -6181,8 +6181,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 68.53333,
         27.35
@@ -6200,8 +6200,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -2.18333,
         11.65
@@ -6218,8 +6218,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 68.53333,
         27.88333
@@ -6239,8 +6239,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "13",
         ":@computed_region_nnqa_25f4": "2985",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -112.13333,
         41.68333
@@ -6258,8 +6258,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.03333,
         12.85
@@ -6277,8 +6277,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -2.04167,
         14.15083
@@ -6295,8 +6295,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.91667,
         12.91667
@@ -6314,8 +6314,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 136.88333,
         35.53333
@@ -6333,8 +6333,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13.56667,
         37.31667
@@ -6352,8 +6352,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.91667,
         9.6
@@ -6371,8 +6371,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 6.86667,
         52.2
@@ -6390,8 +6390,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 107.7,
         -7.25
@@ -6409,8 +6409,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 37.61667,
         57.35
@@ -6428,8 +6428,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.3,
         52.45972
@@ -6447,8 +6447,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.76667,
         50.66667
@@ -6466,8 +6466,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 89.05,
         24.23333
@@ -6485,8 +6485,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 38.08333,
         48.28333
@@ -6504,8 +6504,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 2.25,
         42.9
@@ -6523,8 +6523,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11,
         60.66667
@@ -6542,8 +6542,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -79.61667,
         43.2
@@ -6561,8 +6561,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 45.38333,
         43.66667
@@ -6580,8 +6580,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 18.71667,
         49.26667
@@ -6599,8 +6599,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30.58333,
         46.35
@@ -6618,8 +6618,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 15.5,
         51.93333
@@ -6637,8 +6637,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.63333,
         52.86667
@@ -6656,8 +6656,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -58.61667,
         -33
@@ -6675,8 +6675,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 122.76389,
         39.80417
@@ -6694,8 +6694,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 105,
         24.1
@@ -6712,8 +6712,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 118.4,
         37.1
@@ -6731,8 +6731,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -6.01667,
         38.73333
@@ -6750,8 +6750,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 20.23333,
         43.76667
@@ -6769,8 +6769,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.68333,
         13.5
@@ -6788,8 +6788,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13.98333,
         9.91667
@@ -6807,8 +6807,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.05,
         22.98333
@@ -6826,8 +6826,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.65833,
         11.49167
@@ -6845,8 +6845,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 24.7,
         42.9
@@ -6864,8 +6864,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.56667,
         13.78333
@@ -6883,8 +6883,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 42.41667,
         9.36667
@@ -6902,8 +6902,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.38333,
         51.91667
@@ -6921,8 +6921,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 127.5,
         35
@@ -6940,8 +6940,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 139.33333,
         35.65
@@ -6959,8 +6959,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 3.73333,
         50.31667
@@ -6978,8 +6978,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.23333,
         57.81667
@@ -6999,8 +6999,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "35",
         ":@computed_region_nnqa_25f4": "1205",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -86.6,
         41.38333
@@ -7018,8 +7018,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.53333,
         26.8
@@ -7037,8 +7037,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75.78333,
         28.38333
@@ -7058,8 +7058,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "23",
         ":@computed_region_nnqa_25f4": "2025",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -94.51167,
         32.675
@@ -7079,8 +7079,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "35",
         ":@computed_region_nnqa_25f4": "1855",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -86.16667,
         38.25
@@ -7098,8 +7098,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 136.70033,
         35.2945
@@ -7117,8 +7117,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.81667,
         28.95
@@ -7136,8 +7136,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -1.51667,
         51.65
@@ -7155,8 +7155,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 22.06194,
         60.24556
@@ -7174,8 +7174,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13.78333,
         55.46667
@@ -7193,8 +7193,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.66667,
         27.33333
@@ -7212,8 +7212,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -84.1,
         10
@@ -7231,8 +7231,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 17.66667,
         59.85
@@ -7250,8 +7250,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 130.43333,
         33.6
@@ -7269,8 +7269,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -4.23333,
         55.9
@@ -7288,8 +7288,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 132.38333,
         34.45
@@ -7307,8 +7307,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 31.47278,
         1.345
@@ -7326,8 +7326,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 21.2,
         64.43333
@@ -7347,8 +7347,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "7",
         ":@computed_region_nnqa_25f4": "990",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -110.18333,
         34.9
@@ -7366,8 +7366,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 38.41667,
         9.06667
@@ -7387,8 +7387,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "16",
         ":@computed_region_nnqa_25f4": "284",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -91.86667,
         41.8
@@ -7408,8 +7408,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "4",
         ":@computed_region_nnqa_25f4": "1657",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -157.86667,
         21.3
@@ -7427,8 +7427,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 115.5,
         35.66667
@@ -7448,8 +7448,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "17",
         ":@computed_region_nnqa_25f4": "1293",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -100.45,
         39.35
@@ -7467,8 +7467,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.33333,
         46.1
@@ -7486,8 +7486,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 106.63241,
         26.46469
@@ -7505,8 +7505,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.91667,
         50.3
@@ -7524,8 +7524,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 22.68333,
         61.18333
@@ -7543,8 +7543,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 7.7,
         52.28333
@@ -7562,8 +7562,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -45,
         -20
@@ -7581,8 +7581,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35,
         38
@@ -7599,8 +7599,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.93333,
         58.2
@@ -7618,8 +7618,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 28.33333,
         -32.1
@@ -7637,8 +7637,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -51.83333,
         -23.2
@@ -7656,8 +7656,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 145.36667,
         -6.03333
@@ -7675,8 +7675,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 46.66667,
         39.75
@@ -7696,8 +7696,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "18",
         ":@computed_region_nnqa_25f4": "525",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -94.4,
         39.08333
@@ -7715,8 +7715,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 112,
         41
@@ -7734,8 +7734,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -111.3375,
         53.415
@@ -7753,8 +7753,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -54.5,
         -25.5
@@ -7772,8 +7772,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 33.8,
         -8.93333
@@ -7791,8 +7791,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -57.95,
         -31.18333
@@ -7810,8 +7810,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -44.33333,
         -3.4
@@ -7829,8 +7829,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -12.95217,
         26.59083
@@ -7848,8 +7848,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 32.43333,
         -8.41667
@@ -7867,8 +7867,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 21.9,
         -32.5
@@ -7886,8 +7886,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 68.41667,
         26.75
@@ -7915,8 +7915,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75,
         31
@@ -7934,8 +7934,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75.33333,
         18.75
@@ -7953,8 +7953,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 105.8,
         39.7
@@ -7972,8 +7972,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 20.44167,
         43.83333
@@ -8001,8 +8001,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 14.05217,
         46.42137
@@ -8020,8 +8020,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 72.38333,
         31.3
@@ -8039,8 +8039,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 104.91667,
         31.91667
@@ -8058,8 +8058,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 109.5,
         30.80833
@@ -8077,8 +8077,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 126.16667,
         44.05
@@ -8096,8 +8096,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 70.31333,
         22.68
@@ -8115,8 +8115,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 24.4,
         55.7
@@ -8136,8 +8136,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "9",
         ":@computed_region_nnqa_25f4": "1072",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -104.9,
         40.35
@@ -8155,8 +8155,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 15.83333,
         -11.85
@@ -8174,8 +8174,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.45,
         45.43333
@@ -8193,8 +8193,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 115.41667,
         35.5
@@ -8212,8 +8212,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.8,
         12.85
@@ -8231,8 +8231,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 111.2,
         -7.71667
@@ -8250,8 +8250,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 118.8,
         35.2
@@ -8269,8 +8269,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -7.27,
         38.74028
@@ -8288,8 +8288,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 4.3,
         44.71667
@@ -8307,8 +8307,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 21.3,
         47.35
@@ -8326,8 +8326,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.21667,
         11.85
@@ -8345,8 +8345,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.33333,
         27.08333
@@ -8364,8 +8364,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 79.96667,
         27.25
@@ -8383,8 +8383,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30.83333,
         49.86667
@@ -8402,8 +8402,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 48.3,
         15
@@ -8421,8 +8421,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 53.25,
         55.43333
@@ -8440,8 +8440,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.51667,
         12.38333
@@ -8459,8 +8459,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 21.66667,
         45.13333
@@ -8478,8 +8478,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 29.5,
         -6.83333
@@ -8497,8 +8497,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 73.98333,
         17.83333
@@ -8516,8 +8516,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 81.46667,
         26.03333
@@ -8535,8 +8535,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 139.95667,
         36.04167
@@ -8554,8 +8554,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75.8,
         14.18333
@@ -8573,8 +8573,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 65.78333,
         31.6
@@ -8592,8 +8592,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 115.5,
         -7
@@ -8611,8 +8611,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.3,
         32.08333
@@ -8630,8 +8630,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 33.63333,
         4.7
@@ -8649,8 +8649,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 73.22329,
         20.33916
@@ -8668,8 +8668,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 73.36667,
         42.45
@@ -8687,8 +8687,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 81.01667,
         47.21667
@@ -8706,8 +8706,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.58333,
         -3.5
@@ -8725,8 +8725,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 7.15,
         12.9
@@ -8744,8 +8744,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 67.16667,
         27.8
@@ -8763,8 +8763,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 71.6,
         31.58333
@@ -8782,8 +8782,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 139.91667,
         -35.08333
@@ -8801,8 +8801,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 136.76667,
         35.36667
@@ -8820,8 +8820,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 77.58333,
         29.58333
@@ -8839,8 +8839,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.08333,
         11.33333
@@ -8858,8 +8858,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75.81333,
         25.14333
@@ -8877,8 +8877,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 31.78,
         39.26333
@@ -8896,8 +8896,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 112.01667,
         -7.75
@@ -8915,8 +8915,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 29.41822,
         36.54194
@@ -8936,8 +8936,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "23",
         ":@computed_region_nnqa_25f4": "3190",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -96,
         29.45
@@ -8955,8 +8955,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 86.70278,
         20.4625
@@ -8974,8 +8974,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -3.3,
         48.4
@@ -8993,8 +8993,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -3.08333,
         48.11667
@@ -9012,8 +9012,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 141.61667,
         38.98333
@@ -9031,8 +9031,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 72.3,
         29.53333
@@ -9050,8 +9050,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 83.11667,
         25.55
@@ -9069,8 +9069,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.075,
         50.625
@@ -9088,8 +9088,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 77.88333,
         26.95
@@ -9107,8 +9107,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75.81667,
         28.01667
@@ -9126,8 +9126,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75.33333,
         56.75
@@ -9145,8 +9145,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 81.53333,
         25.1
@@ -9164,8 +9164,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 36,
         16
@@ -9183,8 +9183,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 28,
         14
@@ -9202,8 +9202,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.15,
         54.4
@@ -9221,8 +9221,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -11.33333,
         16.58333
@@ -9240,8 +9240,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 138.38333,
         36.85
@@ -9259,8 +9259,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 34,
         55
@@ -9278,8 +9278,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.8,
         12.76667
@@ -9299,8 +9299,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "41",
         ":@computed_region_nnqa_25f4": "2971",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -89.6,
         43.58333
@@ -9318,8 +9318,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -7.66667,
         54.66667
@@ -9337,8 +9337,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 24.68333,
         11.63333
@@ -9358,8 +9358,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "23",
         ":@computed_region_nnqa_25f4": "2018",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -95.95,
         30.75
@@ -9377,8 +9377,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 22.30833,
         48.16667
@@ -9396,8 +9396,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -80.38333,
         43.38333
@@ -9415,8 +9415,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.8,
         51.6
@@ -9434,8 +9434,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 22.4,
         48.9
@@ -9453,8 +9453,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 135.16667,
         34.73333
@@ -9472,8 +9472,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 133.95,
         34.3
@@ -9491,8 +9491,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 139.75,
         35.73333
@@ -9510,8 +9510,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 26.16667,
         42.51667
@@ -9529,8 +9529,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 21.17633,
         48.76367
@@ -9548,8 +9548,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 7.46472,
         49.32694
@@ -9567,8 +9567,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 40.9,
         54.03333
@@ -9586,8 +9586,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 56.08333,
         54.33333
@@ -9605,8 +9605,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 77,
         56.8
@@ -9624,8 +9624,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30.76667,
         47.83333
@@ -9643,8 +9643,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 31.7,
         51.15
@@ -9662,8 +9662,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 66.80222,
         30.73111
@@ -9681,8 +9681,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 33.5,
         50.75
@@ -9700,8 +9700,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 45,
         41.11667
@@ -9719,8 +9719,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 61.36667,
         55.78333
@@ -9738,8 +9738,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 59.2,
         42.25
@@ -9757,8 +9757,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 138.38333,
         37.05
@@ -9776,8 +9776,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.38333,
         29.68333
@@ -9795,8 +9795,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 39.3,
         44.51667
@@ -9814,8 +9814,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.03333,
         10.83333
@@ -9833,8 +9833,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75.33333,
         55.2
@@ -9852,8 +9852,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 130.63333,
         32.03333
@@ -9871,8 +9871,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.75,
         47.08333
@@ -9890,8 +9890,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -101.28333,
         20.66667
@@ -9909,8 +9909,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -61.53333,
         -37.33333
@@ -9928,8 +9928,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -58.16667,
         -31.23333
@@ -9947,8 +9947,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 5.58333,
         44.28333
@@ -9966,8 +9966,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.71667,
         26.78333
@@ -9985,8 +9985,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.63333,
         48.76667
@@ -10014,8 +10014,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.03333,
         21.86667
@@ -10033,8 +10033,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.56667,
         24.45
@@ -10052,8 +10052,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.06667,
         47.7
@@ -10071,8 +10071,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 5.11667,
         43.75
@@ -10090,8 +10090,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.73333,
         58.85
@@ -10109,8 +10109,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 126.19611,
         46.24167
@@ -10128,8 +10128,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.23333,
         47.75
@@ -10147,8 +10147,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 115.16667,
         33.13333
@@ -10166,8 +10166,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -1.11667,
         51.9
@@ -10185,8 +10185,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 51.56667,
         52.45
@@ -10204,8 +10204,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.43333,
         47.16667
@@ -10223,8 +10223,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.86667,
         48.53333
@@ -10244,8 +10244,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "20",
         ":@computed_region_nnqa_25f4": "608",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -99.33333,
         35.88333
@@ -10263,8 +10263,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 28.36667,
         -25.66667
@@ -10282,8 +10282,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -6.96667,
         52.66667
@@ -10303,8 +10303,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "29",
         ":@computed_region_nnqa_25f4": "1585",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -87.5,
         34.58333
@@ -10322,8 +10322,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 32.85,
         52.26667
@@ -10341,8 +10341,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 3.25,
         48.35
@@ -10360,8 +10360,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 4.73333,
         50.36667
@@ -10379,8 +10379,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 26.18333,
         -26.15
@@ -10398,8 +10398,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 15.86667,
         56.65
@@ -10417,8 +10417,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -8.78333,
         52.56667
@@ -10436,8 +10436,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.9,
         52.75
@@ -10455,8 +10455,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 118.98333,
         31.63333
@@ -10474,8 +10474,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 14.85,
         50.2
@@ -10495,8 +10495,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "18",
         ":@computed_region_nnqa_25f4": "2171",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -92.08333,
         37.91667
@@ -10514,8 +10514,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 26.43333,
         56
@@ -10533,8 +10533,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 71.8,
         29.53333
@@ -10552,8 +10552,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 72.62667,
         26.96556
@@ -10573,8 +10573,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "40",
         ":@computed_region_nnqa_25f4": "2770",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -77.21163,
         38.70066
@@ -10592,8 +10592,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.83333,
         38
@@ -10613,8 +10613,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "20",
         ":@computed_region_nnqa_25f4": "2711",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -95.15,
         36.00833
@@ -10634,8 +10634,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "36",
         ":@computed_region_nnqa_25f4": "1327",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -85.75,
         38.25
@@ -10653,8 +10653,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 19.91667,
         52
@@ -10672,8 +10672,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75.15,
         24.95
@@ -10691,8 +10691,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.48333,
         47.85
@@ -10712,8 +10712,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "31",
         ":@computed_region_nnqa_25f4": "1567",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -84.76667,
         32.03333
@@ -10731,8 +10731,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 103.3,
         24.8
@@ -10750,8 +10750,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13.03333,
         56.21667
@@ -10769,8 +10769,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27.7,
         61.2
@@ -10788,8 +10788,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 5,
         46.21667
@@ -10807,8 +10807,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 29.43333,
         -7.21667
@@ -10825,8 +10825,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 97,
         19
@@ -10844,8 +10844,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -36.66667,
         -5.2
@@ -10863,8 +10863,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.24222,
         -15.21222
@@ -10882,8 +10882,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 31.95,
         -28.83333
@@ -10901,8 +10901,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 86.36667,
         25.91667
@@ -10920,8 +10920,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 111.53333,
         -7.75
@@ -10939,8 +10939,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -3.71667,
         40.41667
@@ -10958,8 +10958,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -49.93333,
         -26.16667
@@ -10977,8 +10977,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27.51667,
         37.86667
@@ -10996,8 +10996,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 31.65,
         -19.48333
@@ -11015,8 +11015,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 95.78333,
         27.66667
@@ -11034,8 +11034,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.38333,
         12.83333
@@ -11055,8 +11055,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "11",
         ":@computed_region_nnqa_25f4": "611",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -104,
         32.21667
@@ -11074,8 +11074,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 31.75,
         9.5
@@ -11093,8 +11093,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 33.51667,
         -3.13333
@@ -11112,8 +11112,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -63.23333,
         -28.93333
@@ -11130,8 +11130,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 26.76667,
         -29.45
@@ -11149,8 +11149,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 62.08333,
         45.21667
@@ -11168,8 +11168,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 86.7,
         23.05
@@ -11187,8 +11187,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.1,
         20.96667
@@ -11206,8 +11206,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 31.6,
         -17.65
@@ -11225,8 +11225,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 44.63333,
         45.81667
@@ -11244,8 +11244,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 72.08333,
         34.23333
@@ -11275,8 +11275,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "19",
         ":@computed_region_nnqa_25f4": "471",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -99.38333,
         42.71667
@@ -11294,8 +11294,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.46745,
         54.76183
@@ -11313,8 +11313,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 29.25,
         4.66667
@@ -11332,8 +11332,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -49.93333,
         -22.25
@@ -11353,8 +11353,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "16",
         ":@computed_region_nnqa_25f4": "287",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -91.6,
         41.9
@@ -11372,8 +11372,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30.5,
         61.5
@@ -11391,8 +11391,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.15,
         44.5
@@ -11410,8 +11410,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 48.1,
         -14.2
@@ -11431,8 +11431,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "39",
         ":@computed_region_nnqa_25f4": "2740",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -84.1,
         35.8
@@ -11450,8 +11450,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.86667,
         45.36667
@@ -11469,8 +11469,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0,
         0
@@ -11488,8 +11488,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.61667,
         48.13333
@@ -11507,8 +11507,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13.13333,
         48.18333
@@ -11526,8 +11526,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 57,
         -20
@@ -11545,8 +11545,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.08333,
         8.96667
@@ -11564,8 +11564,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -101.68333,
         24.68333
@@ -11583,8 +11583,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30,
         -1.21667
@@ -11602,8 +11602,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 34.16667,
         1.06667
@@ -11621,8 +11621,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -67.5,
         -27.25
@@ -11640,8 +11640,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 77.8,
         29.01667
@@ -11659,8 +11659,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 106.88333,
         -6.23333
@@ -11678,8 +11678,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13.15,
         53.18333
@@ -11697,8 +11697,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 7.21817,
         46.81867
@@ -11716,8 +11716,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.06667,
         55.05
@@ -11735,8 +11735,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 37.66667,
         0
@@ -11754,8 +11754,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 81.98333,
         25.48333
@@ -11773,8 +11773,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 15.56667,
         38.18333
@@ -11792,8 +11792,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.1,
         50.58333
@@ -11811,8 +11811,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 3.25,
         45.76667
@@ -11830,8 +11830,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 25.73333,
         46.5
@@ -11849,8 +11849,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 83.61667,
         25.9
@@ -11868,8 +11868,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 111.7,
         34.8
@@ -11887,8 +11887,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -1.16667,
         54.56667
@@ -11908,8 +11908,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "41",
         ":@computed_region_nnqa_25f4": "2996",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -90.36556,
         42.9075
@@ -11927,8 +11927,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30.96667,
         48.06667
@@ -11946,8 +11946,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 133.22,
         35.56833
@@ -11965,8 +11965,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 17.53333,
         46.23333
@@ -11984,8 +11984,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.1,
         46.18333
@@ -12003,8 +12003,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 120.36667,
         -26.45
@@ -12024,8 +12024,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "15",
         ":@computed_region_nnqa_25f4": "11",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -92.05,
         35.4
@@ -12043,8 +12043,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 136.93333,
         35.07833
@@ -12062,8 +12062,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 14.7,
         37.28333
@@ -12081,8 +12081,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 120.66667,
         32.33333
@@ -12100,8 +12100,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.6,
         47.7
@@ -12119,8 +12119,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 83.25,
         25.68333
@@ -12138,8 +12138,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 23,
         56.66667
@@ -12157,8 +12157,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 5.93333,
         61.73333
@@ -12176,8 +12176,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 24.03333,
         46.8
@@ -12197,8 +12197,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "17",
         ":@computed_region_nnqa_25f4": "1290",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -101.1,
         38.5
@@ -12216,8 +12216,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 174.4,
         -39.63333
@@ -12235,8 +12235,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -1.16667,
         38.11667
@@ -12254,8 +12254,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 26.46667,
         -31.25
@@ -12275,8 +12275,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "23",
         ":@computed_region_nnqa_25f4": "2957",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -102.85833,
         31.60833
@@ -12296,8 +12296,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "37",
         ":@computed_region_nnqa_25f4": "636",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -80.5,
         35.25
@@ -12315,8 +12315,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -8.25,
         38.01667
@@ -12334,8 +12334,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13.35,
         43.26667
@@ -12353,8 +12353,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.9625,
         43.39056
@@ -12372,8 +12372,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.58333,
         47.63333
@@ -12391,8 +12391,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27.35,
         -15.96667
@@ -12411,8 +12411,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "37",
         ":@computed_region_nnqa_25f4": "2431",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -79.38333,
         35.41667
@@ -12430,8 +12430,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -8.33333,
         52.45
@@ -12449,8 +12449,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 145.6,
         -40.975
@@ -12468,8 +12468,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.83333,
         28.78333
@@ -12487,8 +12487,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 18.53333,
         49.6
@@ -12506,8 +12506,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 5.13333,
         44.6
@@ -12525,8 +12525,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.7,
         59.43333
@@ -12544,8 +12544,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 77.33333,
         26.83333
@@ -12563,8 +12563,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.5,
         45.2
@@ -12582,8 +12582,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 141.7,
         -29.8
@@ -12601,8 +12601,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 4.8,
         18.7
@@ -12620,8 +12620,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 6.86667,
         44.08333
@@ -12639,8 +12639,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 33.5,
         -11.5
@@ -12658,8 +12658,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 77.01667,
         12.63333
@@ -12677,8 +12677,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 80.83333,
         9.33333
@@ -12696,8 +12696,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 90.21667,
         24.5
@@ -12715,8 +12715,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 145.2,
         -36.61667
@@ -12736,8 +12736,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "36",
         ":@computed_region_nnqa_25f4": "237",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -88.1,
         36.6
@@ -12755,8 +12755,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 85.53333,
         26.13333
@@ -12774,8 +12774,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 72.63333,
         23.05
@@ -12792,8 +12792,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1,
         12
@@ -12811,8 +12811,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 140.06167,
         38.12167
@@ -12830,8 +12830,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.21667,
         26.98333
@@ -12849,8 +12849,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 19.5,
         49.16667
@@ -12868,8 +12868,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30.35,
         31.31667
@@ -12887,8 +12887,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 100.08333,
         13.73333
@@ -12906,8 +12906,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 79.2,
         12.28333
@@ -12925,8 +12925,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 103.5,
         35.66667
@@ -12946,8 +12946,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "45",
         ":@computed_region_nnqa_25f4": "419",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -77.16667,
         38.41667
@@ -12965,8 +12965,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 121.8,
         32.11667
@@ -12984,8 +12984,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 77,
         19.25
@@ -13003,8 +13003,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 51.5,
         33.75
@@ -13022,8 +13022,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 150.68889,
         -34.05
@@ -13041,8 +13041,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.51667,
         42.51667
@@ -13059,8 +13059,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 165.9,
         -21.73333
@@ -13088,8 +13088,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 83.66667,
         21.25
@@ -13107,8 +13107,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 136.46528,
         36.44917
@@ -13126,8 +13126,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 83.48333,
         18.68333
@@ -13145,8 +13145,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.33333,
         9.5
@@ -13164,8 +13164,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 21.5,
         56.5
@@ -13183,8 +13183,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.80833,
         47.525
@@ -13204,8 +13204,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "38",
         ":@computed_region_nnqa_25f4": "2615",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -81.76667,
         40
@@ -13223,8 +13223,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.68333,
         15.36667
@@ -13244,8 +13244,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "22",
         ":@computed_region_nnqa_25f4": "1667",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -90.10976,
         29.94718
@@ -13263,8 +13263,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 111.41667,
         -7.45
@@ -13282,8 +13282,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -4.38333,
         13.85
@@ -13301,8 +13301,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -1.43333,
         49.03333
@@ -13339,8 +13339,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.63333,
         52.45
@@ -13358,8 +13358,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 37.33333,
         56.11667
@@ -13377,8 +13377,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 121.48333,
         29.86667
@@ -13396,8 +13396,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 105.90667,
         32.925
@@ -13415,8 +13415,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 131.56667,
         34.2
@@ -13434,8 +13434,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 30.7,
         -28.56667
@@ -13455,8 +13455,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "49",
         ":@computed_region_nnqa_25f4": "1683",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -69.48333,
         44.08333
@@ -13476,8 +13476,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "35",
         ":@computed_region_nnqa_25f4": "2238",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -86.055,
         40.08528
@@ -13495,8 +13495,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 130.75,
         33.725
@@ -13514,8 +13514,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -59.83333,
         -32.36667
@@ -13535,8 +13535,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "15",
         ":@computed_region_nnqa_25f4": "10",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -92.26667,
         36.21667
@@ -13556,8 +13556,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "17",
         ":@computed_region_nnqa_25f4": "1252",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -99.86667,
         39.68333
@@ -13575,8 +13575,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.52722,
         45.29167
@@ -13594,8 +13594,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 46,
         54.81667
@@ -13613,8 +13613,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 31.33333,
         58.55
@@ -13631,8 +13631,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 22,
         56
@@ -13650,8 +13650,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 102.46667,
         42.91667
@@ -13669,8 +13669,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -102.13333,
         24.3
@@ -13688,8 +13688,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.75,
         41.63333
@@ -13707,8 +13707,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 141.86667,
         43.33333
@@ -13726,8 +13726,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 94.91667,
         21.20833
@@ -13745,8 +13745,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 22.025,
         47.55
@@ -13764,8 +13764,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 55.26667,
         57.78333
@@ -13783,8 +13783,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.05,
         52.28333
@@ -13802,8 +13802,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 23,
         58.5
@@ -13821,8 +13821,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 22.03333,
         47.88333
@@ -13840,8 +13840,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 130.2,
         33.28333
@@ -13859,8 +13859,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 23.58333,
         46.06667
@@ -13878,8 +13878,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.5,
         6.75
@@ -13897,8 +13897,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -5.4,
         38.18333
@@ -13916,8 +13916,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 139.21667,
         36.18333
@@ -13935,8 +13935,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 135.2,
         35.08333
@@ -13954,8 +13954,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 25.5,
         50.83333
@@ -13973,8 +13973,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8.16667,
         52.95
@@ -13992,8 +13992,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.03333,
         39
@@ -14010,8 +14010,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -7.06667,
         38.71667
@@ -14029,8 +14029,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -2.1,
         39.56667
@@ -14048,8 +14048,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 161.80833,
         64.02
@@ -14067,8 +14067,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.38333,
         43.88333
@@ -14088,8 +14088,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "30",
         ":@computed_region_nnqa_25f4": "1078",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -81.36222,
         28.5475
@@ -14107,8 +14107,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 6.15,
         47.11667
@@ -14126,8 +14126,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 8,
         48.5
@@ -14145,8 +14145,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.93333,
         42.13333
@@ -14164,8 +14164,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.4,
         58.88333
@@ -14183,8 +14183,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 140.35,
         38.4
@@ -14204,8 +14204,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "17",
         ":@computed_region_nnqa_25f4": "1947",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -95.21667,
         38.6
@@ -14223,8 +14223,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.08,
         12.9
@@ -14242,8 +14242,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -6.57717,
         30.18
@@ -14261,8 +14261,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -13.1,
         24.3
@@ -14280,8 +14280,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -8.28,
         37.60833
@@ -14299,8 +14299,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16,
         -18
@@ -14318,8 +14318,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -5.86667,
         43.4
@@ -14337,8 +14337,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 28.83333,
         51.33333
@@ -14355,8 +14355,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -99.3,
         21.05
@@ -14374,8 +14374,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 25,
         55.66667
@@ -14393,8 +14393,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 120.45583,
         17.74333
@@ -14414,8 +14414,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "32",
         ":@computed_region_nnqa_25f4": "503",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -89.71667,
         32.31667
@@ -14432,8 +14432,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -65.1,
         -23.11667
@@ -14451,8 +14451,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 118.61667,
         43.48333
@@ -14472,8 +14472,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "18",
         ":@computed_region_nnqa_25f4": "2122",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -91.5,
         39.8
@@ -14493,8 +14493,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "4",
         ":@computed_region_nnqa_25f4": "1657",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -157.78333,
         21.3
@@ -14522,8 +14522,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 120.7,
         15.08333
@@ -14541,8 +14541,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 124.28333,
         8.06667
@@ -14562,8 +14562,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "15",
         ":@computed_region_nnqa_25f4": "1023",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -90.5,
         36.06667
@@ -14581,8 +14581,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -40.7,
         -6.23333
@@ -14600,8 +14600,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -51.66667,
         -19.13333
@@ -14621,8 +14621,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "34",
         ":@computed_region_nnqa_25f4": "1863",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -87.67917,
         41.48472
@@ -14640,8 +14640,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.35,
         9.23333
@@ -14659,8 +14659,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 85.4,
         26.2
@@ -14680,8 +14680,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "11",
         ":@computed_region_nnqa_25f4": "1994",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -103.4,
         36.21667
@@ -14699,8 +14699,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.05,
         20.93694
@@ -14718,8 +14718,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -48.56667,
         -19.53333
@@ -14737,8 +14737,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 14.96667,
         38.13333
@@ -14756,8 +14756,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 91.18333,
         23.15
@@ -14775,8 +14775,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 25.51667,
         43.46667
@@ -14794,8 +14794,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 77.03333,
         52.3
@@ -14813,8 +14813,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.98333,
         48.53333
@@ -14832,8 +14832,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 43,
         52.03333
@@ -14851,8 +14851,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -3.54217,
         11.33367
@@ -14869,8 +14869,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -117.93333,
         56.13333
@@ -14888,8 +14888,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.25,
         51.66667
@@ -14909,8 +14909,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "47",
         ":@computed_region_nnqa_25f4": "2185",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -73.91667,
         41.28333
@@ -14930,8 +14930,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "23",
         ":@computed_region_nnqa_25f4": "3062",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -103.11667,
         30.125
@@ -14949,8 +14949,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.5,
         -10.66667
@@ -14968,8 +14968,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 91,
         23.325
@@ -14987,8 +14987,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -3.43333,
         56.4
@@ -15006,8 +15006,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 39.43333,
         56.63333
@@ -15025,8 +15025,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 66.08333,
         55.5
@@ -15044,8 +15044,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.42,
         14.052
@@ -15065,8 +15065,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "39",
         ":@computed_region_nnqa_25f4": "2017",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -86.63333,
         35.3
@@ -15084,8 +15084,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -7.33333,
         53.53333
@@ -15104,8 +15104,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "17",
         ":@computed_region_nnqa_25f4": "1255",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -99.25,
         40
@@ -15123,8 +15123,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 108.58333,
         11.25
@@ -15142,8 +15142,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 105.48333,
         12
@@ -15161,8 +15161,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 108.1,
         15.71667
@@ -15180,8 +15180,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.50222,
         44.24417
@@ -15199,8 +15199,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -6.23333,
         41.36667
@@ -15217,8 +15217,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 25.73333,
         58.66667
@@ -15236,8 +15236,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 73.94167,
         26.03472
@@ -15255,8 +15255,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 18.71667,
         -32.86667
@@ -15274,8 +15274,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 88.45,
         25.8
@@ -15293,8 +15293,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76,
         29.58333
@@ -15314,8 +15314,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "31",
         ":@computed_region_nnqa_25f4": "207",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -83.51667,
         31.95
@@ -15335,8 +15335,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "23",
         ":@computed_region_nnqa_25f4": "2018",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -96.11667,
         30.7
@@ -15354,8 +15354,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 26.70972,
         45.275
@@ -15373,8 +15373,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 14.11667,
         50.53333
@@ -15392,8 +15392,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 104.91667,
         11.58333
@@ -15421,8 +15421,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 12.13333,
         50.93333
@@ -15440,8 +15440,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.66667,
         26.71667
@@ -15459,8 +15459,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 14.015,
         66.34833
@@ -15478,8 +15478,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -4.31944,
         53.03639
@@ -15499,8 +15499,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "11",
         ":@computed_region_nnqa_25f4": "1987",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -103.295,
         34.175
@@ -15518,8 +15518,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -8,
         38.5
@@ -15537,8 +15537,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 118.5,
         31.41667
@@ -15556,8 +15556,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13.94083,
         48.3025
@@ -15575,8 +15575,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 14.03333,
         49.66667
@@ -15596,8 +15596,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "38",
         ":@computed_region_nnqa_25f4": "2566",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -83.85,
         39.11667
@@ -15615,8 +15615,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -3.51667,
         39.35
@@ -15634,8 +15634,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 75.18333,
         23.36667
@@ -15653,8 +15653,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 21.26667,
         52.76667
@@ -15672,8 +15672,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.95,
         13.33333
@@ -15691,8 +15691,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -53.05,
         -29.03333
@@ -15710,8 +15710,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 121.5,
         32.08333
@@ -15729,8 +15729,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 106.46667,
         26.53333
@@ -15748,8 +15748,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 28.7,
         -30.11667
@@ -15767,8 +15767,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 95.18333,
         17.76667
@@ -15786,8 +15786,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.66667,
         39
@@ -15805,8 +15805,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 126.13333,
         44.61667
@@ -15824,8 +15824,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.25,
         46.6
@@ -15843,8 +15843,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -65.45,
         -26.66667
@@ -15862,8 +15862,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.465,
         27.72528
@@ -15881,8 +15881,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 70.2,
         28.225
@@ -15900,8 +15900,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 37.03333,
         52.98333
@@ -15919,8 +15919,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.9,
         26.45
@@ -15938,8 +15938,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 87.76667,
         24.16667
@@ -15957,8 +15957,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 6.93333,
         51.88333
@@ -15976,8 +15976,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 87.08333,
         23.98333
@@ -15995,8 +15995,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -100.81667,
         19.86667
@@ -16014,8 +16014,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 72.01667,
         25.38333
@@ -16033,8 +16033,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 115.7,
         38.2
@@ -16052,8 +16052,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 50.15,
         26.66667
@@ -16071,8 +16071,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 26.53333,
         43.5
@@ -16090,8 +16090,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 17.98333,
         52.2
@@ -16111,8 +16111,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "8",
         ":@computed_region_nnqa_25f4": "1391",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -119.75812,
         38.13742
@@ -16130,8 +16130,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -5.33333,
         42.475
@@ -16149,8 +16149,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 111.36667,
         -6.73333
@@ -16168,8 +16168,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.28333,
         44.76667
@@ -16187,8 +16187,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -65.28333,
         -32.75
@@ -16206,8 +16206,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 116.13333,
         38.66667
@@ -16225,8 +16225,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 45.66667,
         48.6
@@ -16244,8 +16244,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -118.95,
         51.33333
@@ -16263,8 +16263,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 76.66667,
         28.2
@@ -16284,8 +16284,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "37",
         ":@computed_region_nnqa_25f4": "2388",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -83.03333,
         35.03333
@@ -16303,8 +16303,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -66.15,
         -44.11667
@@ -16324,8 +16324,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "3",
         ":@computed_region_nnqa_25f4": "569",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -102.31667,
         46.88333
@@ -16345,8 +16345,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "23",
         ":@computed_region_nnqa_25f4": "2885",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -99.03333,
         31.25
@@ -16366,8 +16366,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "40",
         ":@computed_region_nnqa_25f4": "2764",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -77.5,
         37.46667
@@ -16385,8 +16385,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -49.8,
         -26.1
@@ -16404,8 +16404,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.51667,
         45.48333
@@ -16425,8 +16425,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "35",
         ":@computed_region_nnqa_25f4": "150",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -86.28333,
         41.08333
@@ -16444,8 +16444,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 150.51667,
         -23.38333
@@ -16463,8 +16463,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.55,
         42.3
@@ -16482,8 +16482,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.8,
         50.35
@@ -16503,8 +16503,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "50",
         ":@computed_region_nnqa_25f4": "361",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -83.95,
         44.51667
@@ -16522,8 +16522,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -2.51667,
         52.76667
@@ -16541,8 +16541,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 29.83333,
         -1.45
@@ -16560,8 +16560,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 36.53333,
         0.26667
@@ -16579,8 +16579,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 38.76667,
         -10.26667
@@ -16598,8 +16598,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 34.5,
         51.13333
@@ -16617,8 +16617,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.08333,
         27.43333
@@ -16636,8 +16636,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 91.66667,
         23.08333
@@ -16655,8 +16655,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 14.88333,
         51.53333
@@ -16673,8 +16673,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.38333,
         43.73333
@@ -16692,8 +16692,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.23333,
         45.3
@@ -16711,8 +16711,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 136.3,
         35.66667
@@ -16732,8 +16732,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "12",
         ":@computed_region_nnqa_25f4": "2409",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -122.96944,
         44.97917
@@ -16751,8 +16751,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 4.63333,
         46.05
@@ -16770,8 +16770,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.05,
         52.75
@@ -16789,8 +16789,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 74.86667,
         25.66667
@@ -16810,8 +16810,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "8",
         ":@computed_region_nnqa_25f4": "1174",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -117.6625,
         33.48472
@@ -16829,8 +16829,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 13,
         43.66667
@@ -16848,8 +16848,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -71.4,
         -31.01667
@@ -16867,8 +16867,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -100.65,
         19.76667
@@ -16886,8 +16886,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -51.86667,
         -29.2
@@ -16905,8 +16905,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -99.33333,
         24.16667
@@ -16924,8 +16924,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -61.7,
         -33.9
@@ -16943,8 +16943,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -68.489444,
         -31.535556
@@ -16962,8 +16962,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -49.38056,
         -20.81
@@ -16981,8 +16981,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 46.55,
         52.55
@@ -17000,8 +17000,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 137.78333,
         34.71667
@@ -17019,8 +17019,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.85,
         43.15
@@ -17038,8 +17038,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 29.86667,
         47.21667
@@ -17057,8 +17057,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 139.4,
         35.86667
@@ -17076,8 +17076,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 17.56667,
         49.23333
@@ -17095,8 +17095,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 15.05,
         53.35
@@ -17116,8 +17116,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "47",
         ":@computed_region_nnqa_25f4": "2142",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -73.95028,
         42.86083
@@ -17135,8 +17135,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.46667,
         48.11667
@@ -17156,8 +17156,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "49",
         ":@computed_region_nnqa_25f4": "1727",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -69.2,
         44.36667
@@ -17175,8 +17175,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27.13333,
         38.3
@@ -17194,8 +17194,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 84.78333,
         26.75
@@ -17213,8 +17213,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 107.33333,
         -7.23333
@@ -17232,8 +17232,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 4.98333,
         22.83333
@@ -17251,8 +17251,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 79,
         22.25
@@ -17270,8 +17270,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -0.05,
         41.71667
@@ -17289,8 +17289,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 140.51167,
         39.43833
@@ -17308,8 +17308,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 79.50083,
         21.68389
@@ -17327,8 +17327,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 23.56667,
         41.05
@@ -17346,8 +17346,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -36.76667,
         -8.38333
@@ -17365,8 +17365,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -44.21667,
         -19.46667
@@ -17384,8 +17384,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -6,
         37.41667
@@ -17403,8 +17403,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 36.6,
         50.61667
@@ -17422,8 +17422,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.71667,
         34.75
@@ -17441,8 +17441,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 87.3,
         23.1
@@ -17462,8 +17462,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "40",
         ":@computed_region_nnqa_25f4": "921",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -76.7,
         37.83333
@@ -17481,8 +17481,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -80.16667,
         44.05
@@ -17500,8 +17500,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 84.83333,
         24.55
@@ -17519,8 +17519,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 120.06667,
         33.65
@@ -17538,8 +17538,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 87.5775,
         25.85
@@ -17557,8 +17557,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 125.66667,
         43.5
@@ -17576,8 +17576,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 74.83333,
         33.71667
@@ -17595,8 +17595,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 90.16667,
         24.33333
@@ -17614,8 +17614,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 11.6,
         43.11667
@@ -17633,8 +17633,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 134.65333,
         46.16
@@ -17652,8 +17652,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -101.38333,
         20.93333
@@ -17671,8 +17671,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27.26667,
         44.11667
@@ -17690,8 +17690,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 7.53333,
         49.98333
@@ -17709,8 +17709,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 32.48333,
         30.9
@@ -17728,8 +17728,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 69.55,
         26.21667
@@ -17747,8 +17747,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.2,
         39.3
@@ -17768,8 +17768,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "19",
         ":@computed_region_nnqa_25f4": "2351",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -103.66667,
         42.58333
@@ -17787,8 +17787,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 82.58333,
         20.91667
@@ -17806,8 +17806,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 36.13583,
         39.82467
@@ -17825,8 +17825,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 119.86667,
         32.43333
@@ -17844,8 +17844,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.86667,
         59.73333
@@ -17863,8 +17863,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 15.6,
         45.68333
@@ -17882,8 +17882,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35,
         55
@@ -17901,8 +17901,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 84.06667,
         27.13333
@@ -17920,8 +17920,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 21.86667,
         43.66667
@@ -17939,8 +17939,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.73333,
         47.36667
@@ -17958,8 +17958,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 22.005,
         54.00883
@@ -17977,8 +17977,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 135.33333,
         35.16667
@@ -17996,8 +17996,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 125,
         45.25
@@ -18015,8 +18015,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 23.5,
         44.41667
@@ -18034,8 +18034,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 33.63333,
         1.7
@@ -18053,8 +18053,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 0.05,
         44.75
@@ -18072,8 +18072,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -1.5,
         46.95
@@ -18091,8 +18091,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 3.75,
         51.05
@@ -18110,8 +18110,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -1.15,
         48.01667
@@ -18131,8 +18131,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "18",
         ":@computed_region_nnqa_25f4": "2223",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -90.23333,
         38.7
@@ -18150,8 +18150,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27.41667,
         -32.01667
@@ -18171,8 +18171,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "45",
         ":@computed_region_nnqa_25f4": "424",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -76.38333,
         38.16667
@@ -18190,8 +18190,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 3.93333,
         48.45
@@ -18209,8 +18209,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27.2,
         61.65
@@ -18228,8 +18228,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 2.95,
         43.43333
@@ -18247,8 +18247,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 14.95,
         59.93333
@@ -18266,8 +18266,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 15.56667,
         49.28333
@@ -18285,8 +18285,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 41.98333,
         45.05
@@ -18304,8 +18304,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 3,
         50.76667
@@ -18323,8 +18323,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 55.98333,
         53.66667
@@ -18342,8 +18342,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 9.05,
         52.53333
@@ -18362,8 +18362,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "24",
         ":@computed_region_nnqa_25f4": "1040",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -73.13333,
         41.2
@@ -18381,8 +18381,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -3.25,
         56.58333
@@ -18400,8 +18400,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -3.95,
         50.38333
@@ -18419,8 +18419,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -72.97806,
         45.96861
@@ -18440,8 +18440,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "15",
         ":@computed_region_nnqa_25f4": "955",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -90.66667,
         36.48333
@@ -18459,8 +18459,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 16.26333,
         50.53806
@@ -18478,8 +18478,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 113.46667,
         31.61667
@@ -18497,8 +18497,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 78.03333,
         12.66667
@@ -18516,8 +18516,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 84.28333,
         25.93333
@@ -18535,8 +18535,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 133.16667,
         44.86667
@@ -18554,8 +18554,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 84.21667,
         26.71667
@@ -18575,8 +18575,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "8",
         ":@computed_region_nnqa_25f4": "1187",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -120.90806,
         38.80389
@@ -18596,8 +18596,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "29",
         ":@computed_region_nnqa_25f4": "1637",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -86.2945,
         33.18836
@@ -18615,8 +18615,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 14.65,
         49.4
@@ -18634,8 +18634,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 5.41667,
         36.18333
@@ -18653,8 +18653,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -134.20139,
         59.70444
@@ -18672,8 +18672,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 137.305,
         34.72
@@ -18691,8 +18691,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 134.9,
         35.38333
@@ -18720,8 +18720,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 112.76667,
         -7.75
@@ -18739,8 +18739,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -7.015,
         31.16333
@@ -18758,8 +18758,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 136.23333,
         35.43333
@@ -18777,8 +18777,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 122.9,
         45.4
@@ -18796,8 +18796,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 10.41667,
         32.95
@@ -18815,8 +18815,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 43.73333,
         19.38333
@@ -18834,8 +18834,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 44.45,
         35.13333
@@ -18853,8 +18853,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 23.5,
         46.71667
@@ -18872,8 +18872,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 142.95,
         -25.73333
@@ -18891,8 +18891,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 26.95,
         58.03333
@@ -18910,8 +18910,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 70.6,
         33.4
@@ -18929,8 +18929,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 37.15028,
         -1.00278
@@ -18948,8 +18948,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 27.58333,
         -29.33333
@@ -18967,8 +18967,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 118.99,
         32.94667
@@ -18986,8 +18986,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 17.11667,
         49.6
@@ -19007,8 +19007,8 @@ insert into meteorites.meteorites_ds(
         ":@computed_region_cbhk_fwbd": "34",
         ":@computed_region_nnqa_25f4": "1762",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -89.68333,
         38.2
@@ -19026,8 +19026,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 1.53333,
         14.25
@@ -19045,8 +19045,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 35.2,
         54.5
@@ -19064,8 +19064,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 79.41667,
         13.63333
@@ -19083,8 +19083,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 -7.61123,
         29.48195
@@ -19102,8 +19102,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 111.53333,
         -7.08333
@@ -19121,8 +19121,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 106.58333,
         -6.66667
@@ -19140,8 +19140,8 @@ insert into meteorites.meteorites_ds(
     {
         "created_at": "2019-01-27T09:30:28.334+0100",
         "fall": "Fell",
-        "geolocation": 
-            
+        "geolocation":
+
             st_make_point(
                 34.76667,
         47.85
@@ -19163,12 +19163,12 @@ EOF
 
 # #[ -f ./script/meteorites.adm.gz ] || { echo "Downloading the data...";  ./script/getSampleMeteoritesFromGDrive.sh; }
 
-# echo "Start ingestion ..." 
+# echo "Start ingestion ..."
 # gunzip -c ./meteorites.adm.gz | ./fileFeed.sh 127.0.0.1 10001
 # echo "Ingested sample meteorites."
 
 # cat <<'EOF' | curl -XPOST --data-binary @- $host
-# use meteorites; 
-# stop feed MeteoFeed; 
-# drop feed MeteoFeed; 
+# use meteorites;
+# stop feed MeteoFeed;
+# drop feed MeteoFeed;
 # EOF

@@ -122,9 +122,16 @@ export default class Home extends Component {
       <div>
         <div className="background">
           <div className="input">
+            <Button
+              className="query-btn"
+              bsStyle="dark"
+              onClick={() => history.push("/query")}
+            >
+              New query
+            </Button>
             <input
               className="form"
-              placeholder="Enter full name or segment (please include capitalization)"
+              placeholder="Enter full name or segment"
               ref={input => {
                 this.text = input;
               }}
@@ -143,7 +150,7 @@ export default class Home extends Component {
               </Button>
             </div>
             <Button bsStyle="secondary" onClick={() => this.click("")}>
-              Show all
+              Cancel query
             </Button>
             {this.state.currentLocation && this.state.showLocation && (
               <div className="btn">
@@ -182,7 +189,11 @@ export default class Home extends Component {
             </Button>
           </div>
         </div>
-        <Map center={this.state.testMarkers[0].latLng} zoom={this.state.zoom}>
+        <Map
+          center={this.state.testMarkers[0].latLng}
+          zoom={this.state.zoom}
+          minZoom={3}
+        >
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -207,6 +218,7 @@ export default class Home extends Component {
               )
           )}
         </Map>
+        )
       </div>
     );
   }

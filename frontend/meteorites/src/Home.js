@@ -8,6 +8,8 @@ import testMarkers from "./testMarkers";
 import { Button } from "react-bootstrap";
 import "./Home.css";
 import history from "./history";
+import QueryForm from "./QueryForm";
+import ImportData from "./ImportData";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -27,7 +29,8 @@ export default class Home extends Component {
       queryResult: [],
       testMarkers,
       currentLocation: null,
-      showLocation: true
+      showLocation: true,
+      showPage: "MAP"
     };
   }
 
@@ -75,151 +78,96 @@ export default class Home extends Component {
       });
   }
 
-  click(text) {
-    var tmpMarkers = [];
+  returnToMap = () => {
+    this.setState({ showPage: "MAP" });
+  };
 
-    fetch(`http://localhost:19002/query/service`, {
-      method: "POST",
-      body: `select name, geolocation, year, mass from meteorites.meteorites_ds where name like "%${text}%";`
-    })
-      .then(res => res.json())
-      .then(response => {
-        this.setState({
-          queryResult: response.results
-        });
+  renderMap = () => (
+    <div>
+      <div className="background">
+        <div className="input">
+          <Button
+            className="query-btn"
+            bsStyle="dark"
+            onClick={() => this.setState({ showPage: "QUERY" })}
+          >
+            New query
+          </Button>
 
-        response.results.forEach(meteorite => {
-          var metYear = meteorite.year
-            ? `${meteorite.year.split("-")[0]}.`
-            : "unknown";
-          var metMass = meteorite.mass
-            ? `${meteorite.mass.split("-")[0]} g`
-            : "unknown";
-          tmpMarkers.push({
-            name: meteorite.name,
-            year: metYear,
-            mass: metMass,
-            latLng: meteorite.geolocation
-              ? [
-                  meteorite.geolocation.coordinates[1],
-                  meteorite.geolocation.coordinates[0]
-                ]
-              : undefined
-          });
-        });
-        this.setState({
-          serverMarkers: tmpMarkers
-        });
-      });
-
-    if (text === "") {
-      document.getElementsByClassName("form")[0].value = "";
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="background">
-          <div className="input">
-            <Button
-              className="query-btn"
-              bsStyle="dark"
-              onClick={() => history.push("/query")}
-            >
-              New query
-            </Button>
-            <input
-              className="form"
-              placeholder="Enter full name or segment"
-              ref={input => {
-                this.text = input;
-              }}
-              onKeyPress={event => {
-                if (event.key === "Enter") {
-                  this.click(this.text.value);
-                }
-              }}
-            />
+          {this.state.currentLocation && this.state.showLocation && (
             <div className="btn">
               <Button
                 bsStyle="secondary"
-                onClick={() => this.click(this.text.value)}
+                onClick={() =>
+                  this.setState({
+                    showLocation: false
+                  })
+                }
               >
-                Search
+                Hide current location
               </Button>
             </div>
-            <Button bsStyle="secondary" onClick={() => this.click("")}>
-              Cancel query
-            </Button>
-            {this.state.currentLocation && this.state.showLocation && (
-              <div className="btn">
-                <Button
-                  bsStyle="secondary"
-                  onClick={() =>
-                    this.setState({
-                      showLocation: false
-                    })
-                  }
-                >
-                  Hide current location
-                </Button>
-              </div>
-            )}
-            {this.state.currentLocation && !this.state.showLocation && (
-              <div className="btn">
-                <Button
-                  bsStyle="secondary"
-                  onClick={() =>
-                    this.setState({
-                      showLocation: true
-                    })
-                  }
-                >
-                  Show current location
-                </Button>
-              </div>
-            )}
-            <Button
-              onClick={() => history.push("/import")}
-              className="import-data"
-              bsStyle="dark"
-            >
-              Import data
-            </Button>
-          </div>
+          )}
+          {this.state.currentLocation && !this.state.showLocation && (
+            <div className="btn">
+              <Button
+                bsStyle="secondary"
+                onClick={() =>
+                  this.setState({
+                    showLocation: true
+                  })
+                }
+              >
+                Show current location
+              </Button>
+            </div>
+          )}
+          <Button
+            onClick={() => this.setState({ showPage: "IMPORT" })}
+            className="import-data"
+            bsStyle="dark"
+          >
+            Import data
+          </Button>
         </div>
-        <Map
-          center={this.state.testMarkers[0].latLng}
-          zoom={this.state.zoom}
-          minZoom={3}
-        >
-          <TileLayer
-            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {this.state.currentLocation && this.state.showLocation && (
-            <Marker position={this.state.currentLocation}>
-              <Popup>
-                <p>Your current location</p>
-              </Popup>
-            </Marker>
-          )}
-          {this.state.serverMarkers.map(
-            (marker, i) =>
-              marker.latLng && (
-                <Marker key={i} position={marker.latLng}>
-                  <Popup>
-                    <p>Name: {marker.name}</p>
-                    <p>Year: {marker.year}</p>
-                    <p>Mass: {marker.mass}</p>
-                  </Popup>
-                </Marker>
-              )
-          )}
-        </Map>
-        )
       </div>
-    );
+      <Map
+        center={this.state.testMarkers[0].latLng}
+        zoom={this.state.zoom}
+        minZoom={3}
+      >
+        <TileLayer
+          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {this.state.currentLocation && this.state.showLocation && (
+          <Marker position={this.state.currentLocation}>
+            <Popup>
+              <p>Your current location</p>
+            </Popup>
+          </Marker>
+        )}
+        {this.state.serverMarkers.map(
+          (marker, i) =>
+            marker.latLng && (
+              <Marker key={i} position={marker.latLng}>
+                <Popup>
+                  <p>Name: {marker.name}</p>
+                  <p>Year: {marker.year}</p>
+                  <p>Mass: {marker.mass}</p>
+                </Popup>
+              </Marker>
+            )
+        )}
+      </Map>
+    </div>
+  );
+
+  render() {
+    if (this.state.showPage === "MAP") return this.renderMap();
+    if (this.state.showPage === "QUERY")
+      return <QueryForm return={this.returnToMap} />;
+    if (this.state.showPage === "IMPORT")
+      return <ImportData return={this.returnToMap} />;
   }
 }

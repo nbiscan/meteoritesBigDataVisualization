@@ -12,8 +12,8 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/import" exact component={ImportData} />
-            <Route path="/query" exact component={QueryForm} />
+            {/* <Route path="/import" exact component={ImportData} />
+            <Route path="/query" exact component={QueryForm} /> */}
           </Switch>
         </div>
       </Router>

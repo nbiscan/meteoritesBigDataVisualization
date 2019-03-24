@@ -2,3 +2,31 @@
   float: right;
   margin: 10px;
 }
+
+.background {
+  background-color: rgb(238, 238, 238);
+}
+
+.input {
+  margin-left: 20px;
+}
+
+.form {
+  width: 400px;
+  height: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+  color: black;
+  font-size: 15px;
+  font-weight: normal;
+  margin-left: 50px;
+}
+
+.check {
+  width: 200px;
+}
+
+.query-btn {
+  margin: 10px;
+}

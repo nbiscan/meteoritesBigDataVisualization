@@ -81,7 +81,7 @@ class ImportData extends Component {
     }).then(resp => {
       if (resp.status === 200) {
         alert("Data successfully imported.");
-        history.push("/");
+        this.props.return();
       } else {
         alert("Error importing file.");
       }
@@ -94,7 +94,7 @@ class ImportData extends Component {
         <Button
           className="button"
           bsStyle="dark"
-          onClick={() => history.push("/")}
+          onClick={() => this.props.return()}
         >
           Map
         </Button>

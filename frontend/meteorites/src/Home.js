@@ -7,7 +7,6 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import testMarkers from "./testMarkers";
 import { Button } from "react-bootstrap";
 import "./Home.css";
-import history from "./history";
 import QueryForm from "./QueryForm";
 import ImportData from "./ImportData";
 
@@ -32,6 +31,7 @@ export default class Home extends Component {
       showLocation: true,
       showPage: "MAP"
     };
+    this.click = this.click.bind(this);
   }
 
   componentDidMount() {
@@ -76,6 +76,52 @@ export default class Home extends Component {
           serverMarkers: tmpMarkers
         });
       });
+  }
+
+  click(text) {
+    var tmpMarkers = [];
+
+    fetch(`http://localhost:19002/query/service`, {
+      method: "POST",
+      body: `select name, geolocation, year, mass from meteorites.meteorites_ds where name like "%${text}%";`
+    })
+      .then(res => res.json())
+      .then(response => {
+        this.setState({
+          queryResult: response.results
+        });
+
+        response.results.forEach(meteorite => {
+          var metYear = meteorite.year
+            ? `${meteorite.year.split("-")[0]}.`
+            : "unknown";
+          var metMass = meteorite.mass
+            ? `${meteorite.mass.split("-")[0]} g`
+            : "unknown";
+          tmpMarkers.push({
+            name: meteorite.name,
+            year: metYear,
+            mass: metMass,
+            latLng: meteorite.geolocation
+              ? [
+                  meteorite.geolocation.coordinates[1],
+                  meteorite.geolocation.coordinates[0]
+                ]
+              : undefined
+          });
+        });
+        this.setState({
+          serverMarkers: tmpMarkers
+        });
+      });
+
+    if (text === "") {
+      document.getElementsByClassName("form")[0].value = "";
+    }
+
+    this.setState({
+      showPage: "MAP"
+    });
   }
 
   returnToMap = () => {
@@ -164,10 +210,15 @@ export default class Home extends Component {
   );
 
   render() {
-    if (this.state.showPage === "MAP") return this.renderMap();
-    if (this.state.showPage === "QUERY")
-      return <QueryForm return={this.returnToMap} />;
-    if (this.state.showPage === "IMPORT")
-      return <ImportData return={this.returnToMap} />;
+    switch (this.state.showPage) {
+      case "MAP":
+        return this.renderMap();
+      case "QUERY":
+        return <QueryForm return={this.returnToMap} passQuery={this.click} />;
+      case "IMPORT":
+        return <ImportData return={this.returnToMap} />;
+      default:
+        return this.renderMap();
+    }
   }
 }

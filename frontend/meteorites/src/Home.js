@@ -29,7 +29,8 @@ export default class Home extends Component {
       testMarkers,
       currentLocation: null,
       showLocation: true,
-      showPage: "MAP"
+      showPage: "MAP",
+      headline: ""
     };
     this.click = this.click.bind(this);
   }
@@ -78,12 +79,12 @@ export default class Home extends Component {
       });
   }
 
-  click(text) {
+  click(text, attribute) {
     var tmpMarkers = [];
 
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
-      body: `select name, geolocation, year, mass from meteorites.meteorites_ds where name like "%${text}%";`
+      body: `select name, geolocation, year, mass from meteorites.meteorites_ds where ${attribute.toLowerCase()} like "%${text}%";`
     })
       .then(res => res.json())
       .then(response => {
@@ -111,7 +112,8 @@ export default class Home extends Component {
           });
         });
         this.setState({
-          serverMarkers: tmpMarkers
+          serverMarkers: tmpMarkers,
+          headline: text === "" ? "" : `${attribute}: ${text}`
         });
       });
 
@@ -139,7 +141,7 @@ export default class Home extends Component {
           >
             New query
           </Button>
-
+          <h5>{this.state.headline}</h5>
           {this.state.currentLocation && this.state.showLocation && (
             <div className="btn">
               <Button

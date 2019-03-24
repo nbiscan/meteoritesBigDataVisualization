@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import "./QueryForm.css";
+import Select from "react-select";
 
+const scaryAnimals = [
+  { label: "Name", value: "NAME" },
+  { label: "Year", value: "YEAR" },
+  { label: "Mass", value: "MASS" }
+];
 class QueryForm extends Component {
   constructor(props) {
     super(props);
@@ -9,36 +15,14 @@ class QueryForm extends Component {
       serverMarkers: [],
       queryResult: [],
       currentLocation: null,
-      showLocation: true
+      showLocation: true,
+      selectedOption: "NAME"
     };
   }
 
   render() {
     return (
-      <div className="background">
-        <input
-          className="form"
-          placeholder="Enter full name or segment"
-          ref={input => {
-            this.text = input;
-          }}
-          onKeyPress={event => {
-            if (event.key === "Enter") {
-              this.props.passQuery(this.text.value);
-            }
-          }}
-        />
-        <div className="btn">
-          <Button
-            bsStyle="secondary"
-            onClick={() => this.props.passQuery(this.text.value)}
-          >
-            Search
-          </Button>
-        </div>
-        <Button bsStyle="secondary" onClick={() => this.props.passQuery("")}>
-          Cancel query
-        </Button>
+      <div className="query">
         <Button
           className="button-map"
           bsStyle="dark"
@@ -46,8 +30,47 @@ class QueryForm extends Component {
         >
           Map
         </Button>
-
-        <div />
+        <div className="content">
+          <div className="select">
+            <Select
+              options={scaryAnimals}
+              onChange={opt => this.setState({ selectedOption: opt.value })}
+            />
+          </div>
+          <br />
+          <input
+            className="form"
+            placeholder="Enter full name or segment"
+            ref={input => {
+              this.text = input;
+            }}
+            onKeyPress={event => {
+              if (event.key === "Enter") {
+                this.props.passQuery(
+                  this.text.value,
+                  this.state.selectedOption
+                );
+              }
+            }}
+          />
+          <br />
+          <div className="btn">
+            <Button
+              bsStyle="secondary"
+              onClick={() =>
+                this.props.passQuery(this.text.value, this.state.selectedOption)
+              }
+            >
+              Search
+            </Button>
+            <Button
+              bsStyle="secondary"
+              onClick={() => this.props.passQuery("", "NAME")}
+            >
+              Cancel query
+            </Button>
+          </div>
+        </div>
       </div>
     );
   }

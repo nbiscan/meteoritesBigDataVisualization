@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Button, Label } from "react-bootstrap";
-import history from "./history.js";
 import "./ImportData.css";
 
 class ImportData extends Component {

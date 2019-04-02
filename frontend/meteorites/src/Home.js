@@ -79,12 +79,12 @@ export default class Home extends Component {
       });
   }
 
-  click(text, attribute) {
+  click(text, attribute, operation) {
     var tmpMarkers = [];
 
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
-      body: `select name, geolocation, year, mass from meteorites.meteorites_ds where ${attribute.toLowerCase()} like "%${text}%";`
+      body: `select name, geolocation, year, mass from meteorites.meteorites_ds where ${attribute.toLowerCase()} ${operation} "%${text}%";`
     })
       .then(res => res.json())
       .then(response => {
@@ -142,7 +142,7 @@ export default class Home extends Component {
             New query
           </Button>
           <h5>{this.state.headline}</h5>
-          {this.state.currentLocation && this.state.showLocation && (
+          {/* {this.state.currentLocation && this.state.showLocation && (
             <div className="btn">
               <Button
                 bsStyle="secondary"
@@ -169,7 +169,7 @@ export default class Home extends Component {
                 Show current location
               </Button>
             </div>
-          )}
+          )} */}
           <Button
             onClick={() => this.setState({ showPage: "IMPORT" })}
             className="import-data"

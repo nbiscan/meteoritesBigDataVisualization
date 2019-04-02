@@ -3,11 +3,18 @@ import { Button } from "react-bootstrap";
 import "./QueryForm.css";
 import Select from "react-select";
 
-const scaryAnimals = [
+const attributes = [
   { label: "Name", value: "NAME" },
   { label: "Year", value: "YEAR" },
   { label: "Mass", value: "MASS" }
 ];
+
+const sqlOperations = [
+  { label: "LIKE", value: "like" },
+  { label: ">", value: ">" },
+  { label: "<", value: "<" }
+];
+
 class QueryForm extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +23,8 @@ class QueryForm extends Component {
       queryResult: [],
       currentLocation: null,
       showLocation: true,
-      selectedOption: "NAME"
+      selectedAttrubute: "NAME",
+      selectedOption: "LIKE"
     };
   }
 
@@ -33,7 +41,14 @@ class QueryForm extends Component {
         <div className="content">
           <div className="select">
             <Select
-              options={scaryAnimals}
+              options={attributes}
+              onChange={opt => this.setState({ selectedAttrubute: opt.value })}
+            />
+          </div>
+          <br />
+          <div className="select">
+            <Select
+              options={sqlOperations}
               onChange={opt => this.setState({ selectedOption: opt.value })}
             />
           </div>
@@ -48,6 +63,7 @@ class QueryForm extends Component {
               if (event.key === "Enter") {
                 this.props.passQuery(
                   this.text.value,
+                  this.state.selectedAttrubute,
                   this.state.selectedOption
                 );
               }
@@ -58,14 +74,18 @@ class QueryForm extends Component {
             <Button
               bsStyle="secondary"
               onClick={() =>
-                this.props.passQuery(this.text.value, this.state.selectedOption)
+                this.props.passQuery(
+                  this.text.value,
+                  this.state.selectedAttrubute,
+                  this.state.selectedOption
+                )
               }
             >
               Search
             </Button>
             <Button
               bsStyle="secondary"
-              onClick={() => this.props.passQuery("", "NAME")}
+              onClick={() => this.props.passQuery("", "NAME", "LIKE")}
             >
               Cancel query
             </Button>

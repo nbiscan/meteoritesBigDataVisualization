@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import { Map, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
@@ -141,8 +141,7 @@ export default class Home extends Component {
           >
             New query
           </Button>
-          <h5>{this.state.headline}</h5>
-          {/* {this.state.currentLocation && this.state.showLocation && (
+          {this.state.currentLocation && this.state.showLocation && (
             <div className="btn">
               <Button
                 bsStyle="secondary"
@@ -169,7 +168,7 @@ export default class Home extends Component {
                 Show current location
               </Button>
             </div>
-          )} */}
+          )}
           <Button
             onClick={() => this.setState({ showPage: "IMPORT" })}
             className="import-data"
@@ -197,15 +196,7 @@ export default class Home extends Component {
         )}
         {this.state.serverMarkers.map(
           (marker, i) =>
-            marker.latLng && (
-              <Marker key={i} position={marker.latLng}>
-                <Popup>
-                  <p>Name: {marker.name}</p>
-                  <p>Year: {marker.year}</p>
-                  <p>Mass: {marker.mass}</p>
-                </Popup>
-              </Marker>
-            )
+            marker.latLng && <Polygon key={i} positions={[marker.latLng]} />
         )}
       </Map>
     </div>

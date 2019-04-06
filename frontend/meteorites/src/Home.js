@@ -126,6 +126,15 @@ export default class Home extends Component {
     });
   }
 
+  getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color.toString();
+  }
+
   returnToMap = () => {
     this.setState({ showPage: "MAP" });
   };
@@ -196,7 +205,13 @@ export default class Home extends Component {
         )}
         {this.state.serverMarkers.map(
           (marker, i) =>
-            marker.latLng && <Polygon key={i} positions={[marker.latLng]} />
+            marker.latLng && (
+              <Polygon
+                key={i}
+                color={this.getRandomColor()}
+                positions={[marker.latLng]}
+              />
+            )
         )}
       </Map>
     </div>

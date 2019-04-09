@@ -9,6 +9,8 @@ import { Button } from "react-bootstrap";
 import "./Home.css";
 import QueryForm from "./QueryForm";
 import ImportData from "./ImportData";
+import SelectDataset from "./SelectDataset";
+import { getRandomColor } from "./services";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -30,7 +32,9 @@ export default class Home extends Component {
       currentLocation: null,
       showLocation: true,
       showPage: "MAP",
-      headline: ""
+      headline: "",
+      dataverse: localStorage.getItem("dataverse"),
+      dataset: localStorage.getItem("dataset")
     };
     this.click = this.click.bind(this);
   }
@@ -46,10 +50,17 @@ export default class Home extends Component {
 
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
-      body: `select name, geolocation, year, mass from meteorites.meteorites_ds;`
+      body: `select name, geolocation, year, mass from ${
+        this.state.dataverse
+      }.${this.state.dataset};`
     })
       .then(res => res.json())
       .then(response => {
+        if (response.status !== "success") {
+          alert("Error fetching the data");
+          return;
+        }
+
         this.setState({
           queryResult: response.results
         });
@@ -84,7 +95,11 @@ export default class Home extends Component {
 
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
-      body: `select name, geolocation, year, mass from meteorites.meteorites_ds where ${attribute.toLowerCase()} ${operation} "%${text}%";`
+      body: `select name, geolocation, year, mass from ${
+        this.state.dataverse
+      }.${
+        this.state.dataset
+      } where ${attribute.toLowerCase()} ${operation} "%${text}%";`
     })
       .then(res => res.json())
       .then(response => {
@@ -126,17 +141,12 @@ export default class Home extends Component {
     });
   }
 
-  getRandomColor() {
-    var letters = "0123456789ABCDEF";
-    var color = "#";
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color.toString();
-  }
-
   returnToMap = () => {
     this.setState({ showPage: "MAP" });
+  };
+
+  returnAndRefresh = () => {
+    window.location.reload();
   };
 
   renderMap = () => (
@@ -179,6 +189,13 @@ export default class Home extends Component {
             </div>
           )}
           <Button
+            onClick={() => this.setState({ showPage: "SELECT" })}
+            className="import-data"
+            bsStyle="dark"
+          >
+            Select active dataset
+          </Button>
+          <Button
             onClick={() => this.setState({ showPage: "IMPORT" })}
             className="import-data"
             bsStyle="dark"
@@ -208,7 +225,7 @@ export default class Home extends Component {
             marker.latLng && (
               <Polygon
                 key={i}
-                color={this.getRandomColor()}
+                color={getRandomColor()}
                 positions={[marker.latLng]}
               />
             )
@@ -225,6 +242,8 @@ export default class Home extends Component {
         return <QueryForm return={this.returnToMap} passQuery={this.click} />;
       case "IMPORT":
         return <ImportData return={this.returnToMap} />;
+      case "SELECT":
+        return <SelectDataset return={this.returnAndRefresh} />;
       default:
         return this.renderMap();
     }

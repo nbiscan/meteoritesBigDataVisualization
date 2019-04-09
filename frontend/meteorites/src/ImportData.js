@@ -80,6 +80,17 @@ class ImportData extends Component {
     }).then(resp => {
       if (resp.status === 200) {
         alert("Data successfully imported.");
+
+        fetch(`http://localhost:19002/query/service`, {
+          method: "POST",
+          body: `create dataverse ${dataverse} if not exists;
+          use ${dataverse};
+          create type ${type} if not exists as open ${datatype};
+          create dataset ${dataset}(${type}) if not exists primary key id;
+          insert into ${dataverse}.${dataset}(${geojson});
+        `
+        });
+
         this.props.return();
       } else {
         alert("Error importing file.");

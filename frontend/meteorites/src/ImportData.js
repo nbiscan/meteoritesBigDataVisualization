@@ -83,11 +83,12 @@ class ImportData extends Component {
 
         fetch(`http://localhost:19002/query/service`, {
           method: "POST",
-          body: `create dataverse ${dataverse} if not exists;
-          use ${dataverse};
-          create type ${type} if not exists as open ${datatype};
-          create dataset ${dataset}(${type}) if not exists primary key id;
-          insert into ${dataverse}.${dataset}(${geojson});
+          body: `
+          insert into ExistingDatasetsDV.ExistingDatasetsDS([{
+            'dVerse':'${dataverse}',
+            'dSet': '${dataset}',
+            'dType': '${datatype}'
+          }]);
         `
         });
 

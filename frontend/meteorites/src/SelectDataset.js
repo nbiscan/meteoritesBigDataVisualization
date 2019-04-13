@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
+import "./SelectDataset.css";
 
 class SelectDataset extends Component {
   state = { datasets: [] };
@@ -7,7 +8,7 @@ class SelectDataset extends Component {
   componentDidMount() {
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
-      body: `select dVerse, dSet from ExistingDatasetsDV.ExistingDatasetsDS;`
+      body: `select dVerse, dSet, dType from ExistingDatasetsDV.ExistingDatasetsDS;`
     })
       .then(res => res.json())
       .then(response => this.setState({ datasets: response.results }));
@@ -28,17 +29,27 @@ class SelectDataset extends Component {
           bsStyle="dark"
           onClick={() => this.props.return()}
         >
-          Map
+          Cancel
         </Button>
-        {this.state.datasets.map(ds => (
-          <Button onClick={() => this.selectDataset(ds.dVerse, ds.dSet)}>
-            {ds.dSet}
+        <div className="select-ds">
+          {this.state.datasets.map(ds => (
+            <div className="dataset-pool">
+              <Button
+                bsStyle="dark"
+                onClick={() => this.selectDataset(ds.dVerse, ds.dSet)}
+              >
+                {ds.dSet}
+              </Button>
+              <p>{ds.dType}</p>
+            </div>
+          ))}
+          <Button
+            bsStyle="dark"
+            onClick={() => this.selectDataset("failing", "test")}
+          >
+            faililng_ds_for_testing
           </Button>
-        ))}
-
-        <Button onClick={() => this.selectDataset("failing", "test")}>
-          fail
-        </Button>
+        </div>
       </div>
     );
   }

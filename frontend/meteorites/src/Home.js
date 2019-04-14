@@ -25,12 +25,12 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      zoom: 4,
+      zoom: 3,
       serverMarkers: testMarkers,
       queryResult: [],
       testMarkers,
       currentLocation: null,
-      showLocation: true,
+      showLocation: false,
       showPage: "MAP",
       headline: "",
       dataverse: localStorage.getItem("dataverse"),
@@ -50,9 +50,9 @@ export default class Home extends Component {
 
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
-      body: `select name, geolocation, year, mass from ${
-        this.state.dataverse
-      }.${this.state.dataset};`
+      body: `select geometry from ${this.state.dataverse}.${
+        this.state.dataset
+      };`
     })
       .then(res => res.json())
       .then(response => {
@@ -65,28 +65,28 @@ export default class Home extends Component {
           queryResult: response.results
         });
 
-        response.results.forEach(meteorite => {
-          var metYear = meteorite.year
-            ? `${meteorite.year.split("-")[0]}.`
-            : "unknown";
-          var metMass = meteorite.mass
-            ? `${meteorite.mass.split("-")[0]} g`
-            : "unknown";
-          tmpMarkers.push({
-            name: meteorite.name,
-            year: metYear,
-            mass: metMass,
-            latLng: meteorite.geolocation
-              ? [
-                  meteorite.geolocation.coordinates[1],
-                  meteorite.geolocation.coordinates[0]
-                ]
-              : undefined
-          });
-        });
-        this.setState({
-          serverMarkers: tmpMarkers
-        });
+        // response.results.forEach(meteorite => {
+        //   var metYear = meteorite.year
+        //     ? `${meteorite.year.split("-")[0]}.`
+        //     : "unknown";
+        //   var metMass = meteorite.mass
+        //     ? `${meteorite.mass.split("-")[0]} g`
+        //     : "unknown";
+        //   tmpMarkers.push({
+        //     name: meteorite.name,
+        //     year: metYear,
+        //     mass: metMass,
+        //     latLng: meteorite.geolocation
+        //       ? [
+        //           meteorite.geolocation.coordinates[1],
+        //           meteorite.geolocation.coordinates[0]
+        //         ]
+        //       : undefined
+        //   });
+        // });
+        // this.setState({
+        //   serverMarkers: tmpMarkers
+        // });
       });
   }
 
@@ -188,6 +188,7 @@ export default class Home extends Component {
               </Button>
             </div>
           )}
+          <h3>{localStorage.getItem("dataset")}</h3>
           <Button
             onClick={() => this.setState({ showPage: "SELECT" })}
             className="import-data"
@@ -220,16 +221,16 @@ export default class Home extends Component {
             </Popup>
           </Marker>
         )}
-        {this.state.serverMarkers.map(
-          (marker, i) =>
-            marker.latLng && (
-              <Polygon
-                key={i}
-                color={getRandomColor()}
-                positions={[marker.latLng]}
-              />
-            )
-        )}
+        {this.state.queryResult.map((markers, i) => {
+          console.log(markers.geometry.coordinates);
+          return (
+            <Polygon
+              key={i}
+              color={getRandomColor()}
+              positions={markers.geometry.coordinates}
+            />
+          );
+        })}
       </Map>
     </div>
   );

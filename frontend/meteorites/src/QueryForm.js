@@ -87,7 +87,7 @@ class QueryForm extends Component {
               bsStyle="secondary"
               onClick={() => this.props.passQuery("", "NAME", "LIKE")}
             >
-              Cancel query
+              Remove filters
             </Button>
           </div>
         </div>

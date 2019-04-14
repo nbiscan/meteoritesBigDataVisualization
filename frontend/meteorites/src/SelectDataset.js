@@ -14,9 +14,10 @@ class SelectDataset extends Component {
       .then(response => this.setState({ datasets: response.results }));
   }
 
-  selectDataset(v, s) {
+  selectDataset(v, s, t) {
     localStorage.setItem("dataverse", v);
     localStorage.setItem("dataset", s);
+    localStorage.setItem("datatype", t);
 
     this.props.return();
   }
@@ -26,7 +27,7 @@ class SelectDataset extends Component {
       <div className="query">
         <Button
           className="button-map"
-          bsStyle="dark"
+          bsStyle="secondary"
           onClick={() => this.props.return()}
         >
           Cancel
@@ -38,7 +39,7 @@ class SelectDataset extends Component {
               <p>{ds.dType}</p>
               <Button
                 bsStyle="dark"
-                onClick={() => this.selectDataset(ds.dVerse, ds.dSet)}
+                onClick={() => this.selectDataset(ds.dVerse, ds.dSet, ds.dType)}
               >
                 Select dataset
               </Button>
@@ -48,7 +49,7 @@ class SelectDataset extends Component {
             <h3>Failing dataset used for testing</h3>
             <Button
               bsStyle="dark"
-              onClick={() => this.selectDataset("failing", "test")}
+              onClick={() => this.selectDataset("failing", "test", "err")}
             >
               Select dataset
             </Button>

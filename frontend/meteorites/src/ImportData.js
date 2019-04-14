@@ -16,7 +16,8 @@ class ImportData extends Component {
       datatype: "",
       dataset: "",
       data: "",
-      geojson: ""
+      geojson: "",
+      id: ""
     };
   }
 
@@ -30,6 +31,10 @@ class ImportData extends Component {
 
   handleChangeDatatype = event => {
     this.setState({ datatype: event.target.value, disabled: false });
+  };
+
+   handleChangeId = event => {
+    this.setState({ id: event.target.value, disabled: false });
   };
 
   handleChangeDataset = event => {
@@ -53,7 +58,7 @@ class ImportData extends Component {
     fileReader.readAsText(file);
   }
 
-  handleSubmitData = (dataverse, type, datatype, dataset, geojson) => {
+  handleSubmitData = (dataverse, type, datatype, dataset, geojson, id) => {
     if (
       this.state.dataverse === "" ||
       this.state.type === "" ||
@@ -74,7 +79,7 @@ class ImportData extends Component {
       body: `create dataverse ${dataverse} if not exists;
       use ${dataverse};
       create type ${type} if not exists as open ${datatype};
-      create dataset ${dataset}(${type}) if not exists primary key id;
+      create dataset ${dataset}(${type}) if not exists primary key ${id};
       insert into ${dataverse}.${dataset}(${geojson});
     `
     }).then(resp => {
@@ -148,6 +153,18 @@ class ImportData extends Component {
           />
           <hr />
 
+          <h5 className="h">Primary key:</h5>
+          <input
+            className="form-control"
+            name="id"
+            placeholder="Please specify which attribute is primary key"
+            type="text"
+            required
+            value={this.state.id}
+            onChange={this.handleChangeId}
+          />
+          <hr />
+
           <h5 className="h">Dataset name:</h5>
           <input
             className="form-control"
@@ -194,7 +211,8 @@ class ImportData extends Component {
                 this.state.type,
                 this.state.datatype,
                 this.state.dataset,
-                this.state.geojson
+                this.state.geojson,
+                this.state.id
               )
             }
           >

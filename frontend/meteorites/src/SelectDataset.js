@@ -34,21 +34,25 @@ class SelectDataset extends Component {
         <div className="select-ds">
           {this.state.datasets.map(ds => (
             <div className="dataset-pool">
+              <h3>{ds.dSet}</h3>
+              <p>{ds.dType}</p>
               <Button
                 bsStyle="dark"
                 onClick={() => this.selectDataset(ds.dVerse, ds.dSet)}
               >
-                {ds.dSet}
+                Select dataset
               </Button>
-              <p>{ds.dType}</p>
             </div>
           ))}
-          <Button
-            bsStyle="dark"
-            onClick={() => this.selectDataset("failing", "test")}
-          >
-            faililng_ds_for_testing
-          </Button>
+          <div className="dataset-pool">
+            <h3>Failing dataset used for testing</h3>
+            <Button
+              bsStyle="dark"
+              onClick={() => this.selectDataset("failing", "test")}
+            >
+              Select dataset
+            </Button>
+          </div>
         </div>
       </div>
     );

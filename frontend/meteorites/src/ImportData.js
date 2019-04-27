@@ -33,7 +33,7 @@ class ImportData extends Component {
     this.setState({ datatype: event.target.value, disabled: false });
   };
 
-   handleChangeId = event => {
+  handleChangeId = event => {
     this.setState({ id: event.target.value, disabled: false });
   };
 
@@ -150,6 +150,7 @@ class ImportData extends Component {
             required
             value={this.state.datatype}
             onChange={this.handleChangeDatatype}
+            style={{ height: "400px" }}
           />
           <hr />
 
@@ -198,6 +199,7 @@ class ImportData extends Component {
             required
             value={this.state.geojson}
             onChange={this.handleChangeGeoJSON}
+            style={{ height: "400px" }}
           />
 
           <Button

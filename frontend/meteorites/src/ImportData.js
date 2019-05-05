@@ -13,7 +13,7 @@ class ImportData extends Component {
       disabled: false,
       dataverse: "",
       type: "",
-      datatype: "",
+      properties: "",
       dataset: "",
       data: "",
       geojson: "",
@@ -29,8 +29,8 @@ class ImportData extends Component {
     this.setState({ type: event.target.value, disabled: false });
   };
 
-  handleChangeDatatype = event => {
-    this.setState({ datatype: event.target.value, disabled: false });
+  handleChangeProperties = event => {
+    this.setState({ properties: event.target.value, disabled: false });
   };
 
   handleChangeId = event => {
@@ -58,11 +58,11 @@ class ImportData extends Component {
     fileReader.readAsText(file);
   }
 
-  handleSubmitData = (dataverse, type, datatype, dataset, geojson, id) => {
+  handleSubmitData = (dataverse, type, properties, dataset, geojson, id) => {
     if (
       this.state.dataverse === "" ||
       this.state.type === "" ||
-      this.state.datatype === "" ||
+      this.state.properties === "" ||
       this.state.dataset === "" ||
       (this.state.geojson === "" && this.state.fileContent === null)
     ) {
@@ -74,13 +74,37 @@ class ImportData extends Component {
       geojson = this.state.fileContent;
     }
 
+    geojson = JSON.parse(geojson);
+    geojson = geojson.features;
+
+    // wrap GIS data with AsterixDB st_geom_from_geojson function
+    geojson.forEach(feature => {
+      const val = JSON.stringify(feature["geometry"]);
+      feature["geometry"] = `st_geom_from_geojson(${val})`;
+    });
+
+    var output = "";
+
+    // only testing print
+    geojson.forEach(
+      f =>
+        (output += `{ "properties": ${JSON.stringify(
+          f["properties"]
+        )}, "geometry": ${f["geometry"]}},`)
+    );
+
+    // console.log(`[${output.slice(0, -1)}]`);
+
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
       body: `create dataverse ${dataverse} if not exists;
       use ${dataverse};
-      create type ${type} if not exists as open ${datatype};
-      create dataset ${dataset}(${type}) if not exists primary key ${id};
-      insert into ${dataverse}.${dataset}(${geojson});
+      create type ${type} if not exists as open {
+        properties: ${properties},
+        geometry: geometry?
+      };
+      create dataset ${dataset}(${type}) if not exists primary key properties.${id};
+      insert into ${dataverse}.${dataset}(${`[${output.slice(0, -1)}]`});
     `
     }).then(resp => {
       if (resp.status === 200) {
@@ -92,7 +116,7 @@ class ImportData extends Component {
           insert into ExistingDatasetsDV.ExistingDatasetsDS([{
             'dVerse':'${dataverse}',
             'dSet': '${dataset}',
-            'dType': '${datatype}'
+            'dType': '${properties}'
           }]);
         `
         });
@@ -141,15 +165,15 @@ class ImportData extends Component {
           />
           <hr />
 
-          <h5 className="h">Data type format in JSON:</h5>
+          <h5 className="h">Properties object in JSON:</h5>
           <textarea
             className="form-control rounded-0"
-            name="datatype"
-            placeholder="Please enter data"
+            name="properties"
+            placeholder="Please use following format: { id: integer, example: string?  }"
             type="text"
             required
-            value={this.state.datatype}
-            onChange={this.handleChangeDatatype}
+            value={this.state.properties}
+            onChange={this.handleChangeProperties}
             style={{ height: "400px" }}
           />
           <hr />
@@ -211,7 +235,7 @@ class ImportData extends Component {
               this.handleSubmitData(
                 this.state.dataverse,
                 this.state.type,
-                this.state.datatype,
+                this.state.properties,
                 this.state.dataset,
                 this.state.geojson,
                 this.state.id

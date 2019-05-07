@@ -17,7 +17,8 @@ class ImportData extends Component {
       dataset: "",
       data: "",
       geojson: "",
-      id: ""
+      id: "",
+      loading: false
     };
   }
 
@@ -74,6 +75,10 @@ class ImportData extends Component {
       geojson = this.state.fileContent;
     }
 
+    this.setState({
+      loading: true
+    });
+
     geojson = JSON.parse(geojson);
     geojson = geojson.features;
 
@@ -92,8 +97,6 @@ class ImportData extends Component {
           f["properties"]
         )}, "geometry": ${f["geometry"]}},`)
     );
-
-    // console.log(`[${output.slice(0, -1)}]`);
 
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
@@ -125,131 +128,141 @@ class ImportData extends Component {
       } else {
         alert("Error importing file.");
       }
+      this.setState({
+        loading: false
+      });
     });
   };
 
   render() {
-    return (
-      <div className="all">
-        <Button
-          className="button"
-          bsStyle="dark"
-          onClick={() => this.props.return()}
-        >
-          Map
-        </Button>
-        <div style={{ margin: "50px" }}>
-          <h2>Import data</h2>
-          <hr />
-
-          <h5 className="h">Dataverse name:</h5>
-          <input
-            className="form-control"
-            name="dataverse"
-            placeholder="Please enter name"
-            type="text"
-            required
-            value={this.state.dataverse}
-            onChange={this.handleChangeDataverse}
-          />
-          <hr />
-
-          <h5 className="h">Type name:</h5>
-          <input
-            className="form-control"
-            placeholder="Please enter name"
-            type="text"
-            required
-            value={this.state.type}
-            onChange={this.handleChangeType}
-          />
-          <hr />
-
-          <h5 className="h">Properties object in JSON:</h5>
-          <textarea
-            className="form-control rounded-0"
-            name="properties"
-            placeholder="Please use following format: { id: integer, example: string?  }"
-            type="text"
-            required
-            value={this.state.properties}
-            onChange={this.handleChangeProperties}
-            style={{ height: "400px" }}
-          />
-          <hr />
-
-          <h5 className="h">Primary key:</h5>
-          <input
-            className="form-control"
-            name="id"
-            placeholder="Please specify which attribute is primary key"
-            type="text"
-            required
-            value={this.state.id}
-            onChange={this.handleChangeId}
-          />
-          <hr />
-
-          <h5 className="h">Dataset name:</h5>
-          <input
-            className="form-control"
-            name="dataset"
-            placeholder="Please enter name"
-            type="text"
-            required
-            value={this.state.dataset}
-            onChange={this.handleChangeDataset}
-          />
-
-          <hr />
-
-          <h5 className="h">Choose .geojson file containing data set: </h5>
-          <input
-            type="file"
-            name="file"
-            id="file"
-            className="input-group mb-3"
-            onChange={e => this.handleFileChange(e.target.files[0])}
-          />
-
-          <hr />
-
-          <h5 className="h">Or paste GeoJSON data here:</h5>
-          <textarea
-            className="form-control rounded-0"
-            name="geojson"
-            placeholder="Please enter GeoJSON data"
-            type="text"
-            required
-            value={this.state.geojson}
-            onChange={this.handleChangeGeoJSON}
-            style={{ height: "400px" }}
-          />
-
+    if (this.state.loading)
+      return (
+        <div className="all">
+          <h1>Loading ...</h1>
+        </div>
+      );
+    else
+      return (
+        <div className="all">
           <Button
             className="button"
-            disabled={this.state.disabled}
-            type="submit"
             bsStyle="dark"
-            onClick={() =>
-              this.handleSubmitData(
-                this.state.dataverse,
-                this.state.type,
-                this.state.properties,
-                this.state.dataset,
-                this.state.geojson,
-                this.state.id
-              )
-            }
+            onClick={() => this.props.return()}
           >
-            Submit form
+            Map
           </Button>
-          {this.state.disabled && (
-            <Label className="warning">Enter all data to submit form.</Label>
-          )}
+          <div style={{ margin: "50px" }}>
+            <h2>Import data</h2>
+            <hr />
+
+            <h5 className="h">Dataverse name:</h5>
+            <input
+              className="form-control"
+              name="dataverse"
+              placeholder="Please enter name"
+              type="text"
+              required
+              value={this.state.dataverse}
+              onChange={this.handleChangeDataverse}
+            />
+            <hr />
+
+            <h5 className="h">Type name:</h5>
+            <input
+              className="form-control"
+              placeholder="Please enter name"
+              type="text"
+              required
+              value={this.state.type}
+              onChange={this.handleChangeType}
+            />
+            <hr />
+
+            <h5 className="h">Properties object in JSON:</h5>
+            <textarea
+              className="form-control rounded-0"
+              name="properties"
+              placeholder="Please use following format: { id: integer, example: string?  }"
+              type="text"
+              required
+              value={this.state.properties}
+              onChange={this.handleChangeProperties}
+              style={{ height: "400px" }}
+            />
+            <hr />
+
+            <h5 className="h">Primary key:</h5>
+            <input
+              className="form-control"
+              name="id"
+              placeholder="Please specify which attribute is primary key"
+              type="text"
+              required
+              value={this.state.id}
+              onChange={this.handleChangeId}
+            />
+            <hr />
+
+            <h5 className="h">Dataset name:</h5>
+            <input
+              className="form-control"
+              name="dataset"
+              placeholder="Please enter name"
+              type="text"
+              required
+              value={this.state.dataset}
+              onChange={this.handleChangeDataset}
+            />
+
+            <hr />
+
+            <h5 className="h">Choose .geojson file containing data set: </h5>
+            <input
+              type="file"
+              name="file"
+              id="file"
+              className="input-group mb-3"
+              onChange={e => this.handleFileChange(e.target.files[0])}
+            />
+
+            <hr />
+
+            <h5 className="h">Or paste GeoJSON data here:</h5>
+            <textarea
+              className="form-control rounded-0"
+              name="geojson"
+              placeholder="Please enter GeoJSON data"
+              type="text"
+              required
+              value={this.state.geojson}
+              onChange={this.handleChangeGeoJSON}
+              style={{ height: "400px" }}
+            />
+
+            <Button
+              className="button"
+              disabled={this.state.disabled}
+              type="submit"
+              bsStyle="dark"
+              onClick={() =>
+                this.handleSubmitData(
+                  this.state.dataverse,
+                  this.state.type,
+                  this.state.properties,
+                  this.state.dataset,
+                  this.state.geojson,
+                  this.state.id
+                )
+              }
+            >
+              Submit form
+            </Button>
+            {this.state.disabled && (
+              <Label className="warning">Enter all data to submit form.</Label>
+            )}
+          </div>
         </div>
-      </div>
-    );
+      );
   }
 }
 

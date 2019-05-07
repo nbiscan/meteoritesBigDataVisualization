@@ -1,10 +1,10 @@
 .query {
   background-color: rgb(238, 238, 238);
-  height: 100vh;
+  height: 100%;
 }
 
 .select-ds {
-  display: flex;
+  display: inline-grid;
   justify-content: center;
   align-items: center;
   width: 100%;

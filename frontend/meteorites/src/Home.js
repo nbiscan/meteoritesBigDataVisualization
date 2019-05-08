@@ -40,6 +40,7 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
+    var tmpCoordinates = [];
     var tmpMarkers = [];
 
     window.navigator.geolocation.getCurrentPosition(position => {
@@ -61,15 +62,20 @@ export default class Home extends Component {
           return;
         }
 
-        this.setState({
-          queryResult: response.results[0]
+        response.results.forEach(result => {
+          tmpCoordinates = [];
+          const coordinates =
+            result.geometry.type === "Polygon"
+              ? result.geometry.coordinates[0]
+              : result.geometry.coordinates;
+
+          coordinates.forEach(coo => {
+            tmpCoordinates.push(coo.reverse());
+          });
+
+          tmpMarkers.push(tmpCoordinates);
         });
 
-        const coordinates = response.results[0].geometry.coordinates[0];
-
-        coordinates.forEach(coo => {
-          tmpMarkers.push(coo.reverse());
-        });
         this.setState({
           serverMarkers: tmpMarkers
         });

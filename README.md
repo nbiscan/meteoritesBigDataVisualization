@@ -11,7 +11,7 @@
 3. Uncompress the file:
   `$ unzip asterix-server-0.9.5-SNAPSHOT-binary-assembly.zip`
 
-4. Move to frontend directory:
+4. Move to app directory (meteoritesBigDataVisualization folder) and position yourself inside frontend directory:
   `$ cd ./frontend/meteorites`
 
 5. Run `$ npm install`

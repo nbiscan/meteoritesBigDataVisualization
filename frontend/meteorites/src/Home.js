@@ -8,8 +8,8 @@ import testMarkers from "./testMarkers";
 import { Button } from "react-bootstrap";
 import "./Home.css";
 import QueryForm from "./QueryForm";
-import ImportData from "./ImportData";
 import SelectDataset from "./SelectDataset";
+import { Link } from "react-router-dom";
 // import { getRandomColor } from "./services";
 
 let DefaultIcon = L.icon({
@@ -51,7 +51,7 @@ export default class Home extends Component {
 
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
-      body: `select geometry from ${this.state.dataverse}.${
+      body: `select value ${this.state.dataset} from ${this.state.dataverse}.${
         this.state.dataset
       };`
     })
@@ -86,10 +86,6 @@ export default class Home extends Component {
 
   returnToMap = () => {
     this.setState({ showPage: "MAP" });
-  };
-
-  returnAndRefresh = () => {
-    window.location.reload();
   };
 
   renderMap = () => (
@@ -132,20 +128,12 @@ export default class Home extends Component {
             </div>
           )}
           <h3>{localStorage.getItem("dataset")}</h3>
-          <Button
-            onClick={() => this.setState({ showPage: "SELECT" })}
-            className="import-data"
-            bsStyle="dark"
-          >
+          <Link className="btn btn-dark import-data" to="/select">
             Select active dataset
-          </Button>
-          <Button
-            onClick={() => this.setState({ showPage: "IMPORT" })}
-            className="import-data"
-            bsStyle="dark"
-          >
+          </Link>
+          <Link className="btn btn-dark import-data" to="/import">
             Import data
-          </Button>
+          </Link>
         </div>
       </div>
       <Map
@@ -179,10 +167,6 @@ export default class Home extends Component {
         return this.renderMap();
       case "QUERY":
         return <QueryForm return={this.returnToMap} passQuery={this.click} />;
-      case "IMPORT":
-        return <ImportData return={this.returnToMap} />;
-      case "SELECT":
-        return <SelectDataset return={this.returnAndRefresh} />;
       default:
         return this.renderMap();
     }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Label } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./ImportData.css";
 
 class ImportData extends Component {
@@ -123,8 +124,6 @@ class ImportData extends Component {
           }]);
         `
         });
-
-        this.props.return();
       } else {
         alert("Error importing file.");
       }
@@ -144,13 +143,9 @@ class ImportData extends Component {
     else
       return (
         <div className="all">
-          <Button
-            className="button"
-            bsStyle="dark"
-            onClick={() => this.props.return()}
-          >
+          <Link className="btn btn-dark button" to="/">
             Map
-          </Button>
+          </Link>
           <div style={{ margin: "50px" }}>
             <h2>Import data</h2>
             <hr />

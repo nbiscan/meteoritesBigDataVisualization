@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import "./SelectDataset.css";
+import history from "./history";
 
 class SelectDataset extends Component {
   state = { datasets: [] };
@@ -19,7 +20,7 @@ class SelectDataset extends Component {
     localStorage.setItem("dataset", s);
     localStorage.setItem("datatype", t);
 
-    this.props.return();
+    history.push("/");
   }
 
   render() {
@@ -28,7 +29,7 @@ class SelectDataset extends Component {
         <Button
           className="button-map"
           bsStyle="secondary"
-          onClick={() => this.props.return()}
+          onClick={() => history.push("/")}
         >
           Cancel
         </Button>

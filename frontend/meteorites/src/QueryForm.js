@@ -4,27 +4,17 @@ import "./QueryForm.css";
 import Select from "react-select";
 
 const attributes = [
-  { label: "Name", value: "NAME" },
-  { label: "Year", value: "YEAR" },
-  { label: "Mass", value: "MASS" }
-];
-
-const sqlOperations = [
-  { label: "LIKE", value: "like" },
-  { label: ">", value: ">" },
-  { label: "<", value: "<" }
+  { label: "Area", value: "st_area" },
+  { label: "Dimension", value: "st_dimension" },
+  { label: "Is simple?", value: "st_is_simple" },
+  { label: "Is empty?", value: "st_is_empty" }
 ];
 
 class QueryForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      serverMarkers: [],
-      queryResult: [],
-      currentLocation: null,
-      showLocation: true,
-      selectedAttrubute: "NAME",
-      selectedOption: "LIKE"
+      selectedAttrubute: "st_area"
     };
   }
 
@@ -46,14 +36,8 @@ class QueryForm extends Component {
             />
           </div>
           <br />
-          <div className="select">
-            <Select
-              options={sqlOperations}
-              onChange={opt => this.setState({ selectedOption: opt.value })}
-            />
-          </div>
-          <br />
-          <input
+
+          {/* <input
             className="form"
             placeholder="Enter full name or segment"
             ref={input => {
@@ -62,22 +46,22 @@ class QueryForm extends Component {
             onKeyPress={event => {
               if (event.key === "Enter") {
                 this.props.passQuery(
-                  this.text.value,
                   this.state.selectedAttrubute,
-                  this.state.selectedOption
+                  this.props.dataverse,
+                  this.props.dataset
                 );
               }
             }}
           />
-          <br />
+          <br /> */}
           <div className="btn">
             <Button
-              bsStyle="secondary"
+              bsStyle="dark"
               onClick={() =>
                 this.props.passQuery(
-                  this.text.value,
                   this.state.selectedAttrubute,
-                  this.state.selectedOption
+                  this.props.dataverse,
+                  this.props.dataset
                 )
               }
             >
@@ -85,7 +69,13 @@ class QueryForm extends Component {
             </Button>
             <Button
               bsStyle="secondary"
-              onClick={() => this.props.passQuery("", "NAME", "LIKE")}
+              onClick={() =>
+                this.props.passQuery(
+                  "",
+                  this.props.dataverse,
+                  this.props.dataset
+                )
+              }
             >
               Remove filters
             </Button>

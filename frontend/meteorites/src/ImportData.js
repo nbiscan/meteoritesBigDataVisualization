@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Label } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./ImportData.css";
+import history from "./history";
 
 class ImportData extends Component {
   constructor(props) {
@@ -124,6 +125,8 @@ class ImportData extends Component {
           }]);
         `
         });
+
+        history.push("/");
       } else {
         alert("Error importing file.");
       }

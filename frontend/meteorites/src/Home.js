@@ -28,7 +28,6 @@ export default class Home extends Component {
       serverMarkers: [],
       queryResult: [],
       testMarkers,
-      currentLocation: null,
       showLocation: false,
       showPage: "MAP",
       headline: "",
@@ -43,12 +42,6 @@ export default class Home extends Component {
     var tmpCoordinates = [];
     var tmpMarkers = [];
 
-    window.navigator.geolocation.getCurrentPosition(position => {
-      this.setState({
-        currentLocation: [position.coords.latitude, position.coords.longitude]
-      });
-    });
-
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
       body: `select value ${this.state.dataset} from ${this.state.dataverse}.${
@@ -58,7 +51,7 @@ export default class Home extends Component {
       .then(res => res.json())
       .then(response => {
         if (response.status !== "success") {
-          alert("Error fetching the data");
+          alert("Error fetching the data. Please try again.");
           return;
         }
 
@@ -84,7 +77,8 @@ export default class Home extends Component {
 
           tmpMarkers.push({
             coordinates: tmpCoordinates,
-            id: result.properties.id
+            properties: result.properties,
+            geometry: result.geometry
           });
         });
 
@@ -139,34 +133,6 @@ export default class Home extends Component {
           >
             New query
           </Button>
-          {this.state.currentLocation && this.state.showLocation && (
-            <div className="btn">
-              <Button
-                bsStyle="secondary"
-                onClick={() =>
-                  this.setState({
-                    showLocation: false
-                  })
-                }
-              >
-                Hide current location
-              </Button>
-            </div>
-          )}
-          {/* {this.state.currentLocation && !this.state.showLocation && (
-            <div className="btn">
-              <Button
-                bsStyle="secondary"
-                onClick={() =>
-                  this.setState({
-                    showLocation: true
-                  })
-                }
-              >
-                Show current location
-              </Button>
-            </div>
-          )} */}
           <h3>{localStorage.getItem("dataset")}</h3>
           <Link className="btn btn-dark import-data" to="/select">
             Select active dataset
@@ -185,16 +151,9 @@ export default class Home extends Component {
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/* {this.state.currentLocation && this.state.showLocation && (
-          <Marker position={this.state.currentLocation}>
-            <Popup>
-              <p>Your current location</p>
-            </Popup>
-          </Marker>
-        )} */}
         {this.state.serverMarkers.map(polygon => (
           <Polygon
-            onClick={() => this.togglePolygon(polygon.id)}
+            onClick={() => this.togglePolygon(polygon.properties.id)}
             color={getRandomColor()}
             positions={polygon.coordinates}
           >

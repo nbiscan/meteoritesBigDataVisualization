@@ -118,10 +118,11 @@ class ImportData extends Component {
         fetch(`http://localhost:19002/query/service`, {
           method: "POST",
           body: `
-          insert into ExistingDatasetsDV.ExistingDatasetsDS([{
+          insert into ExistingDV.ExistingDS([{
             'dVerse':'${dataverse}',
             'dSet': '${dataset}',
-            'dType': '${properties}'
+            'dType': '${properties}',
+            'dID': '${id}'
           }]);
         `
         });

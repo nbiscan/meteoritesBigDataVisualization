@@ -9,16 +9,17 @@ class SelectDataset extends Component {
   componentDidMount() {
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
-      body: `select dVerse, dSet, dType from ExistingDatasetsDV.ExistingDatasetsDS;`
+      body: `select dVerse, dSet, dType, dID from ExistingDV.ExistingDS;`
     })
       .then(res => res.json())
       .then(response => this.setState({ datasets: response.results }));
   }
 
-  selectDataset(v, s, t) {
+  selectDataset(v, s, t, i) {
     localStorage.setItem("dataverse", v);
     localStorage.setItem("dataset", s);
     localStorage.setItem("datatype", t);
+    localStorage.setItem("id", i);
 
     history.push("/");
   }
@@ -40,7 +41,9 @@ class SelectDataset extends Component {
               <p>{ds.dType}</p>
               <Button
                 bsStyle="dark"
-                onClick={() => this.selectDataset(ds.dVerse, ds.dSet, ds.dType)}
+                onClick={() =>
+                  this.selectDataset(ds.dVerse, ds.dSet, ds.dType, ds.dID)
+                }
               >
                 Select dataset
               </Button>
@@ -50,7 +53,9 @@ class SelectDataset extends Component {
             <h3>Failing dataset used for testing</h3>
             <Button
               bsStyle="dark"
-              onClick={() => this.selectDataset("failing", "test", "err")}
+              onClick={() =>
+                this.selectDataset("failing", "test", "err", "err")
+              }
             >
               Select dataset
             </Button>

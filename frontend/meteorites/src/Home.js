@@ -9,7 +9,7 @@ import { Button } from "react-bootstrap";
 import "./Home.css";
 import QueryForm from "./QueryForm";
 import { Link } from "react-router-dom";
-import { getRandomColor } from "./services";
+// import { getRandomColor } from "./services";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -33,7 +33,8 @@ export default class Home extends Component {
       headline: "",
       dataverse: localStorage.getItem("dataverse"),
       dataset: localStorage.getItem("dataset"),
-      selectedPolygons: []
+      selectedPolygons: [],
+      loading: false
     };
     // this.click = this.click.bind(this);
   }
@@ -41,6 +42,8 @@ export default class Home extends Component {
   componentDidMount() {
     var tmpCoordinates = [];
     var tmpMarkers = [];
+
+    this.setState({ loading: true });
 
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
@@ -83,7 +86,8 @@ export default class Home extends Component {
         });
 
         this.setState({
-          serverMarkers: tmpMarkers
+          serverMarkers: tmpMarkers,
+          loading: false
         });
       });
   }
@@ -133,6 +137,7 @@ export default class Home extends Component {
           >
             New query
           </Button>
+          {this.state.loading && <h3>Loading data for </h3>}
           <h3>{localStorage.getItem("dataset")}</h3>
           <Link className="btn btn-dark import-data" to="/select">
             Select active dataset
@@ -153,8 +158,12 @@ export default class Home extends Component {
         />
         {this.state.serverMarkers.map(polygon => (
           <Polygon
-            onClick={() => this.togglePolygon(polygon.properties.id)}
-            color={getRandomColor()}
+            onClick={() =>
+              this.togglePolygon(
+                polygon.properties[localStorage.getItem("id").toString()]
+              )
+            }
+            color={"darkblue"}
             positions={polygon.coordinates}
           >
             <Popup>

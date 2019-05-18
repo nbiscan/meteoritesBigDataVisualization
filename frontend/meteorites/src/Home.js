@@ -34,7 +34,7 @@ export default class Home extends Component {
       dataset: localStorage.getItem("dataset"),
       selectedPolygons: [],
       loading: false,
-      unimportant: true
+      refresh: true
     };
   }
 
@@ -92,7 +92,9 @@ export default class Home extends Component {
       });
   }
 
-  click(operation, dv, ds) {
+  click(operation) {
+    const dv = localStorage.getItem("dataverse");
+    const ds = localStorage.getItem("dataset");
     fetch(`http://localhost:19002/query/service`, {
       method: "POST",
       body: `select value ${operation}(geometry) from ${dv}.${ds};`
@@ -131,7 +133,7 @@ export default class Home extends Component {
     });
 
     this.setState({
-      unimportant: !this.state.unimportant
+      refresh: !this.state.refresh
     });
 
     console.log(this.state.selectedPolygons);
@@ -140,6 +142,11 @@ export default class Home extends Component {
   clearSelections = () => {
     this.state.serverMarkers.forEach(marker => {
       marker.selected = false;
+    });
+
+    this.setState({
+      selectedPolygons: [],
+      refresh: !this.state.refresh
     });
   };
 
@@ -154,6 +161,15 @@ export default class Home extends Component {
           >
             New query
           </Button>
+          {this.state.selectedPolygons.length > 0 && (
+            <Button
+              className="query-btn"
+              bsStyle="secondary"
+              onClick={() => this.clearSelections()}
+            >
+              Clear selections
+            </Button>
+          )}
           {this.state.loading && <h3>Loading data for </h3>}
           <h3>{localStorage.getItem("dataset")}</h3>
           <Link className="btn btn-dark import-data" to="/select">

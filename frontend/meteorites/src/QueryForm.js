@@ -46,9 +46,7 @@ class QueryForm extends Component {
             onKeyPress={event => {
               if (event.key === "Enter") {
                 this.props.passQuery(
-                  this.state.selectedAttrubute,
-                  this.props.dataverse,
-                  this.props.dataset
+                  this.state.selectedAttrubute
                 );
               }
             }}
@@ -57,25 +55,13 @@ class QueryForm extends Component {
           <div className="btn">
             <Button
               bsStyle="dark"
-              onClick={() =>
-                this.props.passQuery(
-                  this.state.selectedAttrubute,
-                  this.props.dataverse,
-                  this.props.dataset
-                )
-              }
+              onClick={() => this.props.passQuery(this.state.selectedAttrubute)}
             >
               Search
             </Button>
             <Button
               bsStyle="secondary"
-              onClick={() =>
-                this.props.passQuery(
-                  "",
-                  this.props.dataverse,
-                  this.props.dataset
-                )
-              }
+              onClick={() => this.props.passQuery("")}
             >
               Remove filters
             </Button>

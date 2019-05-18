@@ -9,7 +9,6 @@ import { Button } from "react-bootstrap";
 import "./Home.css";
 import QueryForm from "./QueryForm";
 import { Link } from "react-router-dom";
-// import { getRandomColor } from "./services";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -34,9 +33,9 @@ export default class Home extends Component {
       dataverse: localStorage.getItem("dataverse"),
       dataset: localStorage.getItem("dataset"),
       selectedPolygons: [],
-      loading: false
+      loading: false,
+      unimportant: true
     };
-    // this.click = this.click.bind(this);
   }
 
   componentDidMount() {
@@ -81,7 +80,8 @@ export default class Home extends Component {
           tmpMarkers.push({
             coordinates: tmpCoordinates,
             properties: result.properties,
-            geometry: result.geometry
+            geometry: result.geometry,
+            selected: false
           });
         });
 
@@ -108,6 +108,7 @@ export default class Home extends Component {
   };
 
   togglePolygon = id => {
+    const idAttribute = localStorage.getItem("id").toString();
     if (!this.state.selectedPolygons.includes(id)) {
       this.setState({
         selectedPolygons: [...this.state.selectedPolygons, id]
@@ -122,8 +123,24 @@ export default class Home extends Component {
         selectedPolygons: tmp
       });
     }
+    this.state.serverMarkers.forEach(marker => {
+      if (marker.properties[idAttribute] === id) {
+        marker.selected = !marker.selected;
+        console.log(marker.selected);
+      }
+    });
+
+    this.setState({
+      unimportant: !this.state.unimportant
+    });
 
     console.log(this.state.selectedPolygons);
+  };
+
+  clearSelections = () => {
+    this.state.serverMarkers.forEach(marker => {
+      marker.selected = false;
+    });
   };
 
   renderMap = () => (
@@ -163,12 +180,12 @@ export default class Home extends Component {
                 polygon.properties[localStorage.getItem("id").toString()]
               )
             }
-            color={"darkblue"}
+            color={polygon.selected ? "darkred" : "darkblue"}
             positions={polygon.coordinates}
           >
-            <Popup>
+            {/* <Popup>
               <p>test</p>
-            </Popup>
+            </Popup> */}
           </Polygon>
         ))}
       </Map>

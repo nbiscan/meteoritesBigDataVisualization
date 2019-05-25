@@ -3,6 +3,7 @@ import { Button, Label } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./ImportData.css";
 import history from "./history";
+import { ROOT_URL } from "./services";
 
 class ImportData extends Component {
   constructor(props) {
@@ -92,7 +93,6 @@ class ImportData extends Component {
 
     var output = "";
 
-    // only testing print
     geojson.forEach(
       f =>
         (output += `{ "properties": ${JSON.stringify(
@@ -100,7 +100,7 @@ class ImportData extends Component {
         )}, "geometry": ${f["geometry"]}},`)
     );
 
-    fetch(`http://localhost:19002/query/service`, {
+    fetch(`http://${ROOT_URL}:19002/query/service`, {
       method: "POST",
       body: `create dataverse ${dataverse} if not exists;
       use ${dataverse};
@@ -115,7 +115,7 @@ class ImportData extends Component {
       if (resp.status === 200) {
         alert("Data successfully imported.");
 
-        fetch(`http://localhost:19002/query/service`, {
+        fetch(`http://${ROOT_URL}:19002/query/service`, {
           method: "POST",
           body: `
           insert into ExistingDV.ExistingDS([{

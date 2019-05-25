@@ -1,11 +1,14 @@
-.background {
-  background-color: rgb(238, 238, 238);
+.whole-map {
+  height: 100%;
+  overflow: hidden;
 }
 
-.input {
+.header {
+  background-color: rgb(238, 238, 238);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 100px;
 }
 
 .form {
@@ -31,4 +34,9 @@
 
 .query-btn {
   margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+  }
 }

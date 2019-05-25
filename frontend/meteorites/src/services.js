@@ -6,3 +6,5 @@ export function getRandomColor() {
   }
   return color.toString();
 }
+
+export const ROOT_URL = "192.168.1.105";

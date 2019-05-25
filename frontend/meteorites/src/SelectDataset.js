@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import "./SelectDataset.css";
 import history from "./history";
+import { ROOT_URL } from "./services";
 
 class SelectDataset extends Component {
   state = { datasets: [] };
 
   componentDidMount() {
-    fetch(`http://localhost:19002/query/service`, {
+    fetch(`http://${ROOT_URL}:19002/query/service`, {
       method: "POST",
       body: `select dVerse, dSet, dType, dID from ExistingDV.ExistingDS;`
     })

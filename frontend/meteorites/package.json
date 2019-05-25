@@ -8,6 +8,7 @@
     "leaflet": "^1.4.0",
     "react": "^16.7.0",
     "react-bootstrap": "^0.32.4",
+    "react-device-detect": "^1.6.2",
     "react-dom": "^16.7.0",
     "react-jvectormap": "0.0.5",
     "react-leaflet": "^2.2.1",

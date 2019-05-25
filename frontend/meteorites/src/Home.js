@@ -9,6 +9,7 @@ import { Button } from "react-bootstrap";
 import "./Home.css";
 import QueryForm from "./QueryForm";
 import { Link } from "react-router-dom";
+import { ROOT_URL } from "./services";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -44,7 +45,7 @@ export default class Home extends Component {
 
     this.setState({ loading: true });
 
-    fetch(`http://localhost:19002/query/service`, {
+    fetch(`http://${ROOT_URL}:19002/query/service`, {
       method: "POST",
       body: `select value ${this.state.dataset} from ${this.state.dataverse}.${
         this.state.dataset
@@ -95,7 +96,7 @@ export default class Home extends Component {
   click(operation) {
     const dv = localStorage.getItem("dataverse");
     const ds = localStorage.getItem("dataset");
-    fetch(`http://localhost:19002/query/service`, {
+    fetch(`http://${ROOT_URL}:19002/query/service`, {
       method: "POST",
       body: `select value ${operation}(geometry) from ${dv}.${ds};`
     })
@@ -109,15 +110,15 @@ export default class Home extends Component {
     this.setState({ showPage: "MAP" });
   };
 
-  togglePolygon = id => {
+  togglePolygon = polygon => {
     const idAttribute = localStorage.getItem("id").toString();
-    if (!this.state.selectedPolygons.includes(id)) {
+    if (!this.state.selectedPolygons.includes(polygon)) {
       this.setState({
-        selectedPolygons: [...this.state.selectedPolygons, id]
+        selectedPolygons: [...this.state.selectedPolygons, polygon]
       });
     } else {
       const tmp = this.state.selectedPolygons;
-      var index = tmp.indexOf(id);
+      var index = tmp.indexOf(polygon);
       if (index > -1) {
         tmp.splice(index, 1);
       }
@@ -126,9 +127,8 @@ export default class Home extends Component {
       });
     }
     this.state.serverMarkers.forEach(marker => {
-      if (marker.properties[idAttribute] === id) {
+      if (marker.properties[idAttribute] === polygon.properties[idAttribute]) {
         marker.selected = !marker.selected;
-        console.log(marker.selected);
       }
     });
 
@@ -150,35 +150,63 @@ export default class Home extends Component {
     });
   };
 
+  sendIndividualRequest = operation => {
+    // radi ali jos je hardkodirano samo
+
+    operation = "st_distance";
+
+    this.state.selectedPolygons.forEach(id => {});
+
+    fetch(`http://${ROOT_URL}:19002/query/service`, {
+      method: "POST",
+      body: `${operation}(st_geom_from_geojson(${JSON.stringify(
+        this.state.selectedPolygons[0].geometry
+      )}), st_geom_from_geojson(${JSON.stringify(
+        this.state.selectedPolygons[1].geometry
+      )}));`
+    })
+      .then(res => res.json())
+      .then(response => {
+        console.log(response.results);
+      });
+  };
+
   renderMap = () => (
-    <div>
-      <div className="background">
-        <div className="input">
-          <Button
-            className="query-btn"
-            bsStyle="dark"
-            onClick={() => this.setState({ showPage: "QUERY" })}
-          >
-            New query
-          </Button>
-          {this.state.selectedPolygons.length > 0 && (
+    <div className="whole-map">
+      <div className="header">
+        <Button
+          className="query-btn"
+          bsStyle="dark"
+          onClick={() => this.setState({ showPage: "QUERY" })}
+        >
+          New query
+        </Button>
+        {this.state.selectedPolygons.length > 0 && (
+          <div>
+            <Button
+              className="query-btn"
+              bsStyle="light"
+              onClick={() => this.clearSelections()}
+            >
+              Clear selection
+            </Button>
             <Button
               className="query-btn"
               bsStyle="secondary"
-              onClick={() => this.clearSelections()}
+              onClick={() => this.sendIndividualRequest()}
             >
-              Clear selections
+              Send request
             </Button>
-          )}
-          {this.state.loading && <h3>Loading data for </h3>}
-          <h3>{localStorage.getItem("dataset")}</h3>
-          <Link className="btn btn-dark import-data" to="/select">
-            Select active dataset
-          </Link>
-          <Link className="btn btn-dark import-data" to="/import">
-            Import data
-          </Link>
-        </div>
+          </div>
+        )}
+        {this.state.loading && <h3>Loading data for </h3>}
+        <h3>{localStorage.getItem("dataset")}</h3>
+        <Link className="btn btn-dark import-data" to="/select">
+          Select active dataset
+        </Link>
+        <Link className="btn btn-dark import-data" to="/import">
+          Import data
+        </Link>
       </div>
       <Map
         center={this.state.testMarkers[0].latLng}
@@ -191,11 +219,7 @@ export default class Home extends Component {
         />
         {this.state.serverMarkers.map(polygon => (
           <Polygon
-            onClick={() =>
-              this.togglePolygon(
-                polygon.properties[localStorage.getItem("id").toString()]
-              )
-            }
+            onClick={() => this.togglePolygon(polygon)}
             color={polygon.selected ? "darkred" : "darkblue"}
             positions={polygon.coordinates}
           >
@@ -219,6 +243,7 @@ export default class Home extends Component {
             dataset={this.state.dataset}
             dataverse={this.state.dataverse}
             return={this.returnToMap}
+            // selected={this.}
           />
         );
       default:

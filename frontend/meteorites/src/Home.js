@@ -10,6 +10,7 @@ import "./Home.css";
 import QueryForm from "./QueryForm";
 import { Link } from "react-router-dom";
 import { ROOT_URL } from "./services";
+import { isMobile } from "react-device-detect";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -35,7 +36,8 @@ export default class Home extends Component {
       dataset: localStorage.getItem("dataset"),
       selectedPolygons: [],
       loading: false,
-      refresh: true
+      refresh: true,
+      showHeader: false
     };
   }
 
@@ -173,41 +175,93 @@ export default class Home extends Component {
 
   renderMap = () => (
     <div className="whole-map">
-      <div className="header">
-        <Button
-          className="query-btn"
-          bsStyle="dark"
-          onClick={() => this.setState({ showPage: "QUERY" })}
-        >
-          New query
-        </Button>
-        {this.state.selectedPolygons.length > 0 && (
-          <div>
-            <Button
-              className="query-btn"
-              bsStyle="light"
-              onClick={() => this.clearSelections()}
-            >
-              Clear selection
-            </Button>
-            <Button
-              className="query-btn"
-              bsStyle="secondary"
-              onClick={() => this.sendIndividualRequest()}
-            >
-              Send request
-            </Button>
-          </div>
-        )}
-        {this.state.loading && <h3>Loading data for </h3>}
-        <h3>{localStorage.getItem("dataset")}</h3>
-        <Link className="btn btn-dark import-data" to="/select">
-          Select active dataset
-        </Link>
-        <Link className="btn btn-dark import-data" to="/import">
-          Import data
-        </Link>
-      </div>
+      {!isMobile && (
+        <div className="header">
+          <Button
+            className="query-btn"
+            bsStyle="dark"
+            onClick={() => this.setState({ showPage: "QUERY" })}
+          >
+            New query
+          </Button>
+          {this.state.selectedPolygons.length > 0 && (
+            <div>
+              <Button
+                className="query-btn"
+                bsStyle="light"
+                onClick={() => this.clearSelections()}
+              >
+                Clear selection
+              </Button>
+              <Button
+                className="query-btn"
+                bsStyle="secondary"
+                onClick={() => this.sendIndividualRequest()}
+              >
+                Send request
+              </Button>
+            </div>
+          )}
+          {this.state.loading && <h3>Loading data for </h3>}
+          <h3>{localStorage.getItem("dataset")}</h3>
+          <Link className="btn btn-dark import-data" to="/select">
+            Select active dataset
+          </Link>
+          <Link className="btn btn-dark import-data" to="/import">
+            Import data
+          </Link>
+        </div>
+      )}
+      {isMobile && (
+        <div className="header">
+          <Button
+            className="query-btn"
+            bsStyle="dark"
+            onClick={() =>
+              this.setState({ showHeader: !this.state.showHeader })
+            }
+          >
+            {this.state.showHeader ? "Hide options" : "Show options"}
+          </Button>
+        </div>
+      )}
+      {isMobile && this.state.showHeader && (
+        <div className="header mobile">
+          <Button
+            className="query-btn btn-sm btn-mobile"
+            bsStyle="dark"
+            onClick={() => this.setState({ showPage: "QUERY" })}
+          >
+            New query
+          </Button>
+          {this.state.selectedPolygons.length > 0 && (
+            <div>
+              <Button
+                className="query-btn btn-sm btn-mobile"
+                bsStyle="light"
+                onClick={() => this.clearSelections()}
+              >
+                Clear selection
+              </Button>
+              <Button
+                className="query-btn btn-sm btn-mobile"
+                bsStyle="secondary"
+                onClick={() => this.sendIndividualRequest()}
+              >
+                Send request
+              </Button>
+            </div>
+          )}
+          {this.state.loading && <h3 className="btn-sm">Loading data for </h3>}
+          <h3 className="btn-sm">{localStorage.getItem("dataset")}</h3>
+          <Link className="btn btn-dark import-data btn-sm" to="/select">
+            Select active dataset
+          </Link>
+          <Link className="btn btn-dark import-data btn-sm" to="/import">
+            Import data
+          </Link>
+        </div>
+      )}
       <Map
         center={this.state.testMarkers[0].latLng}
         zoom={this.state.zoom}

@@ -202,8 +202,10 @@ export default class Home extends Component {
               </Button>
             </div>
           )}
-          {this.state.loading && <h3>Loading data for </h3>}
-          <h3>{localStorage.getItem("dataset")}</h3>
+          {this.state.loading && (
+            <h3 className="title loading">Loading data for </h3>
+          )}
+          <h3 className="title">{localStorage.getItem("dataset")}</h3>
           <Link className="btn btn-dark import-data" to="/select">
             Select active dataset
           </Link>

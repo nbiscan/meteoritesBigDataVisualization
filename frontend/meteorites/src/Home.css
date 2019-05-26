@@ -13,6 +13,14 @@
   margin: 0;
 }
 
+.title {
+  margin-top: 8px;
+}
+
+.loading {
+  margin-right: 5px;
+}
+
 .form {
   width: 400px;
   height: 30px;

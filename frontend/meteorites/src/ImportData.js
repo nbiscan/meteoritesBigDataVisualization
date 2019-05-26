@@ -239,10 +239,9 @@ class ImportData extends Component {
             />
 
             <Button
-              className="button"
+              className="button btn-dark"
               disabled={this.state.disabled}
               type="submit"
-              bsStyle="dark"
               onClick={() =>
                 this.handleSubmitData(
                   this.state.dataverse,

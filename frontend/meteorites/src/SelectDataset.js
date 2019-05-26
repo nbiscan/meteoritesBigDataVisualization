@@ -29,19 +29,18 @@ class SelectDataset extends Component {
     return (
       <div className="query">
         <Button
-          className="button-map"
-          bsStyle="secondary"
+          className="button-map btn-secondary"
           onClick={() => history.push("/")}
         >
           Cancel
         </Button>
         <div className="select-ds">
-          {this.state.datasets.map(ds => (
-            <div className="dataset-pool">
+          {this.state.datasets.map((ds, i) => (
+            <div className="dataset-pool" key={i}>
               <h3>{ds.dSet}</h3>
               <p>{ds.dType}</p>
               <Button
-                bsStyle="dark"
+                className="btn-dark"
                 onClick={() =>
                   this.selectDataset(ds.dVerse, ds.dSet, ds.dType, ds.dID)
                 }
@@ -53,7 +52,7 @@ class SelectDataset extends Component {
           <div className="dataset-pool">
             <h3>Failing dataset used for testing</h3>
             <Button
-              bsStyle="dark"
+              className="btn-dark"
               onClick={() =>
                 this.selectDataset("failing", "test", "err", "err")
               }

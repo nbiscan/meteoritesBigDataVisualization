@@ -4,6 +4,7 @@ import Home from "./Home";
 import ImportData from "./ImportData";
 import SelectDataset from "./SelectDataset";
 import history from "./history";
+import QueryForm from "./QueryForm";
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route path="/import" exact component={ImportData} />
             <Route path="/select" exact component={SelectDataset} />
+            <Route path="/query" exact component={QueryForm} />
           </Switch>
         </div>
       </Router>

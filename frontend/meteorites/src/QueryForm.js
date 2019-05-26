@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import "./QueryForm.css";
 import Select from "react-select";
+import { Link } from "react-router-dom";
 
 const attributes = [
   { label: "Area", value: "st_area" },
@@ -20,14 +21,10 @@ class QueryForm extends Component {
 
   render() {
     return (
-      <div className="query">
-        <Button
-          className="button-map"
-          bsStyle="dark"
-          onClick={() => this.props.return()}
-        >
+      <div className="query_screen">
+        <Link className="btn btn-dark import-data" to="/">
           Map
-        </Button>
+        </Link>
         <div className="content">
           <div className="select">
             <Select
@@ -54,13 +51,13 @@ class QueryForm extends Component {
           <br /> */}
           <div className="btn">
             <Button
-              bsStyle="dark"
+              className="btn-dark"
               onClick={() => this.props.passQuery(this.state.selectedAttrubute)}
             >
               Search
             </Button>
             <Button
-              bsStyle="secondary"
+              className="btn-secondary"
               onClick={() => this.props.passQuery("")}
             >
               Remove filters

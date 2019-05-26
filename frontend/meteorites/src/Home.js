@@ -177,25 +177,19 @@ export default class Home extends Component {
     <div className="whole-map">
       {!isMobile && (
         <div className="header">
-          <Button
-            className="query-btn"
-            bsStyle="dark"
-            onClick={() => this.setState({ showPage: "QUERY" })}
-          >
+          <Link className="btn btn-dark import-data" to="/query">
             New query
-          </Button>
+          </Link>
           {this.state.selectedPolygons.length > 0 && (
             <div>
               <Button
-                className="query-btn"
-                bsStyle="light"
+                className="query-btn btn-light"
                 onClick={() => this.clearSelections()}
               >
                 Clear selection
               </Button>
               <Button
-                className="query-btn"
-                bsStyle="secondary"
+                className="query-btn btn-secondary"
                 onClick={() => this.sendIndividualRequest()}
               >
                 Send request
@@ -217,8 +211,7 @@ export default class Home extends Component {
       {isMobile && (
         <div className="header">
           <Button
-            className="query-btn"
-            bsStyle="dark"
+            className="query-btn btn-secondary"
             onClick={() =>
               this.setState({ showHeader: !this.state.showHeader })
             }
@@ -230,8 +223,7 @@ export default class Home extends Component {
       {isMobile && this.state.showHeader && (
         <div className="header mobile">
           <Button
-            className="query-btn btn-sm btn-mobile"
-            bsStyle="dark"
+            className="query-btn btn-sm btn-mobile btn-dark"
             onClick={() => this.setState({ showPage: "QUERY" })}
           >
             New query
@@ -239,15 +231,13 @@ export default class Home extends Component {
           {this.state.selectedPolygons.length > 0 && (
             <div>
               <Button
-                className="query-btn btn-sm btn-mobile"
-                bsStyle="light"
+                className="query-btn btn-light btn-sm btn-mobile"
                 onClick={() => this.clearSelections()}
               >
                 Clear selection
               </Button>
               <Button
-                className="query-btn btn-sm btn-mobile"
-                bsStyle="secondary"
+                className="query-btn btn-sm btn-secondary btn-mobile"
                 onClick={() => this.sendIndividualRequest()}
               >
                 Send request
@@ -273,11 +263,12 @@ export default class Home extends Component {
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {this.state.serverMarkers.map(polygon => (
+        {this.state.serverMarkers.map((polygon, i) => (
           <Polygon
             onClick={() => this.togglePolygon(polygon)}
             color={polygon.selected ? "darkred" : "darkblue"}
             positions={polygon.coordinates}
+            key={i}
           >
             {/* <Popup>
               <p>test</p>

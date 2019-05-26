@@ -3,7 +3,7 @@
   margin: 10px;
 }
 
-.query {
+.query_screen {
   background-color: rgb(238, 238, 238);
   height: 100vh;
 }
@@ -42,7 +42,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 90%;
   flex-direction: column;
 }
 

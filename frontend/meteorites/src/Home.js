@@ -222,12 +222,9 @@ export default class Home extends Component {
       )}
       {isMobile && this.state.showHeader && (
         <div className="header mobile">
-          <Button
-            className="query-btn btn-sm btn-mobile btn-dark"
-            onClick={() => this.setState({ showPage: "QUERY" })}
-          >
+          <Link className="btn-sm btn-dark import-data" to="/query">
             New query
-          </Button>
+          </Link>
           {this.state.selectedPolygons.length > 0 && (
             <div>
               <Button
@@ -258,6 +255,7 @@ export default class Home extends Component {
         center={this.state.testMarkers[0].latLng}
         zoom={this.state.zoom}
         minZoom={3}
+        zoomControl={!isMobile}
       >
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

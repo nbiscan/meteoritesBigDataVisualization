@@ -25,6 +25,26 @@ class ImportData extends Component {
     };
   }
 
+  componentDidMount() {
+    this.updateProgressBarImport();
+    document.addEventListener("scroll", this.updateProgressBarImport);
+  }
+
+  updateProgressBarImport() {
+    const progressBar = document.querySelector(".progress-bar");
+    const contentImport = document.querySelector(".all");
+    const scroll = window.pageYOffset;
+    const endPosition =
+      contentImport.offsetTop + contentImport.offsetHeight - window.innerHeight;
+    const progress = Math.min(Math.ceil((scroll / endPosition) * 100), 100);
+
+    progressBar.style.width = `${progress}%`;
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("scroll", this.updateProgressBarImport);
+  }
+
   handleChangeDataverse = event => {
     this.setState({ dataverse: event.target.value, disabled: false });
   };
@@ -147,6 +167,7 @@ class ImportData extends Component {
     else
       return (
         <div className="all">
+          <div class="progress-bar" />
           <Link className="btn btn-dark button" to="/">
             Map
           </Link>

@@ -8,6 +8,9 @@ class SelectDataset extends Component {
   state = { datasets: [] };
 
   componentDidMount() {
+    this.updateProgressBarSelect();
+    document.addEventListener("scroll", this.updateProgressBarSelect);
+
     fetch(`http://${ROOT_URL}:19002/query/service`, {
       method: "POST",
       body: `select dVerse, dSet, dType, dID from ExistingDV.ExistingDS;`
@@ -25,9 +28,25 @@ class SelectDataset extends Component {
     history.push("/");
   }
 
+  componentWillUnmount() {
+    document.removeEventListener("scroll", this.updateProgressBarSelect);
+  }
+
+  updateProgressBarSelect() {
+    const progressBar = document.querySelector(".progress-bar");
+    const content = document.querySelector(".query");
+    const scroll = window.pageYOffset;
+    const endPosition =
+      content.offsetTop + content.offsetHeight - window.innerHeight;
+    const progress = Math.min(Math.ceil((scroll / endPosition) * 100), 100);
+
+    progressBar.style.width = `${progress}%`;
+  }
+
   render() {
     return (
       <div className="query">
+        <div class="progress-bar" />
         <Button
           className="button-map btn-secondary"
           onClick={() => history.push("/")}

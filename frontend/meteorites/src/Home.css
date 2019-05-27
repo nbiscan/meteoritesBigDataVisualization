@@ -1,9 +1,26 @@
 .whole-map {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.whole-map-mobile {
   height: 100%;
   overflow: hidden;
 }
 
 .header {
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow: hidden;
+  width: 30%;
+  padding: 20px;
+  background-color: rgb(238, 238, 238);
+}
+
+.header-mobile {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,8 +52,7 @@
 
 .import-data {
   float: right;
-  margin: 10px;
-  margin-right: 20px;
+  margin: 10px 0;
 }
 
 .check {

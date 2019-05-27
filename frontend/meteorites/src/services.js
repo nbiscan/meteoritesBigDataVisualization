@@ -8,3 +8,10 @@ export function getRandomColor() {
 }
 
 export const ROOT_URL = "192.168.1.105";
+
+export const attributes = [
+  { label: "Area", value: "st_area" },
+  { label: "Dimension", value: "st_dimension" },
+  { label: "Is simple?", value: "st_is_simple" },
+  { label: "Is empty?", value: "st_is_empty" }
+];

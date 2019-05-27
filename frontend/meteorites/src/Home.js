@@ -7,10 +7,10 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import testMarkers from "./testMarkers";
 import { Button } from "react-bootstrap";
 import "./Home.css";
-import QueryForm from "./QueryForm";
 import { Link } from "react-router-dom";
-import { ROOT_URL } from "./services";
+import { ROOT_URL, attributes } from "./services";
 import { isMobile } from "react-device-detect";
+import Select from "react-select";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -30,14 +30,14 @@ export default class Home extends Component {
       queryResult: [],
       testMarkers,
       showLocation: false,
-      showPage: "MAP",
       headline: "",
       dataverse: localStorage.getItem("dataverse"),
       dataset: localStorage.getItem("dataset"),
       selectedPolygons: [],
       loading: false,
       refresh: true,
-      showHeader: false
+      showHeader: false,
+      selectedAttrubute: []
     };
   }
 
@@ -108,10 +108,6 @@ export default class Home extends Component {
       });
   }
 
-  returnToMap = () => {
-    this.setState({ showPage: "MAP" });
-  };
-
   togglePolygon = polygon => {
     const idAttribute = localStorage.getItem("id").toString();
     if (!this.state.selectedPolygons.includes(polygon)) {
@@ -174,83 +170,56 @@ export default class Home extends Component {
   };
 
   renderMap = () => (
-    <div className="whole-map">
-      {!isMobile && (
-        <div className="header">
-          <Link className="btn btn-dark import-data" to="/query">
-            New query
-          </Link>
-          {this.state.selectedPolygons.length > 0 && (
-            <div>
-              <Button
-                className="query-btn btn-light"
-                onClick={() => this.clearSelections()}
-              >
-                Clear selection
-              </Button>
-              <Button
-                className="query-btn btn-secondary"
-                onClick={() => this.sendIndividualRequest()}
-              >
-                Send request
-              </Button>
-            </div>
-          )}
-          {this.state.loading && (
-            <h3 className="title loading">Loading data for </h3>
-          )}
-          <h3 className="title">{localStorage.getItem("dataset")}</h3>
-          <Link className="btn btn-dark import-data" to="/select">
-            Select active dataset
-          </Link>
-          <Link className="btn btn-dark import-data" to="/import">
-            Import data
-          </Link>
+    <div class="whole-map">
+      <div className="header">
+        {this.state.selectedPolygons.length > 0 && (
+          <div>
+            <Button
+              className="query-btn btn-light"
+              onClick={() => this.clearSelections()}
+            >
+              Clear selection
+            </Button>
+            <Button
+              className="query-btn btn-secondary"
+              onClick={() => this.sendIndividualRequest()}
+            >
+              Send request
+            </Button>
+          </div>
+        )}
+        {this.state.loading && (
+          <h3 className="title loading">Loading data for </h3>
+        )}
+        <h3 className="title">{localStorage.getItem("dataset")}</h3>
+        <Link className="btn btn-dark import-data" to="/select">
+          Select active dataset
+        </Link>
+        <Link className="btn btn-dark import-data" to="/import">
+          Import data
+        </Link>
+        <div className="content">
+          <div className="select">
+            <Select
+              options={attributes}
+              onChange={opt => this.setState({ selectedAttrubute: opt.value })}
+            />
+          </div>
+          <br />
+          <div className="btn">
+            <Button
+              className="btn-dark"
+              onClick={() => this.click(this.state.selectedAttrubute)}
+            >
+              Search
+            </Button>
+            <Button className="btn-secondary" onClick={() => this.click("")}>
+              Remove filters
+            </Button>
+          </div>
         </div>
-      )}
-      {isMobile && (
-        <div className="header">
-          <Button
-            className="query-btn btn-secondary"
-            onClick={() =>
-              this.setState({ showHeader: !this.state.showHeader })
-            }
-          >
-            {this.state.showHeader ? "Hide options" : "Show options"}
-          </Button>
-        </div>
-      )}
-      {isMobile && this.state.showHeader && (
-        <div className="header mobile">
-          <Link className="btn-sm btn-dark import-data" to="/query">
-            New query
-          </Link>
-          {this.state.selectedPolygons.length > 0 && (
-            <div>
-              <Button
-                className="query-btn btn-light btn-sm btn-mobile"
-                onClick={() => this.clearSelections()}
-              >
-                Clear selection
-              </Button>
-              <Button
-                className="query-btn btn-sm btn-secondary btn-mobile"
-                onClick={() => this.sendIndividualRequest()}
-              >
-                Send request
-              </Button>
-            </div>
-          )}
-          {this.state.loading && <h3 className="btn-sm">Loading data for </h3>}
-          <h3 className="btn-sm">{localStorage.getItem("dataset")}</h3>
-          <Link className="btn btn-dark import-data btn-sm" to="/select">
-            Select active dataset
-          </Link>
-          <Link className="btn btn-dark import-data btn-sm" to="/import">
-            Import data
-          </Link>
-        </div>
-      )}
+      </div>
+
       <Map
         center={this.state.testMarkers[0].latLng}
         zoom={this.state.zoom}
@@ -278,21 +247,6 @@ export default class Home extends Component {
   );
 
   render() {
-    switch (this.state.showPage) {
-      case "MAP":
-        return this.renderMap();
-      case "QUERY":
-        return (
-          <QueryForm
-            passQuery={this.click}
-            dataset={this.state.dataset}
-            dataverse={this.state.dataverse}
-            return={this.returnToMap}
-            // selected={this.}
-          />
-        );
-      default:
-        return this.renderMap();
-    }
+    return this.renderMap();
   }
 }

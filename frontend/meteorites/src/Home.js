@@ -5,7 +5,7 @@ import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import testMarkers from "./testMarkers";
-import { Button } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { ROOT_URL, attributes } from "./services";
@@ -37,7 +37,8 @@ export default class Home extends Component {
       loading: false,
       refresh: true,
       showHeader: false,
-      selectedAttrubute: []
+      selectedAttrubute: [],
+      wideMenu: false
     };
   }
 
@@ -171,54 +172,72 @@ export default class Home extends Component {
 
   renderMap = () => (
     <div class="whole-map">
-      <div className="header">
-        {this.state.selectedPolygons.length > 0 && (
-          <div>
-            <Button
-              className="query-btn btn-light"
-              onClick={() => this.clearSelections()}
-            >
-              Clear selection
-            </Button>
-            <Button
-              className="query-btn btn-secondary"
-              onClick={() => this.sendIndividualRequest()}
-            >
-              Send request
-            </Button>
-          </div>
-        )}
-        {this.state.loading && (
-          <h3 className="title loading">Loading data for </h3>
-        )}
-        <h3 className="title">{localStorage.getItem("dataset")}</h3>
-        <Link className="btn btn-dark import-data" to="/select">
-          Select active dataset
-        </Link>
-        <Link className="btn btn-dark import-data" to="/import">
-          Import data
-        </Link>
-        <div className="content">
-          <div className="select">
-            <Select
-              options={attributes}
-              onChange={opt => this.setState({ selectedAttrubute: opt.value })}
-            />
-          </div>
-          <br />
-          <div className="btn">
-            <Button
-              className="btn-dark"
-              onClick={() => this.click(this.state.selectedAttrubute)}
-            >
-              Search
-            </Button>
-            <Button className="btn-secondary" onClick={() => this.click("")}>
-              Remove filters
-            </Button>
+      {!this.state.wideMenu && (
+        <div className="header-small">
+          <Image
+            src="menu-alt-512.png"
+            className="toggle"
+            onClick={() => this.setState({ wideMenu: true })}
+          />
+        </div>
+      )}
+      {this.state.wideMenu && (
+        <div className="header">
+          <Image
+            src="x.png"
+            className="toggle"
+            onClick={() => this.setState({ wideMenu: false })}
+          />
+          {this.state.selectedPolygons.length > 0 && (
+            <div>
+              <Button
+                className="query-btn btn-light"
+                onClick={() => this.clearSelections()}
+              >
+                Clear selection
+              </Button>
+              <Button
+                className="query-btn btn-secondary"
+                onClick={() => this.sendIndividualRequest()}
+              >
+                Send request
+              </Button>
+            </div>
+          )}
+          {this.state.loading && (
+            <h3 className="title loading">Loading data for </h3>
+          )}
+          <h3 className="title">{localStorage.getItem("dataset")}</h3>
+          <Link className="btn btn-dark import-data" to="/select">
+            Select active dataset
+          </Link>
+          <Link className="btn btn-dark import-data" to="/import">
+            Import data
+          </Link>
+          <div className="content">
+            <div className="select">
+              <Select
+                options={attributes}
+                onChange={opt =>
+                  this.setState({ selectedAttrubute: opt.value })
+                }
+              />
+            </div>
+            <br />
+            <div className="btn">
+              <Button
+                className="btn-dark"
+                onClick={() => this.click(this.state.selectedAttrubute)}
+              >
+                Search
+              </Button>
+              <Button className="btn-secondary" onClick={() => this.click("")}>
+                Remove filters
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <Map
         center={this.state.testMarkers[0].latLng}

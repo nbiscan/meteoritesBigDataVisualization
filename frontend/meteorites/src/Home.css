@@ -15,9 +15,22 @@
   flex-grow: 1;
   flex-direction: column;
   overflow: hidden;
-  width: 30%;
+  width: 40%;
   padding: 20px;
   background-color: rgb(238, 238, 238);
+  transition: width 0.5s;
+}
+
+.header-small {
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow: hidden;
+  width: 6%;
+  padding: 20px;
+  background-color: rgb(238, 238, 238);
+  transition: width 0.5s;
 }
 
 .header-mobile {
@@ -68,4 +81,13 @@
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
+}
+.toggle {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  background-color: darkgray;
 }

@@ -8,7 +8,7 @@ import testMarkers from "./testMarkers";
 import { Button, Image } from "react-bootstrap";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import { ROOT_URL, attributes } from "./services";
+import { ROOT_URL, unaryAttributes, binaryAttributes } from "./services";
 import { isMobile } from "react-device-detect";
 import Select from "react-select";
 
@@ -150,17 +150,27 @@ export default class Home extends Component {
   };
 
   sendIndividualRequest = operation => {
-    operation = "st_touches";
+    if (!operation || this.state.selectedPolygons.length === 0) {
+      alert("Please select operation and polygons.");
+      return;
+    }
 
     this.state.selectedPolygons.forEach(id => {});
 
+    const body =
+      this.state.selectedPolygons.length === 1
+        ? `${operation}(st_geom_from_geojson(${JSON.stringify(
+            this.state.selectedPolygons[0].geometry
+          )}));`
+        : `${operation}(st_geom_from_geojson(${JSON.stringify(
+            this.state.selectedPolygons[0].geometry
+          )}), st_geom_from_geojson(${JSON.stringify(
+            this.state.selectedPolygons[1].geometry
+          )}));`;
+
     fetch(`http://${ROOT_URL}:19002/query/service`, {
       method: "POST",
-      body: `${operation}(st_geom_from_geojson(${JSON.stringify(
-        this.state.selectedPolygons[0].geometry
-      )}), st_geom_from_geojson(${JSON.stringify(
-        this.state.selectedPolygons[1].geometry
-      )}));`
+      body
     })
       .then(res => res.json())
       .then(response => {
@@ -186,22 +196,6 @@ export default class Home extends Component {
             className="toggle"
             onClick={() => this.setState({ wideMenu: false })}
           />
-          {this.state.selectedPolygons.length > 0 && (
-            <div>
-              <Button
-                className="query-btn btn-light"
-                onClick={() => this.clearSelections()}
-              >
-                Clear selection
-              </Button>
-              <Button
-                className="query-btn btn-secondary"
-                onClick={() => this.sendIndividualRequest()}
-              >
-                Send request
-              </Button>
-            </div>
-          )}
           {this.state.loading && (
             <h3 className="title loading">Loading data for </h3>
           )}
@@ -215,7 +209,7 @@ export default class Home extends Component {
           <div className="content">
             <div className="select">
               <Select
-                options={attributes}
+                options={unaryAttributes.concat(binaryAttributes)}
                 onChange={opt =>
                   this.setState({ selectedAttrubute: opt.value })
                 }
@@ -223,14 +217,25 @@ export default class Home extends Component {
             </div>
             <br />
             <div className="btn">
-              <Button
+              {/* <Button
                 className="btn-dark"
                 onClick={() => this.click(this.state.selectedAttrubute)}
               >
                 Search
+              </Button> */}
+              <Button
+                className="btn-secondary query-btn"
+                onClick={() => this.clearSelections()}
+              >
+                Clear
               </Button>
-              <Button className="btn-secondary" onClick={() => this.click("")}>
-                Remove filters
+              <Button
+                className="query-btn btn-secondary import-data"
+                onClick={() =>
+                  this.sendIndividualRequest(this.state.selectedAttrubute)
+                }
+              >
+                Send request
               </Button>
             </div>
           </div>
@@ -238,7 +243,11 @@ export default class Home extends Component {
       )}
 
       <Map
-        center={this.state.testMarkers[0].latLng}
+        center={
+          this.state.serverMarkers.length > 0
+            ? this.state.serverMarkers[0].coordinates[0]
+            : this.state.testMarkers[0].latLng
+        }
         zoom={this.state.zoom}
         minZoom={3}
         zoomControl={!isMobile}

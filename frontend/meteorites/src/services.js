@@ -9,9 +9,11 @@ export function getRandomColor() {
 
 export const ROOT_URL = "localhost";
 
-export const attributes = [
+export const unaryAttributes = [
   { label: "Area", value: "st_area" },
   { label: "Dimension", value: "st_dimension" },
   { label: "Is simple?", value: "st_is_simple" },
   { label: "Is empty?", value: "st_is_empty" }
 ];
+
+export const binaryAttributes = [{ label: "Union", value: "st_union" }];

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./ImportData.css";
 import history from "./history";
 import { ROOT_URL } from "./services";
+import Loader from "react-loader";
 
 class ImportData extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class ImportData extends Component {
       contentImport.offsetTop + contentImport.offsetHeight - window.innerHeight;
     const progress = Math.min(Math.ceil((scroll / endPosition) * 100), 100);
 
-    progressBar.style.width = `${progress}%`;
+    if (progressBar) progressBar.style.width = `${progress}%`;
   }
 
   componentWillUnmount() {
@@ -161,7 +162,7 @@ class ImportData extends Component {
     if (this.state.loading)
       return (
         <div className="all">
-          <h1>Loading ...</h1>
+          <Loader loaded={false} />
         </div>
       );
     else
@@ -247,7 +248,7 @@ class ImportData extends Component {
 
             <hr />
 
-            <h5 className="h">Or paste GeoJSON data here:</h5>
+            {/* <h5 className="h">Or paste GeoJSON data here:</h5>
             <textarea
               className="form-control rounded-0"
               name="geojson"
@@ -257,7 +258,7 @@ class ImportData extends Component {
               value={this.state.geojson}
               onChange={this.handleChangeGeoJSON}
               style={{ height: "400px" }}
-            />
+            /> */}
 
             <Button
               className="button btn-dark"

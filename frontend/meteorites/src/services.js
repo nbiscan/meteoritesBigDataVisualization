@@ -7,7 +7,7 @@ export function getRandomColor() {
   return color.toString();
 }
 
-export const ROOT_URL = "192.168.1.105";
+export const ROOT_URL = "localhost";
 
 export const attributes = [
   { label: "Area", value: "st_area" },

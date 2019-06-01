@@ -38,7 +38,7 @@ export default class Home extends Component {
       refresh: true,
       showHeader: false,
       selectedAttrubute: [],
-      wideMenu: false
+      wideMenu: true
     };
   }
 
@@ -150,9 +150,7 @@ export default class Home extends Component {
   };
 
   sendIndividualRequest = operation => {
-    // radi ali jos je hardkodirano samo
-
-    operation = "st_distance";
+    operation = "st_touches";
 
     this.state.selectedPolygons.forEach(id => {});
 

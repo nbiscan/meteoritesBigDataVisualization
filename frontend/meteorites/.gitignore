@@ -22,5 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-src/problem.txt
+src/todo.txt
 src/supported_functions.sql

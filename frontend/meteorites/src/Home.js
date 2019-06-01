@@ -38,7 +38,8 @@ export default class Home extends Component {
       refresh: true,
       showHeader: false,
       selectedAttrubute: [],
-      wideMenu: true
+      wideMenu: true,
+      showQueryResult: false
     };
   }
 
@@ -145,6 +146,8 @@ export default class Home extends Component {
 
     this.setState({
       selectedPolygons: [],
+      showQueryResult: false,
+      queryResult: [],
       refresh: !this.state.refresh
     });
   };
@@ -175,6 +178,10 @@ export default class Home extends Component {
       .then(res => res.json())
       .then(response => {
         console.log(response.results);
+        this.setState({
+          showQueryResult: true,
+          queryResult: response.results
+        });
       });
   };
 
@@ -227,7 +234,7 @@ export default class Home extends Component {
                 className="btn-secondary query-btn"
                 onClick={() => this.clearSelections()}
               >
-                Clear
+                Clear filter and selection
               </Button>
               <Button
                 className="query-btn btn-secondary import-data"
@@ -256,18 +263,32 @@ export default class Home extends Component {
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {this.state.serverMarkers.map((polygon, i) => (
-          <Polygon
-            onClick={() => this.togglePolygon(polygon)}
-            color={polygon.selected ? "darkred" : "darkblue"}
-            positions={polygon.coordinates}
-            key={i}
-          >
-            {/* <Popup>
+        {!this.state.showQueryResult &&
+          this.state.serverMarkers.map((polygon, i) => (
+            <Polygon
+              onClick={() => this.togglePolygon(polygon)}
+              color={polygon.selected ? "darkred" : "darkblue"}
+              positions={polygon.coordinates}
+              key={i}
+            >
+              {/* <Popup>
               <p>test</p>
             </Popup> */}
-          </Polygon>
-        ))}
+            </Polygon>
+          ))}
+        {this.state.showQueryResult &&
+          this.state.queryResult.map((polygon, i) => (
+            <Polygon
+              onClick={() => this.togglePolygon(polygon)}
+              color={polygon.selected ? "darkred" : "darkblue"}
+              positions={polygon.coordinates}
+              key={i}
+            >
+              {/* <Popup>
+              <p>test</p>
+            </Popup> */}
+            </Polygon>
+          ))}
       </Map>
     </div>
   );

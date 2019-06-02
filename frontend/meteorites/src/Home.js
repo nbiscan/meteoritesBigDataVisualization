@@ -5,10 +5,15 @@ import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import testMarkers from "./testMarkers";
-import { Button, Image } from "react-bootstrap";
+import { Button, Image, Modal } from "react-bootstrap";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import { ROOT_URL, unaryAttributes, binaryAttributes } from "./services";
+import {
+  ROOT_URL,
+  unaryAttributes,
+  binaryAttributes,
+  allDatasets
+} from "./services";
 import { isMobile } from "react-device-detect";
 import Select from "react-select";
 
@@ -37,9 +42,12 @@ export default class Home extends Component {
       loading: false,
       refresh: true,
       showHeader: false,
-      selectedAttrubute: [],
+      selectedOperation: "",
       wideMenu: true,
-      showQueryResult: false
+      showQueryResult: false,
+      showModal: false,
+      firstDS: "",
+      secondDS: ""
     };
   }
 
@@ -111,6 +119,7 @@ export default class Home extends Component {
   }
 
   togglePolygon = polygon => {
+    if (this.state.showQueryResult) return;
     const idAttribute = localStorage.getItem("id").toString();
     if (!this.state.selectedPolygons.includes(polygon)) {
       this.setState({
@@ -135,8 +144,6 @@ export default class Home extends Component {
     this.setState({
       refresh: !this.state.refresh
     });
-
-    console.log(this.state.selectedPolygons);
   };
 
   clearSelections = () => {
@@ -187,6 +194,12 @@ export default class Home extends Component {
 
   renderMap = () => (
     <div class="whole-map">
+      {this.state.showModal && (
+        <div
+          onClick={() => this.setState({ showModal: false })}
+          className="overlay"
+        />
+      )}
       {!this.state.wideMenu && (
         <div className="header-small">
           <Image
@@ -213,6 +226,12 @@ export default class Home extends Component {
           <Link className="btn btn-dark import-data" to="/import">
             Import data
           </Link>
+          <Button
+            className="btn btn-dark import-data"
+            onClick={() => this.setState({ showModal: true })}
+          >
+            Query on two datasets
+          </Button>
           <div className="content">
             <div className="select">
               <Select
@@ -258,6 +277,7 @@ export default class Home extends Component {
         zoom={this.state.zoom}
         minZoom={3}
         zoomControl={!isMobile}
+        style={{ "z-index": 1 }}
       >
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -290,6 +310,62 @@ export default class Home extends Component {
             </Polygon>
           ))}
       </Map>
+      {this.state.showModal && (
+        <Modal.Dialog>
+          <Modal.Header>
+            <Modal.Title>Select datasets and operation</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <div className="select">
+              <p>First dataset</p>
+              <Select
+                options={allDatasets}
+                onChange={opt => this.setState({ firstDS: opt.value })}
+              />
+            </div>
+            <div className="select">
+              <p>Second dataset</p>
+
+              <Select
+                options={allDatasets}
+                onChange={opt => this.setState({ secondDS: opt.value })}
+              />
+            </div>
+            <div className="select">
+              <p>Operation</p>
+
+              <Select
+                options={unaryAttributes.concat(binaryAttributes)}
+                onChange={opt =>
+                  this.setState({ selectedAttrubute: opt.value })
+                }
+              />
+            </div>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button
+              className="btn-secondary"
+              onClick={() => this.setState({ showModal: false })}
+            >
+              Close
+            </Button>
+            <Button
+              className="btn-dark"
+              onClick={() =>
+                this.sendDualRequest(
+                  this.state.firstDS,
+                  this.state.secondDS,
+                  this.state.selectedOperation
+                )
+              }
+            >
+              Send query
+            </Button>
+          </Modal.Footer>
+        </Modal.Dialog>
+      )}
     </div>
   );
 

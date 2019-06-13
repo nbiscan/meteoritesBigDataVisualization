@@ -27,6 +27,20 @@ let DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
+// var latlang = [
+//   [[17.385044, 78.486671], [16.506174, 80.648015], [17.686816, 83.218482]],
+//   [[13.08268, 80.270718], [12.971599, 77.594563], [15.828126, 78.037279]]
+// ];
+
+// // Creating multi polygon options
+// var multiPolygonOptions = { color: "red" };
+
+// // Creating multi polygon
+// var multipolygon = L.multiPolygon(latlang, multiPolygonOptions);
+
+// Adding multi polygon to map
+// multipolygon.addTo(map);
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -121,8 +135,6 @@ export default class Home extends Component {
           });
         });
       });
-
-    console.log(this.state.datasets);
   }
 
   click(operation) {
@@ -263,7 +275,12 @@ export default class Home extends Component {
             className="toggle"
             onClick={() => this.setState({ wideMenu: false })}
           />
-          <h3 className="title">{localStorage.getItem("dataset")}</h3>
+          <h3 className="title">
+            <Image src="map-pin.png" width="40" />
+            {this.state.showQueryResult
+              ? "Showing query result"
+              : localStorage.getItem("dataset")}
+          </h3>
           <Link className="btn btn-dark import-data" to="/select">
             Select active dataset
           </Link>
@@ -272,7 +289,9 @@ export default class Home extends Component {
           </Link>
           <Button
             className="btn btn-dark import-data"
-            onClick={() => this.setState({ showModal: true })}
+            onClick={() =>
+              this.setState({ showModal: true, firstDS: "", secondDS: "" })
+            }
           >
             Query on two datasets
           </Button>
@@ -297,22 +316,27 @@ export default class Home extends Component {
                 className="btn-secondary query-btn"
                 onClick={() => this.clearSelections()}
               >
-                Clear filter and selection
+                {this.state.showQueryResult
+                  ? "Cancel query"
+                  : "Clear selection"}
               </Button>
-              <Button
-                className="query-btn btn-secondary import-data"
-                onClick={() =>
-                  this.sendIndividualRequest(this.state.selectedOperation)
-                }
-              >
-                Send request
-              </Button>
+              {!this.state.showQueryResult && (
+                <Button
+                  className="query-btn btn-secondary import-data"
+                  onClick={() =>
+                    this.sendIndividualRequest(this.state.selectedOperation)
+                  }
+                >
+                  Send request
+                </Button>
+              )}
             </div>
           </div>
         </div>
       )}
 
       <Map
+        id="map"
         center={
           this.state.serverMarkers.length > 0
             ? this.state.serverMarkers[0].coordinates[0]
@@ -392,6 +416,7 @@ export default class Home extends Component {
               />
             </div>
             <div className="select">
+              <br />
               <p>Second dataset</p>
 
               <Select
@@ -400,6 +425,7 @@ export default class Home extends Component {
               />
             </div>
             <div className="select">
+              <br />
               <p>Operation</p>
 
               <Select
@@ -420,6 +446,13 @@ export default class Home extends Component {
             </Button>
             <Button
               className="btn-dark"
+              disabled={
+                !(
+                  this.state.firstDS &&
+                  this.state.secondDS &&
+                  this.state.selectedOperation
+                )
+              }
               onClick={() =>
                 this.sendDualRequest(
                   this.state.firstDS,

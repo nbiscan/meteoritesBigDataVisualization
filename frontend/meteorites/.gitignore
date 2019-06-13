@@ -24,4 +24,4 @@ yarn-error.log*
 
 src/todo.txt
 src/supported_functions.sql
-src/implementable_functions.sql
+src/binary_functions.sql

@@ -10,9 +10,9 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import {
   ROOT_URL,
-  unaryAttributes,
-  binaryAttributes,
-  allDatasets
+  unaryOperations,
+  operationsOnOneDataset,
+  operationsBetweenDatasets
 } from "./services";
 import { isMobile } from "react-device-detect";
 import Select from "react-select";
@@ -47,11 +47,12 @@ export default class Home extends Component {
       showQueryResult: false,
       showModal: false,
       firstDS: "",
-      secondDS: ""
+      secondDS: "",
+      datasets: []
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     var tmpCoordinates = [];
     var tmpMarkers = [];
 
@@ -103,6 +104,24 @@ export default class Home extends Component {
           loading: false
         });
       });
+
+    await fetch(`http://${ROOT_URL}:19002/query/service`, {
+      method: "POST",
+      body: `select dVerse, dSet from ExistingDV.ExistingDS;`
+    })
+      .then(res => res.json())
+      .then(response => {
+        response.results.forEach(ds => {
+          this.setState({
+            datasets: [
+              ...this.state.datasets,
+              { label: ds.dSet.toString(), value: `${ds.dVerse}.${ds.dSet}` }
+            ]
+          });
+        });
+      });
+
+    console.log(this.state.datasets);
   }
 
   click(operation) {
@@ -192,6 +211,24 @@ export default class Home extends Component {
       });
   };
 
+  sendDualRequest(first, second, operation) {
+    this.setState({ loading: true });
+    // operate on those two datasets
+    fetch(`http://${ROOT_URL}:19002/query/service`, {
+      method: "POST",
+      body: `${operation}(st_union((select value geometry from ${first})), st_union((select value geometry from ${second})));`
+    })
+      .then(res => res.json())
+      .then(response => {
+        this.setState({
+          showQueryResult: true,
+          queryResult: response.results,
+          showModal: false,
+          loading: false
+        });
+      });
+  }
+
   renderMap = () => (
     <div class="whole-map">
       {this.state.showModal && (
@@ -235,9 +272,9 @@ export default class Home extends Component {
           <div className="content">
             <div className="select">
               <Select
-                options={unaryAttributes.concat(binaryAttributes)}
+                options={unaryOperations.concat(operationsOnOneDataset)}
                 onChange={opt =>
-                  this.setState({ selectedAttrubute: opt.value })
+                  this.setState({ selectedOperation: opt.value })
                 }
               />
             </div>
@@ -245,7 +282,7 @@ export default class Home extends Component {
             <div className="btn">
               {/* <Button
                 className="btn-dark"
-                onClick={() => this.click(this.state.selectedAttrubute)}
+                onClick={() => this.click(this.state.selectedOperation)}
               >
                 Search
               </Button> */}
@@ -258,7 +295,7 @@ export default class Home extends Component {
               <Button
                 className="query-btn btn-secondary import-data"
                 onClick={() =>
-                  this.sendIndividualRequest(this.state.selectedAttrubute)
+                  this.sendIndividualRequest(this.state.selectedOperation)
                 }
               >
                 Send request
@@ -277,38 +314,61 @@ export default class Home extends Component {
         zoom={this.state.zoom}
         minZoom={3}
         zoomControl={!isMobile}
-        style={{ "z-index": 1 }}
+        style={{ zIndex: 1 }}
       >
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {!this.state.showQueryResult &&
-          this.state.serverMarkers.map((polygon, i) => (
-            <Polygon
-              onClick={() => this.togglePolygon(polygon)}
-              color={polygon.selected ? "darkred" : "darkblue"}
-              positions={polygon.coordinates}
-              key={i}
-            >
-              {/* <Popup>
-              <p>test</p>
-            </Popup> */}
-            </Polygon>
-          ))}
+          this.state.serverMarkers.map((polygon, i) => {
+            if (polygon.type === "MultiPolygon") {
+              polygon.coordinates.forEach((coordinatesSet, i) => (
+                <Polygon
+                  onClick={() => this.togglePolygon(polygon)}
+                  color={"darkblue"}
+                  positions={coordinatesSet.coordinates}
+                  key={i}
+                />
+              ));
+            }
+            return (
+              // problem - ovdje treba rjesit multipoligon ? mozda iteracijom po poligonima u objektu
+              // provjeri polygon.geometry.type=='MultiPolygon' ako je renderiraj po iteracijama
+              <Polygon
+                onClick={() => this.togglePolygon(polygon)}
+                color={polygon.selected ? "darkred" : "darkblue"}
+                positions={polygon.coordinates}
+                key={i}
+              >
+                <Popup>
+                  <p>{polygon.geometry.type}</p>
+                </Popup>
+              </Polygon>
+            );
+          })}
         {this.state.showQueryResult &&
-          this.state.queryResult.map((polygon, i) => (
-            <Polygon
-              onClick={() => this.togglePolygon(polygon)}
-              color={polygon.selected ? "darkred" : "darkblue"}
-              positions={polygon.coordinates}
-              key={i}
-            >
-              {/* <Popup>
-              <p>test</p>
-            </Popup> */}
-            </Polygon>
-          ))}
+          this.state.queryResult.map((polygon, i) => {
+            if (polygon.type === "MultiPolygon") {
+              // vidi jel to oke, mozda treba gore u switchcase parsiranju dodat za multi objekte
+              polygon.coordinates.forEach((coordinatesSet, i) => (
+                <Polygon
+                  onClick={() => this.togglePolygon(polygon)}
+                  color={"darkblue"}
+                  positions={coordinatesSet.coordinates}
+                  key={i}
+                />
+              ));
+            }
+            return (
+              <Polygon
+                onClick={() => this.togglePolygon(polygon)}
+                color={polygon.selected ? "darkred" : "darkblue"}
+                positions={polygon.coordinates}
+                key={i}
+              />
+            );
+          })}
       </Map>
       {this.state.showModal && (
         <Modal.Dialog>
@@ -320,7 +380,7 @@ export default class Home extends Component {
             <div className="select">
               <p>First dataset</p>
               <Select
-                options={allDatasets}
+                options={this.state.datasets}
                 onChange={opt => this.setState({ firstDS: opt.value })}
               />
             </div>
@@ -328,7 +388,7 @@ export default class Home extends Component {
               <p>Second dataset</p>
 
               <Select
-                options={allDatasets}
+                options={this.state.datasets}
                 onChange={opt => this.setState({ secondDS: opt.value })}
               />
             </div>
@@ -336,9 +396,9 @@ export default class Home extends Component {
               <p>Operation</p>
 
               <Select
-                options={unaryAttributes.concat(binaryAttributes)}
+                options={operationsBetweenDatasets}
                 onChange={opt =>
-                  this.setState({ selectedAttrubute: opt.value })
+                  this.setState({ selectedOperation: opt.value })
                 }
               />
             </div>

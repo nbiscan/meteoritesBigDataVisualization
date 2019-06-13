@@ -16,6 +16,7 @@ import {
 } from "./services";
 import { isMobile } from "react-device-detect";
 import Select from "react-select";
+import Loader from "react-loader";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -237,6 +238,15 @@ export default class Home extends Component {
           className="overlay"
         />
       )}
+      {this.state.loading && (
+        <div>
+          <Loader loaded={false} />
+          <div
+            onClick={() => this.setState({ showModal: false })}
+            className="overlay"
+          />
+        </div>
+      )}
       {!this.state.wideMenu && (
         <div className="header-small">
           <Image
@@ -253,9 +263,6 @@ export default class Home extends Component {
             className="toggle"
             onClick={() => this.setState({ wideMenu: false })}
           />
-          {this.state.loading && (
-            <h3 className="title loading">Loading data for </h3>
-          )}
           <h3 className="title">{localStorage.getItem("dataset")}</h3>
           <Link className="btn btn-dark import-data" to="/select">
             Select active dataset

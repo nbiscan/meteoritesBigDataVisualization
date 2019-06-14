@@ -58,6 +58,7 @@ export default class Home extends Component {
       refresh: true,
       showHeader: false,
       selectedOperation: "",
+      selectedLabel: "",
       wideMenu: true,
       showQueryResult: false,
       showModal: false,
@@ -191,13 +192,11 @@ export default class Home extends Component {
     });
   };
 
-  sendIndividualRequest = operation => {
+  sendIndividualRequest = (operation, label) => {
     if (!operation || this.state.selectedPolygons.length === 0) {
       alert("Please select operation and polygons.");
       return;
     }
-
-    this.state.selectedPolygons.forEach(id => {});
 
     const body =
       this.state.selectedPolygons.length === 1
@@ -209,7 +208,6 @@ export default class Home extends Component {
           )}), st_geom_from_geojson(${JSON.stringify(
             this.state.selectedPolygons[1].geometry
           )}));`;
-
     fetch(`http://${ROOT_URL}:19002/query/service`, {
       method: "POST",
       body
@@ -217,10 +215,14 @@ export default class Home extends Component {
       .then(res => res.json())
       .then(response => {
         console.log(response.results);
-        this.setState({
-          showQueryResult: true,
-          queryResult: response.results
-        });
+        if (this.state.selectedPolygons.length > 1) {
+          this.setState({
+            showQueryResult: true,
+            queryResult: response.results
+          });
+        } else {
+          alert(`${label}: ${response.results}`);
+        }
       });
   };
 
@@ -298,9 +300,16 @@ export default class Home extends Component {
           <div className="content">
             <div className="select">
               <Select
-                options={unaryOperations.concat(operationsOnOneDataset)}
+                options={
+                  this.state.selectedPolygons.length === 1
+                    ? unaryOperations
+                    : operationsOnOneDataset
+                }
                 onChange={opt =>
-                  this.setState({ selectedOperation: opt.value })
+                  this.setState({
+                    selectedOperation: opt.value,
+                    selectedLabel: opt.label
+                  })
                 }
               />
             </div>
@@ -324,7 +333,10 @@ export default class Home extends Component {
                 <Button
                   className="query-btn btn-secondary import-data"
                   onClick={() =>
-                    this.sendIndividualRequest(this.state.selectedOperation)
+                    this.sendIndividualRequest(
+                      this.state.selectedOperation,
+                      this.state.selectedLabel
+                    )
                   }
                 >
                   Send request
@@ -372,9 +384,9 @@ export default class Home extends Component {
                 positions={polygon.coordinates}
                 key={i}
               >
-                <Popup>
+                {/* <Popup>
                   <p>{polygon.geometry.type}</p>
-                </Popup>
+                </Popup> */}
               </Polygon>
             );
           })}
@@ -431,7 +443,10 @@ export default class Home extends Component {
               <Select
                 options={operationsBetweenDatasets}
                 onChange={opt =>
-                  this.setState({ selectedOperation: opt.value })
+                  this.setState({
+                    selectedOperation: opt.value,
+                    selectedLabel: opt.label
+                  })
                 }
               />
             </div>

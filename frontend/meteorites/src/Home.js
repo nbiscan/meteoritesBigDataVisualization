@@ -155,6 +155,7 @@ export default class Home extends Component {
     if (this.state.showQueryResult) return;
     const idAttribute = localStorage.getItem("id").toString();
     if (!this.state.selectedPolygons.includes(polygon)) {
+      if (this.state.selectedPolygons.length >= 2) return;
       this.setState({
         selectedPolygons: [...this.state.selectedPolygons, polygon]
       });
@@ -279,10 +280,11 @@ export default class Home extends Component {
           />
           <h3 className="title">
             <Image src="map-pin.png" width="40" />
-            {this.state.showQueryResult
-              ? "Showing query result"
-              : localStorage.getItem("dataset")}
+            {localStorage.getItem("dataset")}
           </h3>
+          {this.state.showQueryResult && (
+            <h5>{`Showing query result for ${this.state.selectedLabel}`}</h5>
+          )}
           <Link className="btn btn-dark import-data" to="/select">
             Select active dataset
           </Link>
@@ -418,7 +420,6 @@ export default class Home extends Component {
           <Modal.Header>
             <Modal.Title>Select datasets and operation</Modal.Title>
           </Modal.Header>
-
           <Modal.Body>
             <div className="select">
               <p>First dataset</p>
@@ -451,7 +452,8 @@ export default class Home extends Component {
               />
             </div>
           </Modal.Body>
-
+          {/* todo zaustavi ga da mu ostane u
+          formi tipa union koji nesmije koristit na unarnom */}
           <Modal.Footer>
             <Button
               className="btn-secondary"

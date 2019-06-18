@@ -8,12 +8,7 @@ import testMarkers from "./testMarkers";
 import { Button, Image, Modal } from "react-bootstrap";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import {
-  ROOT_URL,
-  unaryOperations,
-  operationsOnOneDataset,
-  operationsBetweenDatasets
-} from "./services";
+import { ROOT_URL, unaryOperations, binaryOperations } from "./services";
 import { isMobile } from "react-device-detect";
 import Select from "react-select";
 import Loader from "react-loader";
@@ -209,6 +204,7 @@ export default class Home extends Component {
           )}), st_geom_from_geojson(${JSON.stringify(
             this.state.selectedPolygons[1].geometry
           )}));`;
+
     fetch(`http://${ROOT_URL}:19002/query/service`, {
       method: "POST",
       body
@@ -216,6 +212,10 @@ export default class Home extends Component {
       .then(res => res.json())
       .then(response => {
         console.log(response.results);
+        if (typeof response.results[0] === "boolean") {
+          alert(`${label}: ${response.results}`);
+          return;
+        }
         if (this.state.selectedPolygons.length > 1) {
           this.setState({
             showQueryResult: true,
@@ -236,6 +236,14 @@ export default class Home extends Component {
     })
       .then(res => res.json())
       .then(response => {
+        if (typeof response.results[0] === "boolean") {
+          alert(`${operation}: ${response.results}`);
+          this.setState({
+            showModal: false,
+            loading: false
+          });
+          return;
+        }
         this.setState({
           showQueryResult: true,
           queryResult: response.results,
@@ -303,9 +311,11 @@ export default class Home extends Component {
             <div className="select">
               <Select
                 options={
-                  this.state.selectedPolygons.length === 1
+                  this.state.selectedPolygons.length === 0
+                    ? unaryOperations.concat(binaryOperations)
+                    : this.state.selectedPolygons.length === 1
                     ? unaryOperations
-                    : operationsOnOneDataset
+                    : binaryOperations
                 }
                 onChange={opt =>
                   this.setState({
@@ -442,7 +452,7 @@ export default class Home extends Component {
               <p>Operation</p>
 
               <Select
-                options={operationsBetweenDatasets}
+                options={binaryOperations}
                 onChange={opt =>
                   this.setState({
                     selectedOperation: opt.value,

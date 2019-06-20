@@ -22,20 +22,6 @@ let DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
-// var latlang = [
-//   [[17.385044, 78.486671], [16.506174, 80.648015], [17.686816, 83.218482]],
-//   [[13.08268, 80.270718], [12.971599, 77.594563], [15.828126, 78.037279]]
-// ];
-
-// // Creating multi polygon options
-// var multiPolygonOptions = { color: "red" };
-
-// // Creating multi polygon
-// var multipolygon = L.multiPolygon(latlang, multiPolygonOptions);
-
-// Adding multi polygon to map
-// multipolygon.addTo(map);
-
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -86,7 +72,7 @@ export default class Home extends Component {
           tmpCoordinates = [];
           let coordinates = [];
           switch (result.geometry.type) {
-            case "Polygon":
+            case "Polygon" || "MultiPolygon":
               coordinates = result.geometry.coordinates[0];
               break;
             case "LineString":
@@ -96,7 +82,7 @@ export default class Home extends Component {
               coordinates = [result.geometry.coordinates];
               break;
             default:
-              coordinates = [result.geometry.coordinates];
+              coordinates = result.geometry.coordinates[0];
           }
           coordinates.forEach(coo => {
             tmpCoordinates.push(coo.reverse());
@@ -244,9 +230,28 @@ export default class Home extends Component {
           });
           return;
         }
+
+        let tmpCoordinates = [],
+          tmpMarkers = [],
+          tmpCoo = [];
+
+        response.results[0].coordinates.forEach(coo => {
+          tmpCoordinates = [];
+          coo[0].forEach(c => {
+            tmpCoordinates.push(c.reverse());
+          });
+          tmpCoo.push(tmpCoordinates);
+        });
+
+        tmpMarkers.push({
+          coordinates: tmpCoo,
+          geometry: response.results[0],
+          selected: false
+        });
+
         this.setState({
           showQueryResult: true,
-          queryResult: response.results,
+          queryResult: tmpMarkers,
           showModal: false,
           loading: false
         });
@@ -377,19 +382,7 @@ export default class Home extends Component {
         />
         {!this.state.showQueryResult &&
           this.state.serverMarkers.map((polygon, i) => {
-            if (polygon.type === "MultiPolygon") {
-              polygon.coordinates.forEach((coordinatesSet, i) => (
-                <Polygon
-                  onClick={() => this.togglePolygon(polygon)}
-                  color={"darkblue"}
-                  positions={coordinatesSet.coordinates}
-                  key={i}
-                />
-              ));
-            }
             return (
-              // problem - ovdje treba rjesit multipoligon ? mozda iteracijom po poligonima u objektu
-              // provjeri polygon.geometry.type=='MultiPolygon' ako je renderiraj po iteracijama
               <Polygon
                 onClick={() => this.togglePolygon(polygon)}
                 color={polygon.selected ? "darkred" : "darkblue"}
@@ -404,17 +397,7 @@ export default class Home extends Component {
           })}
         {this.state.showQueryResult &&
           this.state.queryResult.map((polygon, i) => {
-            if (polygon.type === "MultiPolygon") {
-              // vidi jel to oke, mozda treba gore u switchcase parsiranju dodat za multi objekte
-              polygon.coordinates.forEach((coordinatesSet, i) => (
-                <Polygon
-                  onClick={() => this.togglePolygon(polygon)}
-                  color={"darkblue"}
-                  positions={coordinatesSet.coordinates}
-                  key={i}
-                />
-              ));
-            }
+            console.log(polygon.coordinates);
             return (
               <Polygon
                 onClick={() => this.togglePolygon(polygon)}
@@ -462,7 +445,7 @@ export default class Home extends Component {
               />
             </div>
           </Modal.Body>
-          {/* todo zaustavi ga da mu ostane u
+          {/* TODO zaustavi ga da mu ostane u
           formi tipa union koji nesmije koristit na unarnom */}
           <Modal.Footer>
             <Button

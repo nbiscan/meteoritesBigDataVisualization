@@ -1,4 +1,4 @@
-# meteoritesBigDataVisualization
+# Big Geospatial Data Queries Visualization
 
 ## Installation and configuration
 

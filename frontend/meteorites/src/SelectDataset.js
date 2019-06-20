@@ -28,6 +28,25 @@ class SelectDataset extends Component {
     history.push("/");
   }
 
+  downloadData(v, s, t, i) {
+    fetch(`http://${ROOT_URL}:19002/query/service`, {
+      method: "POST",
+      body: `select * from ${v}.${s};`
+    })
+      .then(res => res.json())
+      .then(response => {
+        if (response.status !== "success") {
+          alert("Error fetching the data. Please try again.");
+          return;
+        }
+        const myjson = JSON.stringify(response.results, null, 2);
+        var x = window.open();
+        x.document.open();
+        x.document.write("<html><body><pre>" + myjson + "</pre></body></html>");
+        x.document.close();
+      });
+  }
+
   componentWillUnmount() {
     document.removeEventListener("scroll", this.updateProgressBarSelect);
   }
@@ -69,6 +88,14 @@ class SelectDataset extends Component {
                   }
                 >
                   Select dataset
+                </Button>
+                <Button
+                  className="btn-secondary"
+                  onClick={() =>
+                    this.downloadData(ds.dVerse, ds.dSet, ds.dType, ds.dID)
+                  }
+                >
+                  Download data
                 </Button>
               </div>
             );

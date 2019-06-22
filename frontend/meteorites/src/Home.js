@@ -12,6 +12,7 @@ import { ROOT_URL, unaryOperations, binaryOperations } from "./services";
 import { isMobile } from "react-device-detect";
 import Select from "react-select";
 import Loader from "react-loader";
+import history from "./history";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -45,7 +46,8 @@ export default class Home extends Component {
       showModal: false,
       firstDS: "",
       secondDS: "",
-      datasets: []
+      datasets: [],
+      showDualHeading: false
     };
   }
 
@@ -54,6 +56,11 @@ export default class Home extends Component {
     var tmpMarkers = [];
 
     this.setState({ loading: true });
+
+    if (!this.state.dataset || !this.state.dataverse) {
+      this.setState({ loading: false });
+      history.push("/select");
+    }
 
     fetch(`http://${ROOT_URL}:19002/query/service`, {
       method: "POST",
@@ -72,8 +79,11 @@ export default class Home extends Component {
           tmpCoordinates = [];
           let coordinates = [];
           switch (result.geometry.type) {
-            case "Polygon" || "MultiPolygon":
+            case "Polygon" :
               coordinates = result.geometry.coordinates[0];
+              break;
+            case "MultiPolygon":
+              coordinates = result.geometry.coordinates[0][0];
               break;
             case "LineString":
               coordinates = result.geometry.coordinates;
@@ -169,6 +179,7 @@ export default class Home extends Component {
     this.setState({
       selectedPolygons: [],
       showQueryResult: false,
+      showDualHeading: false,
       queryResult: [],
       refresh: !this.state.refresh
     });
@@ -198,7 +209,10 @@ export default class Home extends Component {
       .then(res => res.json())
       .then(response => {
         console.log(response.results);
-        if (typeof response.results[0] === "boolean") {
+        if (
+          typeof response.results[0] === "boolean" ||
+          typeof response.results[0] === "number"
+        ) {
           alert(`${label}: ${response.results}`);
           return;
         }
@@ -214,7 +228,8 @@ export default class Home extends Component {
   };
 
   sendDualRequest(first, second, operation) {
-    this.setState({ loading: true });
+    this.setState({ loading: true, showDualHeading: true });
+
     // operate on those two datasets
     fetch(`http://${ROOT_URL}:19002/query/service`, {
       method: "POST",
@@ -226,6 +241,7 @@ export default class Home extends Component {
           alert(`${operation}: ${response.results}`);
           this.setState({
             showModal: false,
+            showDualHeading: false,
             loading: false
           });
           return;
@@ -251,6 +267,7 @@ export default class Home extends Component {
 
         this.setState({
           showQueryResult: true,
+          showDualHeading: true,
           queryResult: tmpMarkers,
           showModal: false,
           loading: false
@@ -293,7 +310,7 @@ export default class Home extends Component {
           />
           <h3 className="title">
             <Image src="map-pin.png" width="40" />
-            {localStorage.getItem("dataset")}
+            {this.state.showDualHeading ? `` : localStorage.getItem("dataset")}
           </h3>
           {this.state.showQueryResult && (
             <h5>{`Showing query result for ${this.state.selectedLabel}`}</h5>
@@ -382,30 +399,32 @@ export default class Home extends Component {
         />
         {!this.state.showQueryResult &&
           this.state.serverMarkers.map((polygon, i) => {
-            return (
-              <Polygon
-                onClick={() => this.togglePolygon(polygon)}
-                color={polygon.selected ? "darkred" : "darkblue"}
-                positions={polygon.coordinates}
-                key={i}
-              >
-                {/* <Popup>
+            if (polygon.coordinates)
+              return (
+                <Polygon
+                  onClick={() => this.togglePolygon(polygon)}
+                  color={polygon.selected ? "darkred" : "darkblue"}
+                  positions={polygon.coordinates}
+                  key={i}
+                >
+                  {/* <Popup>
                   <p>{polygon.geometry.type}</p>
                 </Popup> */}
-              </Polygon>
-            );
+                </Polygon>
+              );
           })}
         {this.state.showQueryResult &&
           this.state.queryResult.map((polygon, i) => {
             console.log(polygon.coordinates);
-            return (
-              <Polygon
-                onClick={() => this.togglePolygon(polygon)}
-                color={polygon.selected ? "darkred" : "darkblue"}
-                positions={polygon.coordinates}
-                key={i}
-              />
-            );
+            if (polygon.coordinates)
+              return (
+                <Polygon
+                  onClick={() => this.togglePolygon(polygon)}
+                  color={polygon.selected ? "darkred" : "darkblue"}
+                  positions={polygon.coordinates}
+                  key={i}
+                />
+              );
           })}
       </Map>
       {this.state.showModal && (

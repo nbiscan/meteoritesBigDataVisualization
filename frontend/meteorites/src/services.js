@@ -21,7 +21,8 @@ export const unaryOperations = [
   { label: "Number of interior rings", value: "st_num_interior_rings" },
   { label: "As binary", value: "st_as_binary" },
   { label: "As geojson", value: "st_as_geojson" },
-  { label: "As text", value: "st_as_text" }
+  { label: "As text", value: "st_as_text" },
+  { label: "SRID", value: "st_srid" }
 ];
 
 export const binaryOperations = [
@@ -31,5 +32,9 @@ export const binaryOperations = [
   { label: "Difference", value: "st_difference" },
   { label: "Symmetric difference", value: "st_sym_difference" },
   { label: "Crosses?", value: "st_crosses" },
-  { label: "Contains?", value: "st_contains" }
+  { label: "Contains?", value: "st_contains" },
+  { label: "Touches?", value: "st_touches" },
+  { label: "Overlaps?", value: "st_overlaps" },
+  { label: "Within?", value: "st_within" },
+  { label: "Distance", value: "st_distance" }
 ];

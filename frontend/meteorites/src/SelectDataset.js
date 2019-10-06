@@ -101,12 +101,10 @@ class SelectDataset extends Component {
             );
           })}
           <div className="dataset-pool">
-            <h3>Failing dataset used for testing</h3>
+            <h3>Testing</h3>
             <Button
               className="btn-dark"
-              onClick={() =>
-                this.selectDataset("failing", "test", "err", "err")
-              }
+              onClick={() => this.selectDataset("test", "test", "test", "test")}
             >
               Select dataset
             </Button>

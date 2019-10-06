@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
     "leaflet": "^1.4.0",
+    "proj4": "^2.5.0",
     "react": "^16.7.0",
     "react-bootstrap": "^0.32.4",
     "react-device-detect": "^1.6.2",

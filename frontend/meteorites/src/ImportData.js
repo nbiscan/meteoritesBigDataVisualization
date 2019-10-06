@@ -150,7 +150,7 @@ class ImportData extends Component {
 
         history.push("/");
       } else {
-        alert("Error importing file.");
+        alert("Error importing file");
       }
       this.setState({
         loading: false

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Map, TileLayer, Popup, Polygon } from "react-leaflet";
+import { Map, TileLayer, Polygon } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
@@ -13,6 +13,7 @@ import { isMobile } from "react-device-detect";
 import Select from "react-select";
 import Loader from "react-loader";
 import history from "./history";
+import proj4 from "proj4";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -47,7 +48,10 @@ export default class Home extends Component {
       firstDS: "",
       secondDS: "",
       datasets: [],
-      showDualHeading: false
+      showDualHeading: false,
+      firstProjection:
+        "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs",
+      secondProjection: "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
     };
   }
 
@@ -62,11 +66,36 @@ export default class Home extends Component {
       history.push("/select");
     }
 
+    if (this.state.dataset === "test") {
+      this.setState({
+        serverMarkers: [
+          {
+            coordinates: [[48.22467264956519, 2.8125]],
+            properties: {},
+            geometry: {
+              type: "FeatureCollection",
+              features: [
+                {
+                  type: "Feature",
+                  properties: {},
+                  geometry: {
+                    type: "Point",
+                    coordinates: [2.8125, 48.22467264956519]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        selected: false,
+        loading: false
+      });
+      return;
+    }
+
     fetch(`http://${ROOT_URL}:19002/query/service`, {
       method: "POST",
-      body: `select value ${this.state.dataset} from ${this.state.dataverse}.${
-        this.state.dataset
-      };`
+      body: `select value ${this.state.dataset} from ${this.state.dataverse}.${this.state.dataset};`
     })
       .then(res => res.json())
       .then(response => {
@@ -78,8 +107,15 @@ export default class Home extends Component {
         response.results.forEach(result => {
           tmpCoordinates = [];
           let coordinates = [];
+          if (!result.geometry && result.geometries) {
+            result.geometries.forEach(geometry => {
+              console.log(geometry);
+              //  NASTAVI ISTO KO DOLE
+            });
+          }
+
           switch (result.geometry.type) {
-            case "Polygon" :
+            case "Polygon" || "MultiLineString":
               coordinates = result.geometry.coordinates[0];
               break;
             case "MultiPolygon":
@@ -95,7 +131,12 @@ export default class Home extends Component {
               coordinates = result.geometry.coordinates[0];
           }
           coordinates.forEach(coo => {
-            tmpCoordinates.push(coo.reverse());
+            let transformedCoordinates = proj4(
+              this.state.firstProjection,
+              this.state.secondProjection,
+              coo
+            );
+            tmpCoordinates.push(transformedCoordinates.reverse());
           });
 
           tmpMarkers.push({
@@ -251,13 +292,37 @@ export default class Home extends Component {
           tmpMarkers = [],
           tmpCoo = [];
 
-        response.results[0].coordinates.forEach(coo => {
-          tmpCoordinates = [];
-          coo[0].forEach(c => {
-            tmpCoordinates.push(c.reverse());
+        console.log(response);
+
+        if (response.results[0].geometries) {
+          response.results[0].geometries.forEach(geometry => {
+            geometry.coordinates.forEach(coo => {
+              tmpCoordinates = [];
+              coo[0].forEach(c => {
+                let transformedCoordinates = proj4(
+                  this.state.firstProjection,
+                  this.state.secondProjection,
+                  c
+                );
+                tmpCoordinates.push(transformedCoordinates.reverse());
+              });
+              tmpCoo.push(tmpCoordinates);
+            });
           });
-          tmpCoo.push(tmpCoordinates);
-        });
+        } else {
+          response.results[0].coordinates.forEach(coo => {
+            tmpCoordinates = [];
+            coo[0].forEach(c => {
+              let transformedCoordinates = proj4(
+                this.state.firstProjection,
+                this.state.secondProjection,
+                c
+              );
+              tmpCoordinates.push(transformedCoordinates.reverse());
+            });
+            tmpCoo.push(tmpCoordinates);
+          });
+        }
 
         tmpMarkers.push({
           coordinates: tmpCoo,
@@ -313,40 +378,56 @@ export default class Home extends Component {
             {this.state.showDualHeading ? `` : localStorage.getItem("dataset")}
           </h3>
           {this.state.showQueryResult && (
-            <h5>{`Showing query result for ${this.state.selectedLabel}`}</h5>
-          )}
-          <Link className="btn btn-dark import-data" to="/select">
-            Select active dataset
-          </Link>
-          <Link className="btn btn-dark import-data" to="/import">
-            Import data
-          </Link>
-          <Button
-            className="btn btn-dark import-data"
-            onClick={() =>
-              this.setState({ showModal: true, firstDS: "", secondDS: "" })
-            }
-          >
-            Query on two datasets
-          </Button>
-          <div className="content">
-            <div className="select">
-              <Select
-                options={
-                  this.state.selectedPolygons.length === 0
-                    ? unaryOperations.concat(binaryOperations)
-                    : this.state.selectedPolygons.length === 1
-                    ? unaryOperations
-                    : binaryOperations
-                }
-                onChange={opt =>
-                  this.setState({
-                    selectedOperation: opt.value,
-                    selectedLabel: opt.label
-                  })
-                }
-              />
+            <div>
+              <h3>{`Query result for operation "${this.state.selectedLabel}" on datasets:`}</h3>
+              <h5 class="alert alert-dark">
+                {this.state.firstDS.split(".")[1]}
+              </h5>
+              <h5 class="alert alert-dark">
+                {this.state.secondDS.split(".")[1]}
+              </h5>
             </div>
+          )}
+          {!this.state.showQueryResult && (
+            <Link className="btn btn-dark import-data" to="/select">
+              Select active dataset
+            </Link>
+          )}
+          {!this.state.showQueryResult && (
+            <Link className="btn btn-dark import-data" to="/import">
+              Import data
+            </Link>
+          )}
+          {!this.state.showQueryResult && (
+            <Button
+              className="btn btn-dark import-data"
+              onClick={() =>
+                this.setState({ showModal: true, firstDS: "", secondDS: "" })
+              }
+            >
+              Query on two datasets
+            </Button>
+          )}
+          <div className="content">
+            {!this.state.showQueryResult && (
+              <div className="select">
+                <Select
+                  options={
+                    this.state.selectedPolygons.length === 0
+                      ? unaryOperations.concat(binaryOperations)
+                      : this.state.selectedPolygons.length === 1
+                      ? unaryOperations
+                      : binaryOperations
+                  }
+                  onChange={opt =>
+                    this.setState({
+                      selectedOperation: opt.value,
+                      selectedLabel: opt.label
+                    })
+                  }
+                />
+              </div>
+            )}
             <br />
             <div className="btn">
               {/* <Button
@@ -412,6 +493,7 @@ export default class Home extends Component {
                 </Popup> */}
                 </Polygon>
               );
+            else return null;
           })}
         {this.state.showQueryResult &&
           this.state.queryResult.map((polygon, i) => {
@@ -425,6 +507,7 @@ export default class Home extends Component {
                   key={i}
                 />
               );
+            else return null;
           })}
       </Map>
       {this.state.showModal && (

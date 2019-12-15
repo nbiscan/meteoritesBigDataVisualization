@@ -110,7 +110,6 @@ export default class Home extends Component {
           if (!result.geometry && result.geometries) {
             result.geometries.forEach(geometry => {
               console.log(geometry);
-              //  NASTAVI ISTO KO DOLE
             });
           }
 
